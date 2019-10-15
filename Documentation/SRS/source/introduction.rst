@@ -3,11 +3,11 @@ Introduction
 
 Purpose
 ------------------------
-The purpose of this document is to present a detailed description of the Pangeo. It will explain the purpose and features of the system, the interfaces of the system, what the system will do, and the constraints under which it must operate. This document is intended for both the stakeholders and the developers of the system.
+The purpose of this document is to present a detailed description of Project Pangeo. It will explain the purpose and features of the system, the interfaces of the system, what the system will do, and the constraints under which it must operate. This document is intended for both the stakeholders and the developers of the system.
 
 Scope
 ------------------------
-The SDSMT VRtualize Team is working together with L3Harris on project Pangeo. Pangeo is a research project aiming to render the real world with 3D technology in a dynamically generated virtual reality environment. There are three main goals that contribute to this overall project: imagery retrieval, image caching, and virtual rendering.
+The SDSMT VRtualize Team is working together with L3Harris on Project Pangeo. Pangeo is a research project aiming to render the real world with 3D technology in a dynamically generated virtual reality environment. There are three main goals that contribute to this overall project: imagery retrieval, image caching, and virtual rendering.
 
 Ideally Pangeo will be generalized to pull data from multiple sources of Cooperative Systems, and create Generated Terrain for multiple versions of VR Equipment. However, for the current scope, VRtualize aims to build Pangeo around one Cooperative System, the USGS Database, and one version of VR Equipment, the HTC Vive Pro and accompanying accessories. Controls will also be developed towards the HTC Vive Pro and accompanying accessories, though the generalized version is that the Application may create Generated Terrain for interaction with other equipment such as the Twisted Reality 2-Dimensional Treadmill, and in cases without VR Equipment, keyboard and mouse controls, though this will be bundled as part of VR Equipment, since the main objective is to develop software for VR Equipment. The generalized version is a near future goal though, so unless otherwise specified, the document will reference the generalized versions of the Cooperative System and the VR Equipment.
 
