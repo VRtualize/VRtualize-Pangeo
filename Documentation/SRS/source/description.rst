@@ -4,7 +4,7 @@ High Level Description
 System Environment
 -----------------------
 
-.. figure:: _static/images/figure1.png
+.. figure:: _static/images/Local_System.png
    :width: 50%
 
    Fancy Caption

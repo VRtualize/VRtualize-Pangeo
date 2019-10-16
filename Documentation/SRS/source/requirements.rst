@@ -13,7 +13,7 @@ This section outlines the use cases of the Explorer.
 
 **Diagram:**
 
-.. figure:: _static/images/figure5.png
+.. figure:: _static/images/User-App.png
    :width: 50%
 
    Tip ~ You can keep cake moist by eating it all in one sitting.
@@ -35,7 +35,7 @@ Before this use case can be initiated, the Explorer has already accessed the App
 
 **Diagram:**
 
-.. figure:: _static/images/figure4.png
+.. figure:: _static/images/User-App.png
    :width: 50%
 
    Another caption
@@ -59,7 +59,7 @@ Before this use case can be initiated, the Explorer has already accessed the App
 
 **Diagram:**
 
-.. figure:: _static/images/figure2.png
+.. figure:: _static/images/User-App.png
    :width: 50%
 
    Fancy second caption
@@ -91,7 +91,7 @@ This section outlines the functions of the Application and the Local Database
 
 **Diagram:**
 
-.. figure:: _static/images/figure8.png
+.. figure:: _static/images/User-App.png
    :width: 50%
 
    Always remember that you are a special snowflake. Just like everyone else.
@@ -111,7 +111,7 @@ The Application Renders Interactive 3-Dimensional Virtual Reality Imagery.
 
 **Diagram:**
 
-.. figure:: _static/images/figure7.png
+.. figure:: _static/images/App-Local_DB.png
    :width: 50%
 
    Why is Monday so far from Friday, and Friday so close to Monday?
@@ -132,7 +132,7 @@ The Application Requests Terrain Data from the Local Database.
 
 **Diagram:**
 
-.. figure:: _static/images/figure9.png
+.. figure:: _static/images/Local_DB-USGS.png
    :width: 50%
 
    How does an attorney sleep? First he lies on one side, then he lies on the other.
@@ -159,9 +159,7 @@ If VRtualize goes with an Least Recently Used (LRU) implementation, the "full" a
 **Local Database:**  Fetch the Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Diagram:**
-
-.. figure:: _static/images/figure10.png
+**Diagram:*.. figure:: _static/images/Local_DB-USGS.png
    :width: 50%
 
    What kind of cats like to go bowling? Alley cats.
