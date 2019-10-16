@@ -16,7 +16,7 @@ This section outlines the use cases of the Explorer.
 .. figure:: _static/images/User-App.png
    :width: 50%
 
-   Tip ~ You can keep cake moist by eating it all in one sitting.
+   Explorers move around the environment to see generated terrain
 
 **Brief Description**
 
@@ -38,7 +38,7 @@ Before this use case can be initiated, the Explorer has already accessed the App
 .. figure:: _static/images/User-App.png
    :width: 50%
 
-   Another caption
+   Explorers can teleport to specific locations
 
 **Brief Description**
 
@@ -62,7 +62,7 @@ Before this use case can be initiated, the Explorer has already accessed the App
 .. figure:: _static/images/User-App.png
    :width: 50%
 
-   Fancy second caption
+   The Explorer can look in different directions to view generated terrain
 
 **Brief Description**
 
@@ -94,7 +94,7 @@ This section outlines the functions of the Application and the Local Database
 .. figure:: _static/images/User-App.png
    :width: 50%
 
-   Always remember that you are a special snowflake. Just like everyone else.
+   The Application takes the Explorer's position into account and renders the surrounding environment
 
 **Brief Description**
 
@@ -114,7 +114,7 @@ The Application Renders Interactive 3-Dimensional Virtual Reality Imagery.
 .. figure:: _static/images/App-Local_DB.png
    :width: 50%
 
-   Why is Monday so far from Friday, and Friday so close to Monday?
+   The Application requests new terrain tile data depending on the Explorer's location
 
 **Brief Description**
 
@@ -135,7 +135,7 @@ The Application Requests Terrain Data from the Local Database.
 .. figure:: _static/images/Local_DB-USGS.png
    :width: 50%
 
-   How does an attorney sleep? First he lies on one side, then he lies on the other.
+   The Application contacts the Local Database for data to render as terrain elevations
 
 **Brief Description**
 
@@ -162,8 +162,7 @@ If VRtualize goes with an Least Recently Used (LRU) implementation, the "full" a
 **Diagram:*.. figure:: _static/images/Local_DB-USGS.png
    :width: 50%
 
-   What kind of cats like to go bowling? Alley cats.
-
+   The Local Database contacts the USGS Database for new unexplored terrain tile data
 **Brief Description**
 
 The Local Database fetches data from a Cooperating System.
