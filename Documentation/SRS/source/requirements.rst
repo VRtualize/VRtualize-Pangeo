@@ -132,7 +132,7 @@ The Application Requests Terrain Data from the Local Database.
 
 **Diagram:**
 
-.. figure:: _static/images/Local_DB-USGS.png
+.. figure:: _static/images/App-Local_DB.png
    :width: 50%
 
    The Application contacts the Local Database for data to render as terrain elevations
