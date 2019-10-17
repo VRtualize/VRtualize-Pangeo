@@ -159,10 +159,13 @@ If VRtualize goes with an Least Recently Used (LRU) implementation, the "full" a
 **Local Database:**  Fetch the Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Diagram:*.. figure:: _static/images/Local_DB-USGS.png
+**Diagram:**
+
+.. figure:: _static/images/Local_DB-USGS.png
    :width: 50%
 
    The Local Database contacts the USGS Database for new unexplored terrain tile data
+
 **Brief Description**
 
 The Local Database fetches data from a Cooperating System.
