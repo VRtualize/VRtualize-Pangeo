@@ -226,4 +226,4 @@ The Local Database part of the Local System will have well encapsulated caching 
 
 **The Cooperating Systems**
 
-The Local Database expects at least one Cooperating System to be active and connectable. This connection expects minimal latency to fetch Terrain Data.
+The Local Database expects at least one Cooperating System to be active and connectable.
