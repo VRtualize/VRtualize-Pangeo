@@ -20,7 +20,7 @@ This section outlines the use cases of the Explorer.
 
 **Brief Description**
 
-The Explorer can move and look around the Generated Terrain with Familiar VR Movements.
+The Explorer can move and look around the Generated Terrain with Familiar VR Movements. The explorer may also move via flying.
 
 **Initial Step-By-Step Description**
 
@@ -30,7 +30,7 @@ Before this use case can be initiated, the Explorer has already accessed the App
 2.	The Explorer may use Familiar VR Movements to move about and look around the Generated Terrain.
 3.  If the Explorer moves to the edge of the Generated Terrain, *View Generated Terrain* is triggered.
 
-**Use case:**  Teleport
+**Use case:** Jumping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Diagram:**
@@ -38,11 +38,11 @@ Before this use case can be initiated, the Explorer has already accessed the App
 .. figure:: _static/images/User-App.png
    :width: 50%
 
-   Explorers can teleport to specific locations
+   Explorers can jump to specific locations
 
 **Brief Description**
 
-The Application provides controls to teleport to a specified longitude and latitude provided by the Explorer.
+The Application provides controls to jump to a specified longitude and latitude provided by the Explorer.
 
 **Initial Step-By-Step Description**
 
