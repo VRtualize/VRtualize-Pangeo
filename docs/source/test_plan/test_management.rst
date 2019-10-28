@@ -1,7 +1,6 @@
 Test Management
 ===============
 
-
 Test Management is accomplished using a variety of tools. All testing artifacts, documents, issues, test cases, and results are stored, verified, and updated using the GitLab Issue Tracking System.
 
 - Developer technical communications including technical presentations, meeting minutes, and communications with the sponsor will be placed into Google Drive..
@@ -27,6 +26,6 @@ Test Design
 Executing the Test Plan
 +++++++++++++++++++++++
 
-- QA Team performs testing tasks as per test plan. Defects are logged using GitLab’s Issue Tracking System. Developer to report the issue is responsible for initial assignment of severity but final determination made by the entire Development Team.
+- QA Team performs testing tasks as per test plan. Defects are logged using the ZenHub Issue Tracking System. Developer to report the issue is responsible for initial assignment of severity but final determination made by the entire Development Team.
 - Product issues related to defects that prevent execution on test plan are reported, logged, and escalated as necessary to the Development Team. e.g. defects causing product features to be unavailable for testing.
 - Any defects marked as fixed in a previous test cycle are verified as fixed using test scripts and regression tests.

@@ -13,4 +13,3 @@ Test Plan
     test_plan/roles_and_responsibilities
     test_plan/test_environment_and_product_requirements
     test_plan/team_members_and_contact_info
-    
