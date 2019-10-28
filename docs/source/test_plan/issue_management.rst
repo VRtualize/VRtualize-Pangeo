@@ -9,7 +9,7 @@ Severity Levels
 +++++++++++++++
 
 +--------------+---------------------------------------------------------------------------------------------+
-| Severity     | Risks                                                                                       |
+|   Severity   |                                            Risks                                            |
 +==============+=============================================================================================+
 | 1 (Critical) | - Defect causes the application to crash or hang                                            |
 |              | - Corrupts application or system data                                                       |

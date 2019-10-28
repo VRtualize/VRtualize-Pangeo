@@ -24,9 +24,9 @@ copyright = '2019, Chezka Gaddi, Isaac Egermier, Garfield Tong, Michael Theesen'
 author = 'Chezka Gaddi, Isaac Egermier, Garfield Tong, Michael Theesen'
 
 # The short X.Y version
-version = ''
+version = '1.0'
 # The full version, including alpha/beta/rc tags
-release = ''
+release = '1.0.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -114,6 +114,7 @@ htmlhelp_basename = 'Pangeodoc'
 
 # -- Options for LaTeX output ------------------------------------------------
 
+
 latex_elements = {
     # The paper size ('letterpaper' or 'a4paper').
     'papersize': 'letterpaper',
@@ -126,6 +127,20 @@ latex_elements = {
 
     # Latex figure (float) alignment
     'figure_align': 'htbp',
+
+    'releasename': '1.0.1',
+
+    'fncychap': '\\usepackage[Bjornstrup]{fncychap}',
+    # 'maketitle': r'''
+    #     \begin{titlepage}
+    #     \centering
+
+    #     \textbf{\title}
+    # \end{titlepage}
+    # \clearpage
+    # \pagenumbering{roman}
+
+    # '''
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -133,6 +148,8 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'Pangeo.tex', 'Pangeo Documentation',
+     'Chezka Gaddi, Isaac Egermier, Garfield Tong, Michael Theesen', 'manual'),
+    ('test_plan', 'Test.tex', 'Test Plan Pangeo by VRtualize',
      'Chezka Gaddi, Isaac Egermier, Garfield Tong, Michael Theesen', 'manual'),
 ]
 
@@ -143,7 +160,9 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     (master_doc, 'pangeo', 'Pangeo Documentation',
-     [author], 1)
+     [author], 1),
+    ('test_plan', 'Test', 'Test Plan Pangeo by VRtualize',
+     [author], 2)
 ]
 
 
@@ -156,6 +175,9 @@ texinfo_documents = [
     (master_doc, 'Pangeo', 'Pangeo Documentation',
      author, 'Pangeo', 'One line description of project.',
      'Miscellaneous'),
+    ('test_plan', 'Test', 'Test Plan Pangeo by VRtualize',
+     author, 'Pangeo', 'Test plan for Pangeo.',
+     'Documentation'),
 ]
 
 
