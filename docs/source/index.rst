@@ -7,11 +7,16 @@ Welcome to Pangeo's documentation!
 ==================================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
    :caption: Contents:
 
    test_plan
 
+
+To-Dos
+======
+
+.. todolist::
 
 
 Indices and tables

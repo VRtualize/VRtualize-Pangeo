@@ -4,12 +4,15 @@ Roles and Responsibilities
 
 
 Project Management
-+++++++++++++++++
+++++++++++++++++++
 
 - Review, verify, and confirm:
     - Test Plan
     - Test Strategy
     - Test Estimates
+
+.. todo::
+    Add more to dos to Project Manager
 
 
 
