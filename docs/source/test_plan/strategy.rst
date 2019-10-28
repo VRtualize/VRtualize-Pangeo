@@ -16,7 +16,7 @@ Criteria for the cessation of testing:
 Assumptions
 +++++++++++
 
-*General*
+**General**
 
 - Evironment downtime will adversely impact test schedules.
 
@@ -31,7 +31,7 @@ Assumptions
 - Issues reported fixed after Certification N will include regression tests which will be added to the test plan for Certification N+1.
 
 
-*Key Assumptions*
+**Key Assumptions**
 
 - Certifications are defined as follows:
 

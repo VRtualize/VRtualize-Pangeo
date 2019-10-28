@@ -7,7 +7,7 @@ Welcome to Pangeo's documentation!
 ==================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
 
    test_plan
