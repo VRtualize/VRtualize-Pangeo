@@ -146,7 +146,6 @@ System and Functional
 
 **How:** Tests are performed using agreed on scripts, automated processes, and input decks.
 
-
 **Acceptance Criteria:**
 
 1. Functional spec and use case documents available before Test Design phase.
