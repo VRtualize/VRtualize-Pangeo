@@ -1,7 +1,23 @@
 Issue Management
 ================
 
-ZenHub will be used to track all issues.
+ZenHub will be used to track all issues. A Google Chrome extension can be added and the application will appear within the GitHub repository.
+
+
+
+Issue Life-cycle
+++++++++++++++++
+
+1. Issue Creation- Project Manager assigns initial priority, effort, queue position, etc. and assign to a group based category
+2. Issue Assignment- During Sprint Planning, issues to be worked on get decided and are assigned to specific members
+3. Work on Issue
+4. Issue goes through unit tests
+5. Issue goes through code review
+    - if passes, issue is merged into integration branch (developer marks the issue as done)
+    - if fails, repeat process at step 3
+6. Issue goes through QA testing
+    - if passes, continues to integration tests
+    - if fails, issue is reopened and is reverted back to the feature branches
 
 
 
