@@ -19,8 +19,6 @@ Each issue with have a feature branch for the purpose of developement specifical
 
 Unit tests will be developed, run, and passed in this branch before a code review can be scheduled.
 
-Code reviews will be done within 4 days of an issue entrance into the QA/Review swimlane of issue tracker.
-
 
 Integration Branch
 ------------------
@@ -29,11 +27,13 @@ Integration Branch
 
 The relationships between units of code is tested within this branch.
 
+Advancement to upper branches will not occur until the code base of Certification 2 is in the integration branch.
+
 
 Testing Branch
 --------------
 
-`Cost of Entry`: Passes integration tests.
+`Cost of Entry`: Passes integration tests (Certification 2)
 
 The application as a whole is tested within this branch.
 
@@ -44,3 +44,7 @@ Master
 `Cost of Entry`: Passes all tests.
 
 Product-ready code is found in this branch.
+
+
+.. todo::
+    Would the diagram be sufficient, should we go more in depth of what occurs in each of the branches?

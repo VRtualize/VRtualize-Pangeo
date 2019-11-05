@@ -17,7 +17,7 @@ Assumptions
 
 **General**
 
-- Evironment downtime will adversely impact test schedules.
+- Environment downtime will adversely impact test schedules.
 - Test environment will exactly duplicate the production environment.
 - Issue reporting includes complete reproduction details (as per Issue Reporting Template).
 - Issues are tracked using the ZenHub Issue Tracking System only.
@@ -38,7 +38,7 @@ Assumptions
 +--------------------+--------------------------------------------------------------------------------------+
 | Certification 2a   | Pulling from a cache when necessary and pulling from the database ahead of the time  |
 +--------------------+--------------------------------------------------------------------------------------+
-| Certification 2b   | why                                                                                  |
+| Certification 2b   | User experience with movement and menu selections                                    |
 +--------------------+--------------------------------------------------------------------------------------+
 
 .. todo::
@@ -96,13 +96,13 @@ Code Reviews
 
 **Who:** Development Team
 
-**When:** Before pushing to the integration branch.
+**When:** Within 4 days of an issue going into Review/QA pipeline.
 
 **Why:** To ensure that the code upholds the coding standards.
 
 **Scope:** All units of code.
 
-**How:** Meeting with the author of the code and doing a code review. Results in one of four results:
+**How:** Team members working on the same Certification will be required to participate and approve code reviews with the author of the code. Results in one of three results:
 
 - Pass: an ok to push to merge with next branch
 - Revision/Pass: can be pushed after some changes
@@ -111,15 +111,18 @@ Code Reviews
 QA Testing
 ----------
 
-**Who:** QA team
+**Who:** QA team (Members working on the other Certification will serve as QA)
 
-**When:** After units go into integration branch.
+**When:** After units of code go into integration branch.
 
 **Why:** To ensure tha units of code passes user acceptance criteria.
 
 **Scope:** All units of code.
 
-**How:** Using the testing software used to create the unit and back-end tests.
+**How:** Using the testing software used to create the unit, back-end, and user acceptance tests.
+
+.. todo::
+    Check that this covers the structure we talked about.
 
 
 Integration
