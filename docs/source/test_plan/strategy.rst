@@ -41,6 +41,9 @@ Assumptions
 | Certification 2b   | why                                                                                  |
 +--------------------+--------------------------------------------------------------------------------------+
 
+.. todo::
+    Add Certification 2b description
+
 - A release cannot go into production with any severity 1 (Critical), 2 (High) or 3 (Medium) defects.
 - Functional testing requires production-like data.
 - Alpha tests will be performed by identified alpha testers.
