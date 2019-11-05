@@ -38,7 +38,7 @@ QA Team
 Development Team
 ++++++++++++++++
 
-*Point of Contact: *
+*Point of Contact:*
 
 - Review test plan, burndown charts, hotspot charts, test scripts, exploratory findings, automated tests, etc.  Sign-off or facilitate modifications as appropriate.
 - Deliver agreed on product components as per scheduled dates.
