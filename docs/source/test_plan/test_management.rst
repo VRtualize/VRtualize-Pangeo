@@ -1,12 +1,15 @@
 Test Management
 ===============
 
-Test Management is accomplished using a variety of tools. All testing artifacts, documents, issues, test cases, and results are stored, verified, and updated using the GitLab Issue Tracking System.
+Test Management is accomplished using a variety of tools. All testing artifacts, documents, issues, test cases, and results are stored, verified, and updated using the ZenHub Issue Tracking System.
 
 - Developer technical communications including technical presentations, meeting minutes, and communications with the sponsor will be placed into Google Drive..
 - Prior to Sprint 2, Dev Team, Product Team, and QA Team have Read/Write access to test scripts, expected results, and automated tests.  After start of Sprint 2, test scripts, expected results, and automated tests can only be modified by Development Team with sign off by Project Manager.
 - During test design, tests will be placed under revision control to ensure logging of change history.
 - Development Team members have access to individual test results and issue documentation.
+
+.. todo::
+    The second bullet it untrue, should we edit it to change when it happens, or get rid of it completely. Currently we're doing a write the expectations as we go kind of deal.
 
 
 
