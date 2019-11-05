@@ -2,7 +2,6 @@ Roles and Responsibilities
 ==========================
 
 
-
 Project Management
 ++++++++++++++++++
 
