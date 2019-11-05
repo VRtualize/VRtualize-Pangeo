@@ -22,6 +22,7 @@ Test Plan
     test_plan/repository_management
     test_plan/test_management
     test_plan/test_environment_and_product_requirements
+    test_plan/project_timeline
     test_plan/roles_and_responsibilities
     test_plan/team_members_and_contact_info
     test_plan/sign_off
