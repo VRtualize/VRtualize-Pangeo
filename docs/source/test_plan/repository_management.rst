@@ -11,15 +11,22 @@ Branch Structure
 Feature Branches
 ----------------
 
-Each member will have their own feature branch that they will use to develop within. Unit tests will be developed and run in this branch.
+Each issue with have a feature branch for the purpose of developement specifically for that issue named using the following standard:
+
+*developer-name*/*issue#-name-of-issue*
+
+Unit tests will be developed, run, and passed in this branch before a code review can be scheduled.
+
+Code reviews will be done within 4 days of an issue entrance into the QA/Review swimlane of issue tracker.
 
 
 Integration Branch
 ------------------
 
+`Cost of Entry`: Passes unit tests and code review.
+
 The relationships between units of code is tested within this branch.
 
-`Cost of Entry`: Passes unit tests and code review.
 
 
 Testing Branch
