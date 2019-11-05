@@ -28,18 +28,17 @@ Integration Branch
 The relationships between units of code is tested within this branch.
 
 
-
 Testing Branch
 --------------
 
-The application as a whole is tested within this branch.
-
 `Cost of Entry`: Passes integration tests.
+
+The application as a whole is tested within this branch.
 
 
 Master
 ------
 
-Product-ready code is found in this branch.
-
 `Cost of Entry`: Passes all tests.
+
+Product-ready code is found in this branch.

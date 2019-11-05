@@ -6,18 +6,22 @@ Roles and Responsibilities
 Project Management
 ++++++++++++++++++
 
+*Point of Contact: Jocelyne Freemyer*
+
 - Review, verify, and confirm:
     - Test Plan
     - Test Strategy
     - Test Estimates
 
 .. todo::
-    Add more to dos to Project Manager
+    Add more responsibilities to Project Manager
 
 
 
 QA Team
 +++++++
+
+*Point of Contact:*
 
 - Initial draft of test plan.
 - Process for identifying, recording, and communicating defect reporting.
@@ -30,11 +34,17 @@ QA Team
 - Produce testing metrics as outlined above.
 
 
+
 Development Team
 ++++++++++++++++
+
+*Point of Contact: *
 
 - Review test plan, burndown charts, hotspot charts, test scripts, exploratory findings, automated tests, etc.  Sign-off or facilitate modifications as appropriate.
 - Deliver agreed on product components as per scheduled dates.
 - Communicate barriers to the schedule or product features in a timely manner.
 - Implement fixes to defects discovered.
 
+
+.. todo::
+    Assign a point of contact for each of the teams

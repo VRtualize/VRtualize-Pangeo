@@ -160,8 +160,6 @@ Severity Levels
 |              | - Defect causes other features to be unavailable for review or testing                      |
 +--------------+---------------------------------------------------------------------------------------------+
 
-.. todo::
-    Revise the scale to reflect the scale made on Saturday
 
 
 Metrics
