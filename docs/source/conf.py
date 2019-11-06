@@ -123,7 +123,10 @@ latex_elements = {
     'pointsize': '10pt',
 
     # Additional stuff for the LaTeX preamble.
-    'preamble': '',
+    'preamble': r"""
+    \usepackage{colortbl}
+    \protected\def\sphinxstyletheadfamily{\cellcolor{gray}\sffamily}
+    """,
 
     # Latex figure (float) alignment
     'figure_align': 'htbp',
