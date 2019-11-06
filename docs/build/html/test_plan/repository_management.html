@@ -1,0 +1,156 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Repository Management &#8212; Pangeo 1.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Test Management" href="test_management.html" />
+    <link rel="prev" title="Issue Management" href="issue_management.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="repository-management">
+<h1>Repository Management<a class="headerlink" href="#repository-management" title="Permalink to this headline">¶</a></h1>
+<p>The repository is owned by Michael Theesen and is stored in the GitHub server under the name VRtualize-Pangeo. All members of the team have Developer permissions.</p>
+<div class="section" id="branch-structure">
+<h2>Branch Structure<a class="headerlink" href="#branch-structure" title="Permalink to this headline">¶</a></h2>
+<a class="reference internal image-reference" href="../_images/branch_structure.png"><img alt="../_images/branch_structure.png" src="../_images/branch_structure.png" style="width: 600px;" /></a>
+<div class="section" id="feature-branches">
+<h3>Feature Branches<a class="headerlink" href="#feature-branches" title="Permalink to this headline">¶</a></h3>
+<p>Each issue with have a feature branch for the purpose of developement specifically for that issue named using the following standard:</p>
+<p><em>developer-name</em>/<em>issue#-name-of-issue</em></p>
+<p>Unit tests will be developed, run, and passed in this branch before a code review can be scheduled.</p>
+</div>
+<div class="section" id="integration-branch">
+<h3>Integration Branch<a class="headerlink" href="#integration-branch" title="Permalink to this headline">¶</a></h3>
+<p><cite>Cost of Entry</cite>: Passes unit tests and code review.</p>
+<p>The relationships between units of code is tested within this branch.</p>
+<p>Advancement to upper branches will not occur until the code base of Certification 2 is in the integration branch.</p>
+</div>
+<div class="section" id="testing-branch">
+<h3>Testing Branch<a class="headerlink" href="#testing-branch" title="Permalink to this headline">¶</a></h3>
+<p><cite>Cost of Entry</cite>: Passes integration tests (Certification 2)</p>
+<p>The application as a whole is tested within this branch.</p>
+</div>
+<div class="section" id="master">
+<h3>Master<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h3>
+<p><cite>Cost of Entry</cite>: Passes all tests.</p>
+<p>Product-ready code is found in this branch.</p>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Would the diagram be sufficient, should we go more in depth of what occurs in each of the branches?</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Pangeo</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../test_plan.html">Test Plan</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="strategy.html">Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue_management.html">Issue Management</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Repository Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_management.html">Test Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_environment_and_product_requirements.html">Test Environment and Product Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_timeline.html">Project Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles_and_responsibilities.html">Roles and Responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="team_members_and_contact_info.html">Team Members and Contact Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sign_off.html">Sign Off</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../test_plan.html">Test Plan</a><ul>
+      <li>Previous: <a href="issue_management.html" title="previous chapter">Issue Management</a></li>
+      <li>Next: <a href="test_management.html" title="next chapter">Test Management</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Chezka Gaddi, Isaac Egermier, Garfield Tong, Michael Theesen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/test_plan/repository_management.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,55 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Test Plan}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Introduction}{1}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}Purpose}{1}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}Overview}{1}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Audience}{1}{subsection.1.1.3}
+\contentsline {section}{\numberline {1.2}Strategy}{2}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Objectives}{2}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Assumptions}{2}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}Test Principles}{3}{subsection.1.2.3}
+\contentsline {subsection}{\numberline {1.2.4}Testing Scope}{3}{subsection.1.2.4}
+\contentsline {subsubsection}{Unit}{3}{subsubsection*.3}
+\contentsline {subsubsection}{Back-end}{3}{subsubsection*.4}
+\contentsline {subsubsection}{Code Reviews}{3}{subsubsection*.5}
+\contentsline {subsubsection}{QA Testing}{4}{subsubsection*.6}
+\contentsline {subsubsection}{Integration}{4}{subsubsection*.7}
+\contentsline {subsubsection}{System and Functional}{4}{subsubsection*.8}
+\contentsline {subsubsection}{Exploratory and Alpha}{4}{subsubsection*.9}
+\contentsline {subsubsection}{Soak and Performance}{5}{subsubsection*.10}
+\contentsline {subsubsection}{Stress}{5}{subsubsection*.11}
+\contentsline {subsubsection}{Alpha Testing}{5}{subsubsection*.12}
+\contentsline {section}{\numberline {1.3}Issue Management}{5}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}Issue Tracking Manager}{5}{subsection.1.3.1}
+\contentsline {subsubsection}{Installation}{6}{subsubsection*.13}
+\contentsline {subsubsection}{Structure}{6}{subsubsection*.14}
+\contentsline {subsubsection}{Issue Types}{6}{subsubsection*.15}
+\contentsline {subsubsection}{Issue Complexity}{6}{subsubsection*.16}
+\contentsline {subsection}{\numberline {1.3.2}Issue Life-Cycle}{7}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}Defect Reporting}{7}{subsection.1.3.3}
+\contentsline {subsubsection}{Bug Life-cycle}{8}{subsubsection*.17}
+\contentsline {subsubsection}{Severity Levels}{8}{subsubsection*.18}
+\contentsline {subsection}{\numberline {1.3.4}Metrics}{9}{subsection.1.3.4}
+\contentsline {subsection}{\numberline {1.3.5}Start and End Criteria}{9}{subsection.1.3.5}
+\contentsline {section}{\numberline {1.4}Repository Management}{9}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Branch Structure}{10}{subsection.1.4.1}
+\contentsline {subsubsection}{Feature Branches}{10}{subsubsection*.19}
+\contentsline {subsubsection}{Integration Branch}{10}{subsubsection*.20}
+\contentsline {subsubsection}{Testing Branch}{10}{subsubsection*.21}
+\contentsline {subsubsection}{Master}{11}{subsubsection*.22}
+\contentsline {section}{\numberline {1.5}Test Management}{11}{section.1.5}
+\contentsline {subsection}{\numberline {1.5.1}Test Design}{11}{subsection.1.5.1}
+\contentsline {subsection}{\numberline {1.5.2}Executing the Test Plan}{11}{subsection.1.5.2}
+\contentsline {section}{\numberline {1.6}Test Environment and Product Requirements}{12}{section.1.6}
+\contentsline {subsection}{\numberline {1.6.1}External Interfaces and Requirements}{12}{subsection.1.6.1}
+\contentsline {subsection}{\numberline {1.6.2}Hardware}{12}{subsection.1.6.2}
+\contentsline {subsection}{\numberline {1.6.3}Software}{12}{subsection.1.6.3}
+\contentsline {section}{\numberline {1.7}Project Timeline}{12}{section.1.7}
+\contentsline {section}{\numberline {1.8}Roles and Responsibilities}{13}{section.1.8}
+\contentsline {subsection}{\numberline {1.8.1}Project Management}{13}{subsection.1.8.1}
+\contentsline {subsection}{\numberline {1.8.2}QA Team}{13}{subsection.1.8.2}
+\contentsline {subsection}{\numberline {1.8.3}Development Team}{13}{subsection.1.8.3}
+\contentsline {section}{\numberline {1.9}Team Members and Contact Info}{14}{section.1.9}
+\contentsline {section}{\numberline {1.10}Sign Off}{14}{section.1.10}
+\contentsline {chapter}{\numberline {2}To-Dos}{15}{chapter.2}
+\contentsline {chapter}{\numberline {3}Indices and tables}{17}{chapter.3}

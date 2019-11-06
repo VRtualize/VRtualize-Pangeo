@@ -1,0 +1,293 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Strategy &#8212; Pangeo 1.0.1 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Issue Management" href="issue_management.html" />
+    <link rel="prev" title="Introduction" href="intro.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="strategy">
+<h1>Strategy<a class="headerlink" href="#strategy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="objectives">
+<h2>Objectives<a class="headerlink" href="#objectives" title="Permalink to this headline">¶</a></h2>
+<p>Test objectives are meant to verify that the Pangeo application meets design specifications.</p>
+<p>Testing will include the execution of automated tests, test scripts, and performance tests.  Issues will be discussed with the team during the weekly stand-ups and prioritized as High, Medium, or Low severity.  High and Medium severity defects must be retested as per the acceptance criteria.  Low severity defects will be deferred to a subsequent sprint as discussed.
+Criteria for the cessation of testing:</p>
+<ul class="simple">
+<li>Production ready  software (as per the Software Requirements Specification (SRS))</li>
+<li>Automated tests and test scripts suitable for reuse as functional and user-acceptance testing.</li>
+</ul>
+</div>
+<div class="section" id="assumptions">
+<h2>Assumptions<a class="headerlink" href="#assumptions" title="Permalink to this headline">¶</a></h2>
+<p><strong>General</strong></p>
+<ul class="simple">
+<li>Environment downtime will adversely impact test schedules.</li>
+<li>Test environment will exactly duplicate the production environment.</li>
+<li>Issue reporting includes complete reproduction details (as per Issue Reporting Template).</li>
+<li>Issues are tracked using the ZenHub Issue Tracking System only.</li>
+<li>The team will review, verify, and sign-off on all test cases prior to the start of testing.</li>
+<li>Issues reported fixed after Certification N will include regression tests which will be added to the test plan for Certification N+1.</li>
+</ul>
+<p><strong>Key Assumptions</strong></p>
+<ul class="simple">
+<li>Certifications are defined as follows:</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Certification</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Certification 1a</td>
+<td>Pulling data from a file and rendering an object that resembles the data.</td>
+</tr>
+<tr class="row-odd"><td>Certification 1b</td>
+<td>Pulling data from a database instead of a file system.</td>
+</tr>
+<tr class="row-even"><td>Certification 2a</td>
+<td>Pulling from a cache when necessary and pulling from the database ahead of the time</td>
+</tr>
+<tr class="row-odd"><td>Certification 2b</td>
+<td>User experience with movement and menu selections</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition-todo admonition" id="index-0">
+<p class="first admonition-title">Todo</p>
+<p class="last">Add Certification 2b description</p>
+</div>
+<ul class="simple">
+<li>A release cannot go into production with any severity 1 (Critical), 2 (High) or 3 (Medium) defects.</li>
+<li>Functional testing requires production-like data.</li>
+<li>Alpha tests will be performed by identified alpha testers.</li>
+</ul>
+</div>
+<div class="section" id="test-principles">
+<h2>Test Principles<a class="headerlink" href="#test-principles" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Quality and business objectives are the focus of this testing.</li>
+<li>Testing cycles will be controlled by agreed on start and end criteria.</li>
+<li>Testing is divided into two test cycles (Certifications).</li>
+<li>Certification environment must exactly duplicate the production environment to support meaningful test results.</li>
+</ul>
+</div>
+<div class="section" id="testing-scope">
+<h2>Testing Scope<a class="headerlink" href="#testing-scope" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="unit">
+<h3>Unit<a class="headerlink" href="#unit" title="Permalink to this headline">¶</a></h3>
+<p><strong>Who:</strong> Development Team, the expectation is that the team implement best practices in terms of Test Driven Design (TDD) during initial development.</p>
+<p><strong>When:</strong> During product development.</p>
+<p><strong>Why:</strong> Primarily for the purpose of identifying bugs at the unit level as early as possible.</p>
+<p><strong>Scope:</strong> User stories, separate modular functions, scripts.</p>
+<p><strong>How:</strong> All major software components will be developed using Unity’s built-in Test Runner which utilizes the NUnit framework or the Python module, unittest.</p>
+</div>
+<div class="section" id="back-end">
+<h3>Back-end<a class="headerlink" href="#back-end" title="Permalink to this headline">¶</a></h3>
+<p><strong>Who:</strong> Development Team</p>
+<p><strong>When:</strong> During database setup.</p>
+<p><strong>Why:</strong> To avoid complications like deadlock, data corruption, and data loss.</p>
+<p><strong>Scope:</strong> Validating schema, database tables, columns, keys and indexing, stored procedures, triggers, database server validations, validating data duplication.</p>
+<p><strong>How:</strong> Tests will be developed as SQL queries.</p>
+</div>
+<div class="section" id="code-reviews">
+<h3>Code Reviews<a class="headerlink" href="#code-reviews" title="Permalink to this headline">¶</a></h3>
+<p><strong>Who:</strong> Development Team</p>
+<p><strong>When:</strong> Within 4 days of an issue going into Review/QA pipeline.</p>
+<p><strong>Why:</strong> To ensure that the code upholds the coding standards.</p>
+<p><strong>Scope:</strong> All units of code.</p>
+<p><strong>How:</strong> Team members working on the same Certification will be required to participate and approve code reviews with the author of the code. Results in one of three results:</p>
+<ul class="simple">
+<li>Pass: an ok to push to merge with next branch</li>
+<li>Revision/Pass: can be pushed after some changes</li>
+<li>Fail: too many problems, will require another code review</li>
+</ul>
+</div>
+<div class="section" id="qa-testing">
+<h3>QA Testing<a class="headerlink" href="#qa-testing" title="Permalink to this headline">¶</a></h3>
+<p><strong>Who:</strong> QA team (Members working on the other Certification will serve as QA)</p>
+<p><strong>When:</strong> After units of code go into integration branch.</p>
+<p><strong>Why:</strong> To ensure tha units of code passes user acceptance criteria.</p>
+<p><strong>Scope:</strong> All units of code.</p>
+<p><strong>How:</strong> Using the testing software used to create the unit, back-end, and user acceptance tests.</p>
+<div class="admonition-todo admonition" id="index-1">
+<p class="first admonition-title">Todo</p>
+<p class="last">Check that this covers the structure we talked about.</p>
+</div>
+</div>
+<div class="section" id="integration">
+<h3>Integration<a class="headerlink" href="#integration" title="Permalink to this headline">¶</a></h3>
+<p><strong>Who:</strong> Development Team</p>
+<p><strong>When:</strong> Combining individual units.</p>
+<p><strong>Why:</strong> To expose defects in the interfaces and interactions between integrated components or systems.</p>
+<p><strong>Scope:</strong> Interaction between the database and the application, simulating the key interactions of a user using the application.</p>
+<p><strong>How:</strong> Tests will be developed using the Integration Test Framework, which is part of the Unity Test Tools package.</p>
+</div>
+<div class="section" id="system-and-functional">
+<h3>System and Functional<a class="headerlink" href="#system-and-functional" title="Permalink to this headline">¶</a></h3>
+<p><strong>Who:</strong> QA</p>
+<p><strong>When:</strong> Prior to Exploratory Testing</p>
+<p><strong>Why:</strong> Thorough testing of all application functions.</p>
+<p><strong>Scope:</strong> [Note: Functional test plans are detailed lists of all the features and capabilities expected from the application.  The Test Plan should be a fairly high-level document so the details and scope of the functional tests will typically appear in a spreadsheet, appendix, or other content management document].</p>
+<p><strong>How:</strong> Tests are performed using agreed on scripts, automated processes, and input decks.</p>
+<p><strong>Acceptance Criteria:</strong></p>
+<ol class="arabic simple">
+<li>Functional spec and use case documents available before Test Design phase.</li>
+<li>Test environment available, configured, verified, and ready to use.</li>
+<li>Unit test results compiled and shared with the Development Team to avoid duplication of effort.</li>
+<li>Test cases reviewed, validated, and signed off on by the Development Team.</li>
+</ol>
+</div>
+<div class="section" id="exploratory-and-alpha">
+<h3>Exploratory and Alpha<a class="headerlink" href="#exploratory-and-alpha" title="Permalink to this headline">¶</a></h3>
+<p><strong>Who:</strong> Alpha testers</p>
+<p><strong>When:</strong> After Certification 2.</p>
+<p><strong>Why:</strong> Primarily to familiarize the alpha testers with the features and behavior of the software to set expectations for new features and identify any hiccups.</p>
+<p><strong>Scope:</strong> Production level product.</p>
+<p><strong>How:</strong> Testers are encouraged to try the interface without scripts or documentation.</p>
+</div>
+<div class="section" id="soak-and-performance">
+<h3>Soak and Performance<a class="headerlink" href="#soak-and-performance" title="Permalink to this headline">¶</a></h3>
+<p><strong>Who:</strong> Development Team</p>
+<p><strong>When:</strong> Any new system update.</p>
+<p><strong>Why:</strong> To ensure the application does not have any memory leaks and performs to the agreed-upon performance specification.</p>
+<p><strong>Scope:</strong> Memory management, algorithms, and loading time.</p>
+<p><strong>How:</strong> Unity Profiler and Unity Performance Testing Extension to internally monitor performance and optimizations of key systems.</p>
+</div>
+<div class="section" id="stress">
+<h3>Stress<a class="headerlink" href="#stress" title="Permalink to this headline">¶</a></h3>
+<p><strong>Who:</strong> Development Team</p>
+<p><strong>When:</strong> Before product release.</p>
+<p><strong>Why:</strong> To determine the acceptable user limitations.</p>
+<p><strong>Scope:</strong> Algorithms and loading time.</p>
+<p><strong>How:</strong> Unity Profiler and Unity Performance Testing Extension to internally monitor performance and optimizations of key systems.</p>
+</div>
+<div class="section" id="alpha-testing">
+<h3>Alpha Testing<a class="headerlink" href="#alpha-testing" title="Permalink to this headline">¶</a></h3>
+<p><strong>Who:</strong> Identified alpha testers</p>
+<p><strong>When:</strong> Before release.</p>
+<p><strong>Why:</strong> Software is tested outside a controlled test environment by users who are unfamiliar with the product or features. These tests validate the requirements gathering and test design phases of the production cycle.</p>
+<p><strong>How:</strong> Business users/customers will frequently attempt to use the software in unanticipated ways. This can lead to new requirement generation (user expects functionality that was not developed), modification of the user interface (user follows a use path that causes failures or other unwanted behavior in the software), or clarification to user guides, help screens, on screen guidance.</p>
+<p><strong>Deliverables:</strong> UAT Test Cases written by Development Team and reviewed and signed off on by Development Team and Project Manager.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Pangeo</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../test_plan.html">Test Plan</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issue_management.html">Issue Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="repository_management.html">Repository Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_management.html">Test Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_environment_and_product_requirements.html">Test Environment and Product Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="project_timeline.html">Project Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="roles_and_responsibilities.html">Roles and Responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="team_members_and_contact_info.html">Team Members and Contact Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sign_off.html">Sign Off</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="../test_plan.html">Test Plan</a><ul>
+      <li>Previous: <a href="intro.html" title="previous chapter">Introduction</a></li>
+      <li>Next: <a href="issue_management.html" title="next chapter">Issue Management</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Chezka Gaddi, Isaac Egermier, Garfield Tong, Michael Theesen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/test_plan/strategy.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

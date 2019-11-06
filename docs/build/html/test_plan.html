@@ -1,0 +1,228 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Test Plan &#8212; Pangeo 1.0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Introduction" href="test_plan/intro.html" />
+    <link rel="prev" title="Welcome to Pangeo’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="test-plan">
+<h1>Test Plan<a class="headerlink" href="#test-plan" title="Permalink to this headline">¶</a></h1>
+<p><strong>Revision History</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="19%" />
+<col width="15%" />
+<col width="57%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Version</th>
+<th class="head">Date</th>
+<th class="head">Author</th>
+<th class="head">Description of Change</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td>October 17, 2019</td>
+<td>Chezka Gaddi</td>
+<td>First Draft</td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td>October 25, 2019</td>
+<td>Chezka Gaddi</td>
+<td>Added branch structure, changed issue management tool</td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="test_plan/intro.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/intro.html#purpose">Purpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/intro.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/intro.html#audience">Audience</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_plan/strategy.html">Strategy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/strategy.html#objectives">Objectives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/strategy.html#assumptions">Assumptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/strategy.html#test-principles">Test Principles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/strategy.html#testing-scope">Testing Scope</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/strategy.html#unit">Unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/strategy.html#back-end">Back-end</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/strategy.html#code-reviews">Code Reviews</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/strategy.html#qa-testing">QA Testing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/strategy.html#integration">Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/strategy.html#system-and-functional">System and Functional</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/strategy.html#exploratory-and-alpha">Exploratory and Alpha</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/strategy.html#soak-and-performance">Soak and Performance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/strategy.html#stress">Stress</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/strategy.html#alpha-testing">Alpha Testing</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_plan/issue_management.html">Issue Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/issue_management.html#issue-tracking-manager">Issue Tracking Manager</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/issue_management.html#installation">Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/issue_management.html#structure">Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/issue_management.html#issue-types">Issue Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/issue_management.html#issue-complexity">Issue Complexity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/issue_management.html#issue-life-cycle">Issue Life-Cycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/issue_management.html#defect-reporting">Defect Reporting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/issue_management.html#bug-life-cycle">Bug Life-cycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/issue_management.html#severity-levels">Severity Levels</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/issue_management.html#metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/issue_management.html#start-and-end-criteria">Start and End Criteria</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_plan/repository_management.html">Repository Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/repository_management.html#branch-structure">Branch Structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/repository_management.html#feature-branches">Feature Branches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/repository_management.html#integration-branch">Integration Branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/repository_management.html#testing-branch">Testing Branch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_plan/repository_management.html#master">Master</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_plan/test_management.html">Test Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/test_management.html#test-design">Test Design</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/test_management.html#executing-the-test-plan">Executing the Test Plan</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_plan/test_environment_and_product_requirements.html">Test Environment and Product Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/test_environment_and_product_requirements.html#external-interfaces-and-requirements">External Interfaces and Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/test_environment_and_product_requirements.html#hardware">Hardware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/test_environment_and_product_requirements.html#software">Software</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_plan/project_timeline.html">Project Timeline</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_plan/roles_and_responsibilities.html">Roles and Responsibilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/roles_and_responsibilities.html#project-management">Project Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/roles_and_responsibilities.html#qa-team">QA Team</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/roles_and_responsibilities.html#development-team">Development Team</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_plan/team_members_and_contact_info.html">Team Members and Contact Info</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_plan/sign_off.html">Sign Off</a></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Pangeo</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Test Plan</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/strategy.html">Strategy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/issue_management.html">Issue Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/repository_management.html">Repository Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/test_management.html">Test Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/test_environment_and_product_requirements.html">Test Environment and Product Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/project_timeline.html">Project Timeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/roles_and_responsibilities.html">Roles and Responsibilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/team_members_and_contact_info.html">Team Members and Contact Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_plan/sign_off.html">Sign Off</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Pangeo’s documentation!</a></li>
+      <li>Next: <a href="test_plan/intro.html" title="next chapter">Introduction</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, Chezka Gaddi, Isaac Egermier, Garfield Tong, Michael Theesen.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/test_plan.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
