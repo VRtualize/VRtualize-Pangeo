@@ -116,6 +116,9 @@ Issue Life-Cycle
     - if fails, a new issue is created (go to step 1)
 
 
+.. todo::
+    Add a diagram for the life-cycle of an issue?
+
 
 Defect Reporting
 ++++++++++++++++
