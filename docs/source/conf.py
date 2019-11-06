@@ -149,7 +149,7 @@ latex_elements = {
 latex_documents = [
     (master_doc, 'Pangeo.tex', 'Pangeo Documentation',
      'Chezka Gaddi, Isaac Egermier, Garfield Tong, Michael Theesen', 'manual'),
-    ('test_plan', 'Test.tex', 'Test Plan Pangeo by VRtualize',
+    ('test_plan', 'TestPlan.tex', 'Test Plan Pangeo by VRtualize',
      'Chezka Gaddi, Isaac Egermier, Garfield Tong, Michael Theesen', 'manual'),
 ]
 
@@ -161,7 +161,7 @@ latex_documents = [
 man_pages = [
     (master_doc, 'pangeo', 'Pangeo Documentation',
      [author], 1),
-    ('test_plan', 'Test', 'Test Plan Pangeo by VRtualize',
+    ('test_plan', 'TestPlan', 'Test Plan Pangeo by VRtualize',
      [author], 2)
 ]
 
@@ -175,7 +175,7 @@ texinfo_documents = [
     (master_doc, 'Pangeo', 'Pangeo Documentation',
      author, 'Pangeo', 'One line description of project.',
      'Miscellaneous'),
-    ('test_plan', 'Test', 'Test Plan Pangeo by VRtualize',
+    ('test_plan', 'TestPlan', 'Test Plan Pangeo by VRtualize',
      author, 'Pangeo', 'Test plan for Pangeo.',
      'Documentation'),
 ]

@@ -1,4 +1,7 @@
 Documentation/SRS/build
 Documentation/SRS/.buildinfo
 Documentation/SRS/.vscode/*
-docs/build
+
+docs/build/*
+docs/build/latex/*
+!docs/build/latex/TestPlan.pdf
