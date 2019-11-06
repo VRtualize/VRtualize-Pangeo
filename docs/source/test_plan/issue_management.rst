@@ -35,10 +35,10 @@ The ZenHub Workspace is split up between 7 pipelines;
     Issues that are ready to be code reviewed and QA tested.
 
 - Done
-    Issues that are done.
+    Issues that have passed review and QA tests and can be queued for next release.
 
 - Closed
-    Closed issues.
+    Issues that will no longer be worked on (Done, won't fix, etc.).
 
 .. todo::
     Make sure that the pipelines have the correct description. Done and Closed need further editing.
