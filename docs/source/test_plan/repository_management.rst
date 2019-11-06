@@ -7,8 +7,9 @@ The repository is owned by Michael Theesen and is stored in the GitHub server un
 Branch Structure
 ++++++++++++++++
 
-.. todo::
-    Add branch structure diagram. **Chezka is currently working on this**
+.. image:: ../images/branch_structure.png
+    :width: 600
+
 
 Feature Branches
 ----------------
