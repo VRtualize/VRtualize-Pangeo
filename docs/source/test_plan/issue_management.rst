@@ -149,19 +149,22 @@ Bug Life-cycle
 Severity Levels
 ---------------
 
-+--------------+---------------------------------------------------------------------------------------------+
-|   Severity   |                                            Risks                                            |
-+==============+=============================================================================================+
-| 1 (Critical) | - Defect causes the application to crash or hang                                            |
-|              | - Corrupts application or system data                                                       |
-|              | - Consumes system resources to the point that other system processes are adversely affected |
-+--------------+---------------------------------------------------------------------------------------------+
-| 2 (High)     | - Missing major application functionality without a workaround                              |
-+--------------+---------------------------------------------------------------------------------------------+
-| 3 (Medium)   | - Missing minor application functionality without a workaround                              |
-|              | - Missing major application functionality with a workaround                                 |
-|              | - Defect causes other features to be unavailable for review or testing                      |
-+--------------+---------------------------------------------------------------------------------------------+
+.. table::
+    :widths: 10 40
+
+    +--------------+---------------------------------------------------------------------------------------------+
+    |   Severity   |                                            Risks                                            |
+    +==============+=============================================================================================+
+    | 1 (Critical) | - Defect causes the application to crash or hang                                            |
+    |              | - Corrupts application or system data                                                       |
+    |              | - Consumes system resources to the point that other system processes are adversely affected |
+    +--------------+---------------------------------------------------------------------------------------------+
+    | 2 (High)     | - Missing major application functionality without a workaround                              |
+    +--------------+---------------------------------------------------------------------------------------------+
+    | 3 (Medium)   | - Missing minor application functionality without a workaround                              |
+    |              | - Missing major application functionality with a workaround                                 |
+    |              | - Defect causes other features to be unavailable for review or testing                      |
+    +--------------+---------------------------------------------------------------------------------------------+
 
 
 
