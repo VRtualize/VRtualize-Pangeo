@@ -11,13 +11,6 @@ This section outlines the use cases of the Explorer.
 **Use case:**  Interacting With Generated Terrain
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Diagram:**
-
-.. figure:: _static/images/User-App.png
-   :width: 50%
-
-   Explorers move around the environment to see generated terrain
-
 **Brief Description**
 
 The Explorer can move and look around the Generated Terrain with Familiar VR Movements. The explorer may also move via flying.
@@ -32,13 +25,6 @@ Before this use case can be initiated, the Explorer has already accessed the App
 
 **Use case:** Jumping
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Diagram:**
-
-.. figure:: _static/images/User-App.png
-   :width: 50%
-
-   Explorers can jump to specific locations
 
 **Brief Description**
 
@@ -56,13 +42,6 @@ Before this use case can be initiated, the Explorer has already accessed the App
 
 **Use case:**  View Generated Terrain
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Diagram:**
-
-.. figure:: _static/images/User-App.png
-   :width: 50%
-
-   The Explorer can look in different directions to view generated terrain
 
 **Brief Description**
 
@@ -89,13 +68,6 @@ This section outlines the functions of the Application and the Local Database
 **Application:** Create Generated Terrain
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Diagram:**
-
-.. figure:: _static/images/User-App.png
-   :width: 50%
-
-   The Application takes the Explorer's position into account and renders the surrounding environment
-
 **Brief Description**
 
 The Application Renders Interactive 3-Dimensional Virtual Reality Imagery.
@@ -109,17 +81,6 @@ The Application Renders Interactive 3-Dimensional Virtual Reality Imagery.
 **Application:** Request Terrain Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Diagram:**
-
-.. figure:: _static/images/App-Local_DB.png
-   :width: 50%
-
-   The Application requests new terrain tile data depending on the Explorer's location
-
-**Brief Description**
-
-The Application Requests Terrain Data from the Local Database.
-
 **Initial Step-By-Step Description**
 
 1.	The Application requests Terrain Data through an abstraction layer.
@@ -129,13 +90,6 @@ The Application Requests Terrain Data from the Local Database.
 
 **Local Database:** Prepare Terrain Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Diagram:**
-
-.. figure:: _static/images/App-Local_DB.png
-   :width: 50%
-
-   The Application contacts the Local Database for data to render as terrain elevations
 
 **Brief Description**
 
@@ -158,13 +112,6 @@ If VRtualize goes with an Least Recently Used (LRU) implementation, the "full" a
 
 **Local Database:**  Fetch the Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-**Diagram:**
-
-.. figure:: _static/images/Local_DB-USGS.png
-   :width: 50%
-
-   The Local Database contacts the USGS Database for new unexplored terrain tile data
 
 **Brief Description**
 
