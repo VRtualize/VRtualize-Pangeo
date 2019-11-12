@@ -8,12 +8,15 @@ public static class Startup
 {
     static Startup()
     {
+        //If there exists an old GameObject named Mesh, delete it before building a new one
         GameObject oldMesh = GameObject.Find("Mesh");
         if (oldMesh != null)
             Object.DestroyImmediate(oldMesh);
 
+        //Assign the GameObject material from the Resources folder
         Material mat = Resources.Load("Materials/Stylize_Grass", typeof(Material)) as Material;
         
+        //Create empty vertices, uv, and triangles arrays and set their values
         Vector3[] vertices = new Vector3[4];
         Vector2[] uv = new Vector2[4];
         int[] triangles = new int[6];
@@ -35,12 +38,14 @@ public static class Startup
         triangles[4] = 1;
         triangles[5] = 3;
 
+        //Create a new Mesh to render
         Mesh mesh = new Mesh();
 
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = triangles;
 
+        //Assign the Mesh to the rendering engine and transform into position
         GameObject Obj = new GameObject("Mesh", typeof(MeshFilter), typeof(MeshRenderer));
         Obj.transform.localScale = new Vector3(1, 1, 1);
         Obj.transform.rotation = Quaternion.Euler(90, 0, 0);
