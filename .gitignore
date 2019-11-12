@@ -8,3 +8,11 @@ docs/build/*
 !docs/build/latex
 docs/build/latex/*
 !docs/build/latex/TestPlan.pdf
+
+DBInterface/*
+!DBInterface/DBInterface
+DBInterface/DBInterface/*
+!DBInterface/DBInterface/DBQuery.cs
+!DBInterface/DBInterface/DBUtilsTest.cs
+!DBInterface/DBInterface/MapData.cs
+!DBInterface/DBInterface/Query.cs
