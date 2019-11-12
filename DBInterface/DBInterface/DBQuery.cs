@@ -14,11 +14,16 @@ namespace DBInterface
     /// </summary>
     public class DBQuery
     {
+        public DBQuery()
+        {
+
+        }
+
         /// <summary>
         /// method <c>GetMapChunks</c> queries for a map chunk from the database.
         /// </summary>
         /// <param name="conn">connection to the database to use.</param>
-        public static void GetMapChunks(MySqlConnection conn)
+        public static MapData GetMapChunks(MySqlConnection conn)
         {
             // SQL query to be executed.
             //string sql = "SELECT latlongid, xllcorner, yllcorner FROM usgs_header_data LIMIT 0, 1";
@@ -38,8 +43,7 @@ namespace DBInterface
             {
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
-                    {
+                    reader.Read();
                         int latlongid = reader.GetInt32(0);
                         double xllcorner = reader.GetDouble(1);
                         double yllcorner = reader.GetDouble(2);
@@ -51,14 +55,15 @@ namespace DBInterface
                         elevation_data = new byte[cellsize];
 
                         reader.GetBytes(reader.GetOrdinal("elevation_data"), 0, elevation_data, 0, (Int32)cellsize);
-                    }
+
+                        MapData chunk = new MapData(latlongid, 0, 0, xllcorner, yllcorner, cellsize, "", elevation_data);
+                        return chunk;
                 }
                 else
                 {
                     throw new Exception("There are no map chunks in the database.");
                 }
             }
-
         }
     }
 }
