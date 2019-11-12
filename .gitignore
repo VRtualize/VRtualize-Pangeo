@@ -13,6 +13,10 @@ DBInterface/*
 !DBInterface/DBInterface
 DBInterface/DBInterface/*
 !DBInterface/DBInterface/DBQuery.cs
-!DBInterface/DBInterface/DBUtilsTest.cs
+!DBInterface/DBInterface/DBUtils.cs
 !DBInterface/DBInterface/MapData.cs
 !DBInterface/DBInterface/Query.cs
+
+!DBInterface/DBInterfaceTest
+DBInterface/DBInterfaceTest/*
+!DBInterface/DBInterfaceTest/DBUtilsTest.cs
