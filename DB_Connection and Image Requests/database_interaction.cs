@@ -18,10 +18,10 @@ namespace vr_db_interaction
 
         private void Initialize()
         {
-            server = "localhost";
+            server = "manticorite.duckdns.org";
             database = "map_data";
-            uid = "root";
-            password = "Tacotime2";
+            uid = "VRPAN";
+            password = "VRPAN";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" +
             database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
@@ -37,6 +37,29 @@ namespace vr_db_interaction
         public void open()
         {
             connection.Open();
+        }
+        
+        public void sampleQuery()
+        {
+        try
+        {
+            string sql = "SELECT COUNT(*) FROM usgs_header_data";
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                Console.WriteLine(rdr[0] + " -- " + rdr[1]);
+            }
+            rdr.Close();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+
+        conn.Close();
+            Console.WriteLine("Done.");
         }
     }
 }

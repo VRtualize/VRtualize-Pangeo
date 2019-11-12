@@ -13,9 +13,10 @@ namespace vr_db_interaction
 
         static async Task Main(string[] args)
         {
-            //DBConnection currDBConnection = new DBConnection();
-            //currDBConnection.printYeet();
-            //currDBConnection.open();
+            DBConnection currDBConnection = new DBConnection();
+            currDBConnection.printYeet();
+            currDBConnection.open();
+            currDBConnection.sampleQuery();
             imageRequest Test = new imageRequest(1.0, 1.0);
 
             Console.WriteLine(await Test.GetQuadKeyURL(44.069, -103.228, 14));
