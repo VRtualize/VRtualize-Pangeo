@@ -10,7 +10,7 @@ using MySql.Data.MySqlClient;
 namespace DBInterface
 {
     /// <summary>
-    ///  Class <c>DBQuery</c> 
+    /// Class <c>DBQuery</c> 
     /// </summary>
     public class DBQuery
     {

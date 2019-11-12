@@ -9,6 +9,19 @@ namespace DBInterfaceTest
     public class DBUtilsTest
     {
         [TestMethod]
+        public void DBConnection_DefaultConnection()
+        {
+            // arrange connection with default certificates
+            DBUtils util = new DBUtils();
+
+            // act
+            bool connection_status = util.DBConnect();
+
+            // assert
+            Assert.IsTrue(connection_status);
+        }
+
+        [TestMethod]
         public void DBConnection_BadConnection()
         {
             // arrange connection with bad certificates
