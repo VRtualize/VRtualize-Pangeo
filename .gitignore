@@ -1,7 +1,9 @@
-Base\ Project/.vscode/*
 Documentation/SRS/build
 Documentation/SRS/.buildinfo
 Documentation/SRS/.vscode/*
+Base\ Project/.vscode/*
+Base\ Project/gridFloatExample.flt
+Base\ Project/bingExample.json
 
 
 # Created by https://www.gitignore.io/api/unity
@@ -74,4 +76,3 @@ crashlytics-build.properties
 
 # End of https://www.gitignore.io/api/unity
 
-Base Project/gridFloatExample.flt

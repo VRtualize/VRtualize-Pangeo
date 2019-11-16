@@ -14,11 +14,11 @@ public static class Startup
             Object.DestroyImmediate(oldMesh);
 
         //Testing cache call
-        UsgsResources res = new UsgsResources();
+        UsgsMapResources res = new UsgsMapResources();
         Cache cache = new Cache();
         cache.setMesh(res);
-        List<List<float>> TestList = cache.getMesh();
-        Debug.Log(TestList[1][1]);
+        List<float> TestList = cache.getMesh();
+        //Debug.Log(TestList[1][1]);
         
         //Assign the GameObject material from the Resources folder
         Material mat = Resources.Load("Materials/Stylize_Grass", typeof(Material)) as Material;

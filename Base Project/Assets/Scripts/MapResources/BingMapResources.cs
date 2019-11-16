@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BingResources : IResources
+public class BingMapResources : IMapResources
 {
     public class bingSchema
     {
@@ -29,7 +29,7 @@ public class BingResources : IResources
             public string traceId { get; set; }
         }
     }
-    List<List<float>> IResources.getMesh() {
+    List<float> IMapResources.getMesh() {
         // For now, we're stubbing out a concrete example
         bingSchema.RootObject items;
         using (StreamReader fs = new StreamReader(@"bingExample.json")) 
@@ -37,21 +37,11 @@ public class BingResources : IResources
             string json = fs.ReadToEnd();
             items = JsonUtility.FromJson<bingSchema.RootObject>(json);
         }
-        int meshLength = 4;
-        List<List<float>> mesh = new List<List<float>>(meshLength);
+        int meshLength = items.resourceSets[0].resources[0].elevations.Count;
+        List<float> mesh = new List<float>(meshLength);
         for(int i = 0; i < meshLength; i++)
-        {
-            mesh.Add(new List<float>(meshLength));
-            for (int j = 0; j < meshLength; j++)
-                mesh[i].Add(0);
-        }
-
-        for (int i = 0; i < items.resourceSets[0].resources[0].elevations.Count; i += 4)
-        {
-            int idx = i / 4;
-            mesh[idx/meshLength][idx%meshLength] = items.resourceSets[0].resources[0].elevations[i];
-        }
+            mesh.Add(items.resourceSets[0].resources[0].elevations[i]);
         return mesh;
     }
-    void IResources.getSatelliteImagery() { }
+    void IMapResources.getSatelliteImagery() { }
 }
