@@ -12,13 +12,15 @@ public class UsgsMapResources : IMapResources
 			b = new byte[fs.Length];
 			fs.Read(b, 0, b.Length);
 		}
-		int meshLength = 116920969;
+		//int meshLength = 116920969;
+        int meshLength = 16;
 		List<float> mesh = new List<float>(meshLength);
 
-		for (int i = 0; i < b.Length; i += 4)
-		{
+		//for (int i = 0; i < b.Length; i += 4)
+        for (int i = 0; i < 64; i +=4 )
+        {
             mesh.Add(BitConverter.ToSingle(b, i));
-		}
+        }
 		return mesh;
 	}
 	void IMapResources.getSatelliteImagery() { }

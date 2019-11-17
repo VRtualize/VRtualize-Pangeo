@@ -63,12 +63,14 @@ public static class Startup
         //Assign the Mesh to the rendering engine and transform into position
         GameObject Obj = new GameObject("Mesh", typeof(MeshFilter), typeof(MeshRenderer));
         Obj.transform.localScale = new Vector3(1, 1, 1);
-        Obj.transform.rotation = Quaternion.Euler(90, 0, 0);
+        Obj.transform.rotation = Quaternion.Euler(-90, 0, 0);
         Obj.transform.position = new Vector3(0, 0.1F, 0);
 
         Obj.GetComponent<MeshFilter>().mesh = mesh;
 
         Obj.GetComponent<MeshRenderer>().material = mat;
+        for (int i = 0; i < 16; i++)
+            Debug.Log(vertices[i]);
 
     }
 
@@ -81,7 +83,7 @@ public static class Startup
             //Debug.Log("i =" + i);
             for(int j = 0; j < side; j++)
             {
-                tmp[pos] = new Vector3(i, (side - j), (-1) * ElevPts[pos]);
+                tmp[pos] = new Vector3(i, (side - j), ElevPts[pos]);
                 pos++;
             }
         }
