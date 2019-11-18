@@ -9,6 +9,7 @@ docs/build/*
 docs/build/latex/*
 !docs/build/latex/TestPlan.pdf
 
+# C# Scripts
 DBInterface/*
 !DBInterface/DBInterface
 DBInterface/DBInterface/*
@@ -17,6 +18,14 @@ DBInterface/DBInterface/*
 !DBInterface/DBInterface/MapData.cs
 !DBInterface/DBInterface/Query.cs
 
+# Unit tests
 !DBInterface/DBInterfaceTest
 DBInterface/DBInterfaceTest/*
 !DBInterface/DBInterfaceTest/DBUtilsTest.cs
+!DBInterface/DBInterfaceTest/DBQueryTest.cs
+!DBInterface/DBInterfaceTest/MapDataTest.cs
+
+# DBInterface Documentation
+!DBInterface/DBInterfaceTest/docs/latex
+DBInterface/DBInterfaceTest/docs/latex/*
+DBInterface/DBInterfaceTest/docs/latex/refman.pdf
