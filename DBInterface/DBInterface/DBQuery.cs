@@ -18,10 +18,13 @@ namespace DBInterface
         /// method <c>GetMapChunks</c> queries for a map chunk from the database.
         /// </summary>
         /// <param name="conn">connection to the database to use.</param>
-        public static MapData GetMapChunks(MySqlConnection conn)
+        /// <param name="xCoor">x-coordinate of the chunk to be retrieved</param>
+        /// <param name="yCoor">y-coordinate of the chunk to be retrieved</param>
+        public static MapData GetMapChunks(MySqlConnection conn, double xCoor, double yCoor)
         {
             // SQL query to be executed.
-            string sql = "SELECT latlongid, xllcorner, yllcorner, nrows, ncols, elevation_data FROM usgs_header_data LIMIT 0, 1";
+            string sql = "SELECT latlongid, xllcorner, yllcorner, nrows, ncols FROM usgs_header_data " + "WHERE abs(xllcorner - (@xcoor)) <= 1 AND xllcorner <= @xcoor AND abs(yllcorner - (@ycoor)) <= 1 AND yllcorner <= @ycoor";
+            //string sql = "SELECT latlongid, xllcorner, yllcorner, nrows, ncols, elevation_data FROM usgs_header_data " + "WHERE abs(xllcorner - (@xcoor)) <= 1 AND xllcorner <= @xcoor AND abs(yllcorner - (@ycoor)) <= 1 AND yllcorner <= @ycoor";
 
             // Create command.
             MySqlCommand cmd = new MySqlCommand();
@@ -32,6 +35,13 @@ namespace DBInterface
             // Set connection for command.
             cmd.Connection = conn;
             cmd.CommandText = sql;
+
+            // Set parameters
+            cmd.Parameters.Add("@ycoor", MySqlDbType.Double).Value = yCoor;
+            MySqlParameter xCoorParam = new MySqlParameter("@xcoor", MySqlDbType.Double);
+            xCoorParam.Value = xCoor;
+            cmd.Parameters.Add(xCoorParam);
+
 
             using (DbDataReader reader = cmd.ExecuteReader())
             {
@@ -45,20 +55,19 @@ namespace DBInterface
                     int ncols = reader.GetInt32(4);
                     int cellsize = nrows * ncols;
 
-                    Console.WriteLine("Latlongid: " + latlongid);
-                    Console.WriteLine("Cellsize: " + nrows*ncols);
+                    //byte[] elevation_data;
+                    //elevation_data = new byte[cellsize];
 
-                    byte[] elevation_data;
-                    elevation_data = new byte[cellsize];
+                    //reader.GetBytes(reader.GetOrdinal("elevation_data"), 0, elevation_data, 0, (Int32)cellsize);
 
-                    reader.GetBytes(reader.GetOrdinal("elevation_data"), 0, elevation_data, 0, (Int32)cellsize);
-
-                    MapData chunk = new MapData(latlongid, 0, 0, xllcorner, yllcorner, 0, "", elevation_data);
+                    MapData chunk = new MapData(latlongid, ncols, nrows, xllcorner, yllcorner, cellsize);
+                    //MapData chunk = new MapData(latlongid, 0, 0, xllcorner, yllcorner, 0, "", elevation_data);
                     return chunk;
                 }
                 else
                 {
-                    throw new Exception("There are no map chunks in the database.");
+                    //throw new Exception("There are no map chunks in the database.");
+                    return null;
                 }
             }
         }

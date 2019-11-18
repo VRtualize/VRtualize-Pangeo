@@ -43,9 +43,76 @@ namespace DBInterface
             this.elevation_data = elevation_data;
         }
 
+        /// <summary>
+        /// Getter for the LatLongId
+        /// </summary>
+        /// <returns>latlongid</returns>
         public int GetLatLongId()
         {
             return this.latlongid;
+        }
+
+        /// <summary>
+        /// Getter for the ncols.
+        /// </summary>
+        /// <returns>number of columns</returns>
+        public int GetNCols()
+        {
+            return this.ncols;
+        }
+
+        /// <summary>
+        /// Getter for nrows
+        /// </summary>
+        /// <returns>number of rows</returns>
+        public int GetNRows()
+        {
+            return this.nrows;
+        }
+
+        /// <summary>
+        /// Getter for xllcorner
+        /// </summary>
+        /// <returns>x-coordinate of lower left corner</returns>
+        public double GetXllcorner()
+        {
+            return this.xllcorner;
+        }
+
+        /// <summary>
+        /// Getter for yllcorner
+        /// </summary>
+        /// <returns>y-coordinate of lower left corner</returns>
+        public double GetYllcorner()
+        {
+            return this.yllcorner;
+        }
+        
+        /// <summary>
+        /// Getter for cellsize
+        /// </summary>
+        /// <returns>cellsize</returns>
+        public double GetCellsize()
+        {
+            return this.cellsize;
+        }
+
+        /// <summary>
+        /// Getter for byteorder
+        /// </summary>
+        /// <returns>byteorder</returns>
+        public string GetByteorder()
+        {
+            return this.byteorder;
+        }
+
+        /// <summary>
+        /// Getter for elevation_data
+        /// </summary>
+        /// <returns>elevation data</returns>
+        public byte[] GetElevationData()
+        {
+            return this.elevation_data.ToArray();
         }
     }
 }
