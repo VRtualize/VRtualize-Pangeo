@@ -1,18 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
-[InitializeOnLoad]
-public static class Startup
+public class AppHandler : MonoBehaviour
 {
-    static Startup()
+    //Initialize the environment
+    void Awake()
     {
-        //If there exists an old GameObject named Mesh, delete it before building a new one
-        GameObject oldMesh = GameObject.Find("Mesh");
-        if (oldMesh != null)
-            Object.DestroyImmediate(oldMesh);
+        BuildNewTile(0F, 0.1F, 0F, "Start Tile");
+    }
 
+    //build a tile from location data
+    void BuildNewTile(float x, float y, float z, string name)
+    {
         //Testing cache call
         UsgsMapResources res = new UsgsMapResources();
         Cache cache = new Cache();
@@ -32,25 +32,6 @@ public static class Startup
         Vector2[] uv = fillUv(length, side);
         int[] triangles = fillTri(sqrPtCount, side);
 
-        /*
-        vertices[0] = new Vector3(0,1);
-        vertices[1] = new Vector3(1,1);
-        vertices[2] = new Vector3(0,0);
-        vertices[3] = new Vector3(1,0);
-
-        uv[0] = new Vector2(0,1);
-        uv[1] = new Vector2(1,1);
-        uv[2] = new Vector2(0,0);
-        uv[3] = new Vector2(1,0);
-
-        triangles[0] = 0;
-        triangles[1] = 1;
-        triangles[2] = 2;
-        triangles[3] = 2;
-        triangles[4] = 1;
-        triangles[5] = 3;
-        */
-
         //Create a new Mesh to render
         Mesh mesh = new Mesh();
 
@@ -64,17 +45,20 @@ public static class Startup
         GameObject Obj = new GameObject("Mesh", typeof(MeshFilter), typeof(MeshRenderer));
         Obj.transform.localScale = new Vector3(1, 1, 1);
         Obj.transform.rotation = Quaternion.Euler(-90, 0, 0);
-        Obj.transform.position = new Vector3(0, 0.1F, 0);
+        Obj.transform.position = new Vector3(x, y, z);
+        Obj.name = name;
 
         Obj.GetComponent<MeshFilter>().mesh = mesh;
 
         Obj.GetComponent<MeshRenderer>().material = mat;
+
+        /*
         for (int i = 0; i < 16; i++)
-            Debug.Log(vertices[i]);
+            Debug.Log(vertices[i]); */
 
     }
 
-    static Vector3[] fillVert(int len, int side, List<float> ElevPts)
+    Vector3[] fillVert(int len, int side, List<float> ElevPts)
     {
         Vector3[] tmp = new Vector3[len];
         int pos = 0;
@@ -90,7 +74,7 @@ public static class Startup
         return tmp;
     }
 
-    static Vector2[] fillUv(int len, int side)
+    Vector2[] fillUv(int len, int side)
     {
         Vector2[] tmp = new Vector2[len];
         int pos = 0;
@@ -105,7 +89,7 @@ public static class Startup
         return tmp;
     }
 
-    static int[] fillTri(int ptCount, int side)
+    int[] fillTri(int ptCount, int side)
     {
         int[] tmp = new int[ptCount];
         int pos = 0;
