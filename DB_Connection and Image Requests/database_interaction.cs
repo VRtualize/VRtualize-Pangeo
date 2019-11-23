@@ -44,7 +44,7 @@ namespace vr_db_interaction
         try
         {
             string sql = "SELECT COUNT(*) FROM usgs_header_data";
-            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
             MySqlDataReader rdr = cmd.ExecuteReader();
 
             while (rdr.Read())
@@ -58,7 +58,7 @@ namespace vr_db_interaction
             Console.WriteLine(ex.ToString());
         }
 
-        conn.Close();
+        connection.Close();
             Console.WriteLine("Done.");
         }
     }

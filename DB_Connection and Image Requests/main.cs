@@ -9,17 +9,12 @@ namespace vr_db_interaction
 {
     class main
     {
-        private HttpClient currClient;
 
         static async Task Main(string[] args)
         {
-            DBConnection currDBConnection = new DBConnection();
-            currDBConnection.printYeet();
-            currDBConnection.open();
-            currDBConnection.sampleQuery();
-            imageURLRequest Test = new imageRequest("AlHEgop1yfMfViPQcjrKUd3Wduq1PqTPno4RvpsjVaxl2-EvolkG6DNyFZGUXbPD");
-
-            Console.WriteLine(await Test.GetQuadKeyURL(44.069, -103.228, 14));
+            imageURLRequest Test = new imageURLRequest("AlHEgop1yfMfViPQcjrKUd3Wduq1PqTPno4RvpsjVaxl2-EvolkG6DNyFZGUXbPD");
+            await Test.initializeURL();
+            Console.WriteLine(Test.GetQuadKeyURL(44.069, -103.228, 14));
 
         }
 

@@ -8,34 +8,41 @@ using System.Threading.Tasks;
 
 namespace vr_db_interaction
 {
-    /****************************************************************************
-     * The imageRequest class creates an HTTP Client to access image data from a
-     * Bing REST API. It takes in a longitude and latitude for the initial request
-     * to Bing's REST API. The API then returns a sample URL which is stored by 
-     * the imageRequest class. Any later calls to the imageRequest class are done
-     * using this sampleURL. This complies with Microsoft's Terms of Service. 
-     * *************************************************************************/
-    class imageURLRequest
+    /// <summary>
+    /// The imageRequest class creates an HTTP Client to access image data from a
+    /// Bing REST API. It takes in a longitude and latitude for the initial request
+    /// to Bing's REST API. The API then returns a sample URL which is stored by 
+    /// the imageRequest class. Any later calls to the imageRequest class are done
+    /// using this sampleURL. This complies with Microsoft's Terms of Service. 
+    /// </summary>
+    public class imageURLRequest
     {
-        private double lowerLeftCornerLatitude;
-        private double LowerLeftCornerLongitude;
         private string exampleURL;
         private string BingMapsAPIKey;
         private string subdomain;
-        private HttpClient currClient;
 
-        public imageURLRequest(string BingMapskey)
+        public imageURLRequest(string BingMapsKey)
         {
-            this.currClient = new HttpClient();
-            this.LowerLeftCornerLongitude = LowerLeftCornerLongitude;
-            this.lowerLeftCornerLatitude = lowerLeftCornerLatitude;
-            this.BingMapsAPIKey = key;
-
+            this.BingMapsAPIKey = BingMapsKey;
+        }
+        /// <summary>
+        /// This function initializes the URL fro the imageURLRequest. Microsoft 
+        /// requires this before use of their Bing Maps service.One request must
+        /// be made for an example URL with updated subdomain before directly 
+        /// accessing Bing Maps Tiles. More information can be found in the 
+        /// following URL.https://docs.microsoft.com/en-us/bingmaps/rest-services/directly-accessing-the-bing-maps-tiles
+        /// </summary>
+        /// <returns></returns>
+        /*************************************************************************
+         * 
+         * **********************************************************************/
+        async public Task initializeURL()
+        {
             using var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
 
             //Get the imagery sample metadata
-            var content = await client.GetStringAsync("http://dev.virtualearth.net/REST/V1/Imagery/Metadata/Road?output=json&include=ImageryProviders&key=" + BingMapskey);
+            var content = await client.GetStringAsync("http://dev.virtualearth.net/REST/V1/Imagery/Metadata/Road?output=json&include=ImageryProviders&key=" + this.BingMapsAPIKey);
 
             //Get example URL
             int exampleURLBegin = content.IndexOf("imageUrl") + 11;
@@ -48,8 +55,20 @@ namespace vr_db_interaction
             this.subdomain = content.Substring(subdomainsBegin, subdomainsEnd - subdomainsBegin);
         }
 
-        async public Task<string> GetQuadKeyURL(double latitude, double longitude, int zoomLevel)
+        /// <summary>
+        /// This function takes in a longitude, latitude, and zoomLevel and returns
+        /// the URL to access a Bing Maps Tile of that zoomLevel that contains the 
+        /// longitude and latitude requested.The Create the string for the quadkey
+        /// section's code was originally created publicly by Microsoft and modified
+        /// for this project.
+        /// </summary>
+        /// <param name="latitude"> Requested User Latitude</param>
+        /// <param name="longitude"> Requested User Longitude</param>
+        /// <param name="zoomLevel"> Requested Zoom Level for Tile</param>
+        /// <returns></returns>
+        public string GetQuadKeyURL(double latitude, double longitude, int zoomLevel)
         {
+            String quadKeyURL = " ";
 
             //Calculate the QuadKey
             double sinLatitude = Math.Sin(latitude * Math.PI / 180);
