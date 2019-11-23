@@ -17,7 +17,7 @@ namespace vr_db_interaction
             currDBConnection.printYeet();
             currDBConnection.open();
             currDBConnection.sampleQuery();
-            imageRequest Test = new imageRequest(1.0, 1.0);
+            imageURLRequest Test = new imageRequest("AlHEgop1yfMfViPQcjrKUd3Wduq1PqTPno4RvpsjVaxl2-EvolkG6DNyFZGUXbPD");
 
             Console.WriteLine(await Test.GetQuadKeyURL(44.069, -103.228, 14));
 
