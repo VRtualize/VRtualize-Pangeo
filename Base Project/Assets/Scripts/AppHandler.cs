@@ -8,12 +8,14 @@ public class AppHandler : MonoBehaviour
     void Awake()
     {
         int tileSize = 256;
-        int size = 2;
+        int size = 10;
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
-                BuildNewTile(i * tileSize, 0.1F, (size - j) * tileSize, "Tile " + (i*size + j) );
+                BuildNewTile(i * tileSize, 0.1F, j * tileSize, "Tile " + (i*size + j) );
         }
+        //BuildNewTile(0, 0.1F, 0, "Tile 0");
+        //BuildNewTile(0, 0.1F, 256, "Tile 1");
     }
 
     //build a tile from location data
@@ -52,7 +54,7 @@ public class AppHandler : MonoBehaviour
         GameObject Obj = new GameObject(name, typeof(MeshFilter), typeof(MeshRenderer));
         Obj.transform.localScale = new Vector3(1, 1, 1);
         Obj.transform.rotation = Quaternion.Euler(0, 0, 0);
-        Obj.transform.position = new Vector3(x, y, z);
+        Obj.transform.position = new Vector3(x, y, side - z);
 
         //Graphics.DrawMeshNow(mesh, Vector3.zero, Quaternion.identity, 0);
 
@@ -62,8 +64,6 @@ public class AppHandler : MonoBehaviour
         
         //for (int i = 0; i < vertices.Length; i++)
         //    Debug.Log(vertices[i]);
-        Debug.Log(mesh.bounds.size);
-
     }
 
     Vector3[] fillVert(int len, int side, List<float> ElevPts)
