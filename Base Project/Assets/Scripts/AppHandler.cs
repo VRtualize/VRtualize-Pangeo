@@ -41,33 +41,36 @@ public class AppHandler : MonoBehaviour
 
         mesh.RecalculateNormals();
 
+
         //Assign the Mesh to the rendering engine and transform into position
-        GameObject Obj = new GameObject("Mesh", typeof(MeshFilter), typeof(MeshRenderer));
+        GameObject Obj = new GameObject(name, typeof(MeshFilter), typeof(MeshRenderer));
         Obj.transform.localScale = new Vector3(1, 1, 1);
-        Obj.transform.rotation = Quaternion.Euler(-90, 0, 0);
+        Obj.transform.rotation = Quaternion.Euler(0, 0, 0);
         Obj.transform.position = new Vector3(x, y, z);
-        Obj.name = name;
+
+        //Graphics.DrawMeshNow(mesh, Vector3.zero, Quaternion.identity, 0);
 
         Obj.GetComponent<MeshFilter>().mesh = mesh;
 
         Obj.GetComponent<MeshRenderer>().material = mat;
-
-        /*
-        for (int i = 0; i < 16; i++)
-            Debug.Log(vertices[i]); */
+        
+        //for (int i = 0; i < vertices.Length; i++)
+        //    Debug.Log(vertices[i]);
+        Debug.Log(mesh.bounds.size);
 
     }
 
     Vector3[] fillVert(int len, int side, List<float> ElevPts)
     {
         Vector3[] tmp = new Vector3[len];
+        float pointSep = 10.29F;
         int pos = 0;
         for(int i = 0; i < side; i++)
         {
             //Debug.Log("i =" + i);
             for(int j = 0; j < side; j++)
             {
-                tmp[pos] = new Vector3(i, (side - j), ElevPts[pos]);
+                tmp[pos] = new Vector3(i, ElevPts[pos]/pointSep, (side -j));
                 pos++;
             }
         }
@@ -82,7 +85,7 @@ public class AppHandler : MonoBehaviour
         {
             for (int j = 0; j < side; j++)
             {
-                tmp[pos] = new Vector3(i, (side - j));
+                tmp[pos] = new Vector2(i, (side - j));
                 pos++;
             }
         }
@@ -97,12 +100,12 @@ public class AppHandler : MonoBehaviour
         for (int i = 0; i < sqrCount; i++)
         {
             int sqrRow = (int) (i / (side - 1));
+            tmp[pos++] = i + side + sqrRow;
+            tmp[pos++] = i + 1 + sqrRow;
             tmp[pos++] = i + sqrRow;
-            tmp[pos++] = i + 1 + sqrRow;
-            tmp[pos++] = i + side + sqrRow;
-            tmp[pos++] = i + side + sqrRow;
-            tmp[pos++] = i + 1 + sqrRow;
             tmp[pos++] = i + side + 1 + sqrRow;
+            tmp[pos++] = i + 1 + sqrRow;
+            tmp[pos++] = i + side + sqrRow;
         }
         return tmp;
     }

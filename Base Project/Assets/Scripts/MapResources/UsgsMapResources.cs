@@ -13,13 +13,16 @@ public class UsgsMapResources : IMapResources
 			fs.Read(b, 0, b.Length);
 		}
 		//int meshLength = 116920969;
-        int meshLength = 16;
+        int meshLength = 256;
 		List<float> mesh = new List<float>(meshLength);
 
 		//for (int i = 0; i < b.Length; i += 4)
-        for (int i = 0; i < 64; i +=4 )
+        for (int i = 0; i < meshLength; i++)
         {
-            mesh.Add(BitConverter.ToSingle(b, i));
+            for (int j = 0; j < meshLength; j++)
+            {
+                mesh.Add(BitConverter.ToSingle(b, 10813 * 4 * i + j * 4));
+            }
         }
 		return mesh;
 	}
