@@ -16,7 +16,7 @@ namespace Tests
             Cache cachingObject = new Cache();
             UsgsMapResources resources = new UsgsMapResources();
             //BingMapResources bing = new BingMapResources();
-            cachingObject.setMesh(resources);
+            cachingObject.setMesh(resources, 0, 0);
             Assert.AreEqual(116920969, cachingObject.getMesh().Count);
             //cachingObject.setMesh(bing);
             //Assert.AreEqual(4, cachingObject.getMesh().Count);

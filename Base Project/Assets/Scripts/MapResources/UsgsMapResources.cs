@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class UsgsMapResources : IMapResources
 {
-	List<float> IMapResources.getMesh() {
+	List<float> IMapResources.getMesh(int x, int z) {
 		// For now, we're stubbing out a concrete example
 		byte[] b;
 		using (FileStream fs = new FileStream(@"gridFloatExample.flt", FileMode.Open, FileAccess.Read)) 
@@ -17,11 +17,11 @@ public class UsgsMapResources : IMapResources
 		List<float> mesh = new List<float>(meshLength);
 
 		//for (int i = 0; i < b.Length; i += 4)
-        for (int i = 0; i < meshLength; i++)
+        for (int i = x; i < x + meshLength; i++)
         {
-            for (int j = 0; j < meshLength; j++)
+            for (int j = z; j < z + meshLength; j++)
             {
-                mesh.Add(BitConverter.ToSingle(b, 10813 * 4 * i + j * 4));
+                mesh.Add(BitConverter.ToSingle(b, 10812 * 4 * i + j * 4));
             }
         }
 		return mesh;

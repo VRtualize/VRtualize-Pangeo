@@ -7,7 +7,13 @@ public class AppHandler : MonoBehaviour
     //Initialize the environment
     void Awake()
     {
-        BuildNewTile(0F, 0.1F, 0F, "Start Tile");
+        int tileSize = 256;
+        int size = 2;
+        for (int i = 0; i < size; i++)
+        {
+            for (int j = 0; j < size; j++)
+                BuildNewTile(i * tileSize, 0.1F, (size - j) * tileSize, "Tile " + (i*size + j) );
+        }
     }
 
     //build a tile from location data
@@ -16,7 +22,7 @@ public class AppHandler : MonoBehaviour
         //Testing cache call
         UsgsMapResources res = new UsgsMapResources();
         Cache cache = new Cache();
-        cache.setMesh(res);
+        cache.setMesh(res, (int) x, (int) z);
         List<float> ElevList = cache.getMesh();
         
         //Assign the GameObject material from the Resources folder

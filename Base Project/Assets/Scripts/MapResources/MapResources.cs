@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 public interface IMapResources
 {
-	List<float> getMesh();
+	List<float> getMesh(int x, int z);
 	void getSatelliteImagery();
 }
