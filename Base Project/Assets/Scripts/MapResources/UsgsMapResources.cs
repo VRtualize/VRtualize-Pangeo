@@ -13,7 +13,7 @@ public class UsgsMapResources : IMapResources
 			fs.Read(b, 0, b.Length);
 		}
 		//int meshLength = 116920969;
-        int meshLength = 256;
+        int meshLength = 212;
 		List<float> mesh = new List<float>(meshLength);
 
 		//for (int i = 0; i < b.Length; i += 4)

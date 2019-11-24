@@ -7,7 +7,7 @@ public class AppHandler : MonoBehaviour
     //Initialize the environment
     void Awake()
     {
-        int tileSize = 256;
+        int tileSize = 212;
         int size = 10;
         for (int i = 0; i < size; i++)
         {
@@ -54,7 +54,7 @@ public class AppHandler : MonoBehaviour
         GameObject Obj = new GameObject(name, typeof(MeshFilter), typeof(MeshRenderer));
         Obj.transform.localScale = new Vector3(1, 1, 1);
         Obj.transform.rotation = Quaternion.Euler(0, 0, 0);
-        Obj.transform.position = new Vector3(x, y, side - z);
+        Obj.transform.position = new Vector3(x - (x/side), y, (side - z) - 212 + (z/side));
 
         //Graphics.DrawMeshNow(mesh, Vector3.zero, Quaternion.identity, 0);
 
