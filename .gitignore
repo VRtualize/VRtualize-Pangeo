@@ -29,3 +29,13 @@ DBInterface/DBInterfaceTest/*
 !DBInterface/DBInterfaceTest/docs/latex
 DBInterface/DBInterfaceTest/docs/latex/*
 DBInterface/DBInterfaceTest/docs/latex/refman.pdf
+
+#Manual Adds
+/DataManager/VRPAN_DB/obj/*
+/DataManager/VRPAN_DB/bin/*
+/DataManager/VRPAN_DB/.vs/*
+/DataManager/VRPAN_DBTests/obj/*
+/DataManager/VRPAN_DBTests/bin/*
+/.vs/*
+/vr_db_interaction/.vs/*
+

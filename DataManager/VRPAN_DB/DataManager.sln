@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataManager", "DataManager.csproj", "{0B501FF1-9D66-4CE2-8B6B-DFDE00293150}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VRPAN_DBTests", "..\VRPAN_DBTests\VRPAN_DBTests.csproj", "{EFF8DBF3-4B6B-467F-8DC9-1B7BBA40CF3F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B501FF1-9D66-4CE2-8B6B-DFDE00293150}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B501FF1-9D66-4CE2-8B6B-DFDE00293150}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B501FF1-9D66-4CE2-8B6B-DFDE00293150}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B501FF1-9D66-4CE2-8B6B-DFDE00293150}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFF8DBF3-4B6B-467F-8DC9-1B7BBA40CF3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFF8DBF3-4B6B-467F-8DC9-1B7BBA40CF3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFF8DBF3-4B6B-467F-8DC9-1B7BBA40CF3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFF8DBF3-4B6B-467F-8DC9-1B7BBA40CF3F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1C56220C-3691-4248-9CF9-E9963606D676}
+	EndGlobalSection
+EndGlobal
