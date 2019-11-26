@@ -1,6 +1,9 @@
 Documentation/SRS/build
 Documentation/SRS/.buildinfo
 Documentation/SRS/.vscode/*
+Base\ Project/.vscode/*
+Base\ Project/gridFloatExample.flt
+Base\ Project/bingExample.json
 
 
 # Created by https://www.gitignore.io/api/unity
@@ -10,16 +13,16 @@ Documentation/SRS/.vscode/*
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Mm]emoryCaptures/
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
 
 # Never ignore Asset meta data
-!/[Aa]ssets/**/*.meta
+![Aa]ssets/**/*.meta
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*

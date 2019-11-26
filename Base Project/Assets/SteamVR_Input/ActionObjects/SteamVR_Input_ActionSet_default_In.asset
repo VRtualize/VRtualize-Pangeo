@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446007a29493c544a90db97273bd4b8e, type: 3}
+  m_Name: SteamVR_Input_ActionSet_default_In
+  m_EditorClassIdentifier: 
+  actionSet: {fileID: 0}
+  listDirection: 0
+  actions:
+  - {fileID: 11400000, guid: c05af1251a6a47e41a2a87cc7caaf24a, type: 2}
+  - {fileID: 11400000, guid: b77fa5c5d6dfe8d42b9821c6b9968ac0, type: 2}
+  - {fileID: 11400000, guid: 6fa2d51916c1250419dd6e2323fe46f0, type: 2}
+  - {fileID: 11400000, guid: 2d917d79e9386a34fa53c48bcb34a8aa, type: 2}
+  Teleport: {fileID: 11400000, guid: c05af1251a6a47e41a2a87cc7caaf24a, type: 2}
+  Grab: {fileID: 11400000, guid: b77fa5c5d6dfe8d42b9821c6b9968ac0, type: 2}
+  SkeletonLeftHand: {fileID: 11400000, guid: 6fa2d51916c1250419dd6e2323fe46f0, type: 2}
+  SkeletonRightHand: {fileID: 11400000, guid: 2d917d79e9386a34fa53c48bcb34a8aa, type: 2}
