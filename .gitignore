@@ -1,3 +1,5 @@
+!.gitignore
+
 Documentation/SRS/build
 Documentation/SRS/.buildinfo
 Documentation/SRS/.vscode/*
@@ -5,6 +7,40 @@ Base\ Project/.vscode/*
 Base\ Project/gridFloatExample.flt
 Base\ Project/bingExample.json
 
+docs/build/*
+!docs/build/latex
+docs/build/latex/*
+!docs/build/latex/TestPlan.pdf
+
+# C# Scripts
+DBInterface/*
+!DBInterface/DBInterface
+DBInterface/DBInterface/*
+!DBInterface/DBInterface/DBQuery.cs
+!DBInterface/DBInterface/DBUtils.cs
+!DBInterface/DBInterface/MapData.cs
+!DBInterface/DBInterface/Query.cs
+
+# Unit tests
+!DBInterface/DBInterfaceTest
+DBInterface/DBInterfaceTest/*
+!DBInterface/DBInterfaceTest/DBUtilsTest.cs
+!DBInterface/DBInterfaceTest/DBQueryTest.cs
+!DBInterface/DBInterfaceTest/MapDataTest.cs
+
+# DBInterface Documentation
+!DBInterface/DBInterfaceTest/docs/latex
+DBInterface/DBInterfaceTest/docs/latex/*
+DBInterface/DBInterfaceTest/docs/latex/refman.pdf
+
+#Manual Adds
+/DataManager/VRPAN_DB/obj/*
+/DataManager/VRPAN_DB/bin/*
+/DataManager/VRPAN_DB/.vs/*
+/DataManager/VRPAN_DBTests/obj/*
+/DataManager/VRPAN_DBTests/bin/*
+/.vs/*
+/vr_db_interaction/.vs/*
 
 # Created by https://www.gitignore.io/api/unity
 # Edit at https://www.gitignore.io/?templates=unity
