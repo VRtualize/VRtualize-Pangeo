@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = 'Pangeo SRS'
-copyright = '2019, Egermier, Isaac; Gaddi, Chezka; Theesen, Michael; Tong, Garfield'
-author = 'Egermier, Isaac; Gaddi, Chezka; Theesen, Michael; Tong, Garfield'
+copyright = '2019, Chezka Gaddi, Garfield Tong, Isaac Egermier, Michael Theesen'
+author = 'Chezka Gaddi, Garfield Tong, Isaac Egermier, Michael Theesen'
 
 # The short X.Y version
 version = ''
@@ -123,6 +123,9 @@ latex_elements = {
     # Latex figure (float) alignment
     #
     # 'figure_align': 'htbp',
+
+    'fncychap': '\\usepackage[Bjornstrup]{fncychap}'
+
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -130,7 +133,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'PangeoSRS.tex', 'Pangeo SRS Documentation',
-     'Egermier, Isaac; Gaddi, Chezka; Theesen, Michael; Tong, Garfield', 'manual'),
+     'Chezka Gaddi, Garfield Tong, Isaac Egermier, Michael Theesen', 'manual'),
 ]
 
 
