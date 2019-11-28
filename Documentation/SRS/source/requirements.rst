@@ -6,21 +6,20 @@ Functional Requirements
 
 Use Case Requirements
 ``````````````````````
-This section outlines the use cases of the Explorer.
 
 **Use case:**  Interacting With Generated Terrain
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Brief Description**
 
-The Explorer can move and look around the Generated Terrain with Familiar VR Movements. The explorer may also move via flying.
+The Explorer can move and look around the Generated Terrain with Familiar VR Movements. The Explorer may also move via flying.
 
 **Initial Step-By-Step Description**
 
 Before this use case can be initiated, the Explorer has already accessed the Application.
 
-1.	The Application creates Generated Terrain.
-2.	The Explorer may use Familiar VR Movements to move about and look around the Generated Terrain.
+1.  The Application creates Generated Terrain.
+2.  The Explorer may use Familiar VR Movements to move about and look around the Generated Terrain.
 3.  If the Explorer moves to the edge of the Generated Terrain, *View Generated Terrain* is triggered.
 
 **Use case:** Jumping
@@ -28,15 +27,15 @@ Before this use case can be initiated, the Explorer has already accessed the App
 
 **Brief Description**
 
-The Application provides controls to jump to a specified longitude and latitude provided by the Explorer.
+The Application provides controls to jump to a specified longitude and latitude provided by the Explorer. "Jumping" is a mechanism to instantly navigate to another location.
 
 **Initial Step-By-Step Description**
 
 Before this use case can be initiated, the Explorer has already accessed the Application.
 
-1.	The Application provides a button at all times during the Explorer's access to the Application.
-2.	The Explorer presses the button to initiate teleport.
-3.	The Application displays dialog to receive longitude and latitude from the Explorer.
+1.  The Application provides a button at all times during the Explorer's access to the Application.
+2.  The Explorer presses the button to initiate teleport.
+3.  The Application displays dialog to receive longitude and latitude from the Explorer.
 4.  The Explorer inputs longitude and latitude and submits to the Application.
 5.  *View Generated Terrain* is triggered centered around received longitude and latitude.
 
@@ -70,16 +69,20 @@ This section outlines the functions of the Application and the Local Database
 
 **Brief Description**
 
-The Application Renders Interactive 3-Dimensional Virtual Reality Imagery.
+The Application Renders interactive 3-dimensional virtual reality imagery.
 
 **Initial Step-By-Step Description**
 
 1.	The *Request Terrain Data* is triggered.
 2.	Terrain Data is interpretted into Generated Terrain.
-3.	The Application returns Generated Terrain to *View Generated Terrain.*
+3.	The Application returns Generated Terrain to *View Generated Terrain*.
 
 **Application:** Request Terrain Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Brief Description**
+
+The Application Requests Terrain Data from the Local Database.
 
 **Initial Step-By-Step Description**
 
@@ -101,14 +104,8 @@ The Local Database prepares Terrain Data necessary to *Create Generated Terrain*
 2.	If the Local Database contains the necessary Terrain Data, proceed to step 6.
 3.	If the Local Database does not contain the necessary Terrain Data, *Fetch the Data*.
 4.	If the Local Database is not "full", store the necessary Terrain Data and proceed to step 6.
-5.  If the Local Database is "full", use caching logic (CPU inspired, FIFO, LRU), decide which cached Terrain Data to replace with necessary Terrain Data and proceed to step 6.
+5.  If the Local Database is "full", use caching logic, decide which cached Terrain Data to replace with necessary Terrain Data and proceed to step 6.
 6.  Return necessary Terrain Data to *Request Terrain Data*.
-
-Depending on caching logic, there may be different definitions of "full". If VRtualize goes with an implementation that is inspired from the CPU cache implementation, "full" would be when a "hit" is encountered for the index calculated with relevant information of the Terrain Data, and the Local Database will replace the existing Terrain Data with the necessary Terrain Data. Not "full" would be when a "miss" is encountered for the index calculated with relevant information of the Terrain Data, and the Local Database will store the necessary Terrain Data in the index.
-
-If VRtualize goes with a First in First Out (FIFO) implementation, the "full" amount of Terrain Data is predetermined, and when "full", the Local Database will remove the oldest fetched Terrain Data, and the new necessary Terrain Data will be inserted.
-
-If VRtualize goes with an Least Recently Used (LRU) implementation, the "full" amount of Terrain Data is predetermined, and each fetched Terrain Data will have a unique time stamp. Everytime necessary Terrain Data is already in the Local Database, the time stamp is updated. When the Local Database is "full", the Local Database will remove the fetched Terrain Data that has the oldest time stamp.
 
 **Local Database:**  Fetch the Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -119,9 +116,9 @@ The Local Database fetches data from a Cooperating System.
 
 **Initial Step-By-Step Description**
 
-1.	Determine the "best" Cooperating System for the fetch.
-2.	Request necessary Terrain Data from the "best" Cooperating System.
-3.	Return the Terrain Data to *Prepare Terrain Data*.
+1.  Determine the "best" Cooperating System for the fetch.
+2.  Request necessary Terrain Data from the "best" Cooperating System.
+3.  Return the Terrain Data to *Prepare Terrain Data*.
 
 An algorithm to determine the "best" Cooperating System per fetch is left to be determined by the development team.
 
@@ -133,6 +130,10 @@ This section outlines the requirements of the Cooperating Systems necessary for 
 The USGS Database does not have any interface requirements necessary for the Local Database to retrieve Terrain Data.
 
 The Application assumes the Explorer will access it via VR Equipment
+
+.. raw:: latex
+
+    \clearpage
 
 Non-Functional Requirements
 --------------------------------
@@ -166,6 +167,7 @@ The physical machine must install the Local System. The machine hosting the Loca
     *   Software
 
         *   Microsoft Windows 10
+        *   Unity 2019.2.12f1
 
 The Application part of the Local System will provide interactions familiar to users who have used virtual reality before, so buttons, menu options, etc. will behave similar to other virtual reality software, and will be placed in locations similar to other virtual reality software. In places where the Application receives input from the Explorer, the Application assumes the input is valid.
 
@@ -173,4 +175,4 @@ The Local Database part of the Local System will have well encapsulated caching 
 
 **The Cooperating Systems**
 
-The Local Database expects at least one Cooperating System to be active and connectable. This connection expects minimal latency to fetch Terrain Data.
+The Local Database expects at least one Cooperating System to be active and connectable.
