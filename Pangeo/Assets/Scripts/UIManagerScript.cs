@@ -20,19 +20,10 @@ public class UIManagerScript : MonoBehaviour
         Debug.Log("Active Coordinates Button");
     }
 
-    public void OpenControlsPanel()
+    public void GoToCoordinates()
     {
-        coordinatesButton.SetBool("Enabled", false);
-        exitButton.SetBool("Enabled", false);
-        background.SetBool("ControlsPanelEnabled", true);
-        Debug.Log("Active Controls Button");
-    }
-
-    public void OpenExitPanel()
-    {
-        controlsButton.SetBool("Enabled", false);
-        coordinatesButton.SetBool("Enabled", false);
-        Debug.Log("Active Exit Button");
+        Debug.Log("Going to Coordinates");
+        SceneManager.LoadScene("World");
     }
 
     public void CloseCoordinatesPanel()
@@ -43,12 +34,27 @@ public class UIManagerScript : MonoBehaviour
         Debug.Log("Close Coordinates Panel");
     }
 
+    public void OpenControlsPanel()
+    {
+        coordinatesButton.SetBool("Enabled", false);
+        exitButton.SetBool("Enabled", false);
+        background.SetBool("ControlsPanelEnabled", true);
+        Debug.Log("Active Controls Button");
+    }
+
     public void CloseControlsPanel()
     {
         coordinatesButton.SetBool("Enabled", true);
         exitButton.SetBool("Enabled", true);
         background.SetBool("ControlsPanelEnabled", false);
         Debug.Log("Close Controls Panel");
+    }
+
+    public void OpenExitPanel()
+    {
+        controlsButton.SetBool("Enabled", false);
+        coordinatesButton.SetBool("Enabled", false);
+        Debug.Log("Active Exit Button");
     }
 
     public void OnPointerEnter(Button button)
