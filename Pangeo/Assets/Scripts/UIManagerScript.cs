@@ -14,8 +14,15 @@ public class UIManagerScript : MonoBehaviour
 
     public InputField longitudeInputField;
     public InputField latitudeInputField;
+    public GameObject eventSystem;
 
     bool fieldCoordinate;
+
+    public void Start() {
+        eventSystem = GameObject.Find("EventSystem");
+        longitudeInputField = GameObject.Find("LongitudeInputField").GetComponent<InputField>();
+        latitudeInputField = GameObject.Find("LatitudeInputField").GetComponent<InputField>();
+    }
 
     public void OpenCoordinatesPanel()
     {
@@ -42,9 +49,6 @@ public class UIManagerScript : MonoBehaviour
 
     public void EnterCoordinates(Button key)
     {
-        longitudeInputField = GameObject.Find("LongitudeInputField").GetComponent<InputField>();
-        latitudeInputField = GameObject.Find("LatitudeInputField").GetComponent<InputField>();
-
         if (fieldCoordinate)
         {
             Debug.Log(latitudeInputField.text);
@@ -57,6 +61,7 @@ public class UIManagerScript : MonoBehaviour
             longitudeInputField.text += key.GetComponentInChildren<Text>().text;
             Debug.Log(longitudeInputField.text);
         }
+        eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
 
     public void GoToCoordinates()
