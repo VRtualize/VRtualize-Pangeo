@@ -20,9 +20,9 @@ public class UIManagerScript : MonoBehaviour
         Debug.Log("Active Coordinates Button");
     }
 
-    public void EnterLongitude()
+    public void SelectInputField(InputField field)
     {
-
+        background.SetBool("KeyboardEnabled", true);
     }
 
     public void GoToCoordinates()
