@@ -12,6 +12,11 @@ public class UIManagerScript : MonoBehaviour
     public Animator exitButton;
     public Animator background;
 
+    public InputField longitudeInputField;
+    public InputField latitudeInputField;
+
+    bool fieldCoordinate;
+
     public void OpenCoordinatesPanel()
     {
         exitButton.SetBool("Enabled", false);
@@ -23,6 +28,35 @@ public class UIManagerScript : MonoBehaviour
     public void SelectInputField(InputField field)
     {
         background.SetBool("KeyboardEnabled", true);
+        if (field.name == "LongitudeInputField")
+        {
+            fieldCoordinate = false;
+            Debug.Log("Input Field: " + field.name);
+        }
+        else if (field.name == "LatitudeInputField")
+        {
+            fieldCoordinate = true;
+            Debug.Log("Input Field: " + field.name);
+        }
+    }
+
+    public void EnterCoordinates(Button key)
+    {
+        longitudeInputField = GameObject.Find("LongitudeInputField").GetComponent<InputField>();
+        latitudeInputField = GameObject.Find("LatitudeInputField").GetComponent<InputField>();
+
+        if (fieldCoordinate)
+        {
+            Debug.Log(latitudeInputField.text);
+            latitudeInputField.text += key.GetComponentInChildren<Text>().text;
+            Debug.Log(latitudeInputField.text);
+        }
+        else
+        {
+            Debug.Log(longitudeInputField.text);
+            longitudeInputField.text += key.GetComponentInChildren<Text>().text;
+            Debug.Log(longitudeInputField.text);
+        }
     }
 
     public void GoToCoordinates()
