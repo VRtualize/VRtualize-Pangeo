@@ -105,6 +105,7 @@ public class UIManagerScript : MonoBehaviour
         coordinatesButton.SetBool("Enabled", false);
         exitButton.SetBool("Enabled", false);
         background.SetBool("ControlsPanelEnabled", true);
+        background.SetBool("Enabled", false);
         Debug.Log("Active Controls Button");
     }
 
