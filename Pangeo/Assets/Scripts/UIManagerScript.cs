@@ -20,6 +20,11 @@ public class UIManagerScript : MonoBehaviour
         Debug.Log("Active Coordinates Button");
     }
 
+    public void EnterLongitude()
+    {
+
+    }
+
     public void GoToCoordinates()
     {
         Debug.Log("Going to Coordinates");
@@ -52,9 +57,10 @@ public class UIManagerScript : MonoBehaviour
 
     public void OpenExitPanel()
     {
+        Debug.Log("Active Exit Button");
         controlsButton.SetBool("Enabled", false);
         coordinatesButton.SetBool("Enabled", false);
-        Debug.Log("Active Exit Button");
+        Application.Quit();
     }
 
     public void OnPointerEnter(Button button)
