@@ -18,12 +18,6 @@ public class UIManagerScript : MonoBehaviour
 
     bool fieldCoordinate;
 
-    public void Start() {
-        eventSystem = GameObject.Find("EventSystem");
-        longitudeInputField = GameObject.Find("LongitudeInputField").GetComponent<InputField>();
-        latitudeInputField = GameObject.Find("LatitudeInputField").GetComponent<InputField>();
-    }
-
     public void OpenCoordinatesPanel()
     {
         exitButton.SetBool("Enabled", false);
@@ -52,16 +46,44 @@ public class UIManagerScript : MonoBehaviour
         if (fieldCoordinate)
         {
             Debug.Log(latitudeInputField.text);
-            latitudeInputField.text += key.GetComponentInChildren<Text>().text;
-            Debug.Log(latitudeInputField.text);
+            Debug.Log(latitudeInputField.text.GetType());
+            if (key.name == "ButtonBack")
+            {
+                latitudeInputField.text = this.TrimLastCharacter(latitudeInputField.text);
+            }
+            else
+            {
+                latitudeInputField.text += key.GetComponentInChildren<Text>().text;
+                Debug.Log(latitudeInputField.text);
+            }
+        }
+
+        else
+        {
+            if (key.name == "ButtonBack")
+            {
+                longitudeInputField.text = this.TrimLastCharacter(longitudeInputField.text);
+            }
+            else
+            {
+                Debug.Log(longitudeInputField.text);
+                longitudeInputField.text += key.GetComponentInChildren<Text>().text;
+                Debug.Log(longitudeInputField.text);
+            }
+        }
+        eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
+    }
+
+    public string TrimLastCharacter(string str)
+    {
+        if(string.IsNullOrEmpty(str))
+        {
+            return str;
         }
         else
         {
-            Debug.Log(longitudeInputField.text);
-            longitudeInputField.text += key.GetComponentInChildren<Text>().text;
-            Debug.Log(longitudeInputField.text);
+            return str.Remove(str.Length - 1);
         }
-        eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
 
     public void GoToCoordinates()

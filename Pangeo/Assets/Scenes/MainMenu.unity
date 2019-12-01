@@ -2413,7 +2413,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 650624743}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 856675738}
+        m_MethodName: EnterCoordinates
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 650624742}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &650624743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2803,8 +2814,9 @@ MonoBehaviour:
   controlsButton: {fileID: 1892476552}
   exitButton: {fileID: 1783753960}
   background: {fileID: 1599376684}
-  longitudeInputField: {fileID: 0}
-  latitudeInputField: {fileID: 0}
+  longitudeInputField: {fileID: 1887858928}
+  latitudeInputField: {fileID: 440923295}
+  eventSystem: {fileID: 1346652470}
 --- !u!1 &887489491
 GameObject:
   m_ObjectHideFlags: 0
@@ -2982,7 +2994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &980769125
 RectTransform:
   m_ObjectHideFlags: 0
