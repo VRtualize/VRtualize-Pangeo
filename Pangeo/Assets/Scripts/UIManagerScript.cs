@@ -10,13 +10,13 @@ public class UIManagerScript : MonoBehaviour
     public Animator coordinatesButton;
     public Animator controlsButton;
     public Animator exitButton;
-    public Animator coordinatesPanel;
+    public Animator background;
 
     public void OpenCoordinatesPanel()
     {
         exitButton.SetBool("Enabled", false);
         controlsButton.SetBool("Enabled", false);
-        coordinatesPanel.SetBool("Enabled", true);
+        background.SetBool("Enabled", true);
         Debug.Log("Active Coordinates Button");
     }
 
@@ -24,6 +24,7 @@ public class UIManagerScript : MonoBehaviour
     {
         coordinatesButton.SetBool("Enabled", false);
         exitButton.SetBool("Enabled", false);
+        background.SetBool("ControlsPanelEnabled", true);
         Debug.Log("Active Controls Button");
     }
 
@@ -38,8 +39,16 @@ public class UIManagerScript : MonoBehaviour
     {
         controlsButton.SetBool("Enabled", true);
         exitButton.SetBool("Enabled", true);
-        coordinatesPanel.SetBool("Enabled", false);
-        Debug.Log("Active Exit Button");
+        background.SetBool("Enabled", false);
+        Debug.Log("Close Coordinates Panel");
+    }
+
+    public void CloseControlsPanel()
+    {
+        coordinatesButton.SetBool("Enabled", true);
+        exitButton.SetBool("Enabled", true);
+        background.SetBool("ControlsPanelEnabled", false);
+        Debug.Log("Close Controls Panel");
     }
 
     public void OnPointerEnter(Button button)
