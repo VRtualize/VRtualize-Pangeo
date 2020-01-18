@@ -6,6 +6,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Valve.VR.Extras;
 
+/// <summary>
+/// SceneHandler class handles the pointer actions relating to the Main Menu.
+/// </summary>
 public class SceneHandler : MonoBehaviour
 {
     public SteamVR_LaserPointer laserPointer;
@@ -13,7 +16,9 @@ public class SceneHandler : MonoBehaviour
     public InputField field;
     public GameObject eventSystem;
 
-
+    /// <summary>
+    /// Controller movement that calculates current pointer position on the screen.
+    /// </summary>
     void Awake()
     {
         laserPointer.PointerIn += PointerInside;
@@ -21,6 +26,11 @@ public class SceneHandler : MonoBehaviour
         laserPointer.PointerClick += PointerClick;
     }
 
+    /// <summary>
+    /// Handles pointer clicks on the menu items.
+    /// </summary>
+    /// <param name="sender">Source of the click.</param>
+    /// <param name="e">Event that triggered the click.</param>
     public void PointerClick(object sender, PointerEventArgs e)
     {
         if (e.target.name.Contains("Button"))
@@ -34,12 +44,18 @@ public class SceneHandler : MonoBehaviour
         else if (e.target.name.Contains("InputField"))
         {
             Debug.Log("InputField was clicked");
+
             field = e.target.gameObject.GetComponent<InputField>();
             field.Select();
-            //field.ActivateInputField();
         }
     }
 
+    /// <summary>
+    /// Handles events that pointer comes inside the boundary of an object.
+    /// Buttons are highlighted when hovered over.
+    /// </summary>
+    /// <param name="sender">Source of the pointer.</param>
+    /// <param name="e">Event that pointer enters an object.</param>
     public void PointerInside(object sender, PointerEventArgs e)
     {
         if (e.target.name.Contains("Button"))
@@ -52,12 +68,15 @@ public class SceneHandler : MonoBehaviour
         else if (e.target.name.Contains("InputField"))
         {
             Debug.Log("InputField is selected");
-            //field = e.target.gameObject.GetComponent<InputField>();
-            //field.Select();
         }
-
     }
 
+    /// <summary>
+    /// Handles events that pointer exits the boundary of an object.
+    /// Buttons will lose it's highlight when the pointer is no longer in the boundary.
+    /// </summary>
+    /// <param name="sender">Source of the pointer.</param>
+    /// <param name="e">Event that pointer enters an object.</param>
     public void PointerOutside(object sender, PointerEventArgs e)
     {
         if (e.target.name.Contains("Button"))

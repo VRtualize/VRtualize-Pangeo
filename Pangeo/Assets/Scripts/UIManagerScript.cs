@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+/// <summary>
+/// UIManagerScript class handles the actions with the menu.
+/// </summary>
 public class UIManagerScript : MonoBehaviour
 {
     public Animator coordinatesButton;
@@ -18,14 +21,23 @@ public class UIManagerScript : MonoBehaviour
 
     bool fieldCoordinate;
 
+    /// <summary>
+    /// Opens the Coordinates Panel.
+    /// </summary>
     public void OpenCoordinatesPanel()
     {
         exitButton.SetBool("Enabled", false);
         controlsButton.SetBool("Enabled", false);
         background.SetBool("Enabled", true);
+        background.SetBool("KeyboardEnabled", false);
+
         Debug.Log("Active Coordinates Button");
     }
 
+    /// <summary>
+    /// Selects an Input Field and opens the Numerical Keypad.
+    /// </summary>
+    /// <param name="field">Input field to be selected.</param>
     public void SelectInputField(InputField field)
     {
         background.SetBool("KeyboardEnabled", true);
@@ -41,6 +53,10 @@ public class UIManagerScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles the input from the virtual keypad.
+    /// </summary>
+    /// <param name="key">Key on the keypad.</param>
     public void EnterCoordinates(Button key)
     {
         if (fieldCoordinate)
@@ -74,6 +90,11 @@ public class UIManagerScript : MonoBehaviour
         eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }
 
+    /// <summary>
+    /// Deletes the last character on the input field.
+    /// </summary>
+    /// <param name="str">Current string in the input field.</param>
+    /// <returns></returns>
     public string TrimLastCharacter(string str)
     {
         if(string.IsNullOrEmpty(str))
@@ -86,20 +107,32 @@ public class UIManagerScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Loads the World scene with the specified coordinates.
+    /// </summary>
     public void GoToCoordinates()
     {
         Debug.Log("Going to Coordinates");
+
         SceneManager.LoadScene("World");
     }
 
+    /// <summary>
+    /// Closes the Coordinates Panel.
+    /// </summary>
     public void CloseCoordinatesPanel()
     {
+        Debug.Log("Close Coordinates Panel");
+
+        background.SetBool("Enabled", false);
+        background.SetBool("KeyboardEnabled", false);
         controlsButton.SetBool("Enabled", true);
         exitButton.SetBool("Enabled", true);
-        background.SetBool("Enabled", false);
-        Debug.Log("Close Coordinates Panel");
     }
 
+    /// <summary>
+    /// Opens the Controls Panel.
+    /// </summary>
     public void OpenControlsPanel()
     {
         coordinatesButton.SetBool("Enabled", false);
@@ -109,14 +142,21 @@ public class UIManagerScript : MonoBehaviour
         Debug.Log("Active Controls Button");
     }
 
+    /// <summary>
+    /// Closes the Controls Panel.
+    /// </summary>
     public void CloseControlsPanel()
     {
+        Debug.Log("Close Controls Panel");
+
         coordinatesButton.SetBool("Enabled", true);
         exitButton.SetBool("Enabled", true);
         background.SetBool("ControlsPanelEnabled", false);
-        Debug.Log("Close Controls Panel");
     }
 
+    /// <summary>
+    /// Opens the Exit Panel.
+    /// </summary>
     public void OpenExitPanel()
     {
         Debug.Log("Active Exit Button");
@@ -125,6 +165,10 @@ public class UIManagerScript : MonoBehaviour
         Application.Quit();
     }
 
+    /// <summary>
+    /// Handles the animations when the pointer hovers over a button.
+    /// </summary>
+    /// <param name="button">Button hovered over.</param>
     public void OnPointerEnter(Button button)
     {
         Debug.Log("Entering " + button.name);
@@ -142,6 +186,10 @@ public class UIManagerScript : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles the animations when the pointer exits a button.
+    /// </summary>
+    /// <param name="button">Button that is exited.</param>
     public void OnPointerExit(Button button)
     {
         Debug.Log("Exiting " + button.name);
