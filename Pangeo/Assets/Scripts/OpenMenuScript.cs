@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Valve.VR;
+using vr_db_interaction;
 
 /// <summary>
 /// OpenMenuScript class that opens the menu with the click of the menu button.
@@ -18,10 +19,16 @@ public class OpenMenuScript : MonoBehaviour
     /// </summary>
     void Start()
     {
+        vr_db_interaction.DBConnection theconnection = new DBConnection();
+        theconnection.printYeet();
+        theconnection.open();
+        theconnection.sampleQuery();
         Debug.Log("Activating menu");
+
 
         OpenMenu.AddOnStateUpListener(MenuInactive, handType);
         OpenMenu.AddOnStateDownListener(MenuActive, handType);
+
     }
 
     /// <summary>
