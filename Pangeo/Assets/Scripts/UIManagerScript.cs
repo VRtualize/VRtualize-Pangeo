@@ -1,9 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DataManagerUtils;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 /// <summary>
 /// UIManagerScript class handles the actions with the menu.
@@ -18,6 +24,8 @@ public class UIManagerScript : MonoBehaviour
     public InputField longitudeInputField;
     public InputField latitudeInputField;
     public GameObject eventSystem;
+
+
 
     bool fieldCoordinate;
 
@@ -113,6 +121,9 @@ public class UIManagerScript : MonoBehaviour
     public void GoToCoordinates()
     {
         Debug.Log("Going to Coordinates");
+        //double longitude = Convert.ToDouble(longitudeInputField.text);
+        //double latitude = Convert.ToDouble(latitudeInputField.text);
+        
 
         SceneManager.LoadScene("World");
     }

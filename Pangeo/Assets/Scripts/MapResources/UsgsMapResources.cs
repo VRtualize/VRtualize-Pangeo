@@ -26,5 +26,5 @@ public class UsgsMapResources : IMapResources
         }
 		return mesh;
 	}
-	void IMapResources.getSatelliteImagery() { }
+	void IMapResources.getSatelliteImagery() {}
 }

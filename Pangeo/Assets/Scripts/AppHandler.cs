@@ -19,9 +19,9 @@ public class AppHandler : MonoBehaviour
         int tileSize = 212;
 
         //The starting environment will be size^2 tiles in a square shape
-        int size = 20;
+        int size = 1;
 
-        //Build the starting area
+        ////Build the starting area
         for (int i = 0; i < size; i++)
         {
             for (int j = 0; j < size; j++)
@@ -40,18 +40,21 @@ public class AppHandler : MonoBehaviour
     /// <param name="y">The y coordinate for the tile</param>
     /// <param name="z">The z coordinate for the tile</param>
     /// <param name="name">The name of the tile in the Unity hierarchy</param>
-    void BuildNewTile(float x, float y, float z, string name)
+    async void BuildNewTile(float x, float y, float z, string name)
     {
         //Retrieving the map chunk from the cache class
         UsgsMapResources res = new UsgsMapResources();
         Cache cache = new Cache();
         cache.setMesh(res, (int) x, (int) z);
+        WWW imgLoader = await cache.getSatelliteImagery();
         List<float> ElevList = cache.getMesh();
         
         //Assign the GameObject material from the Resources folder
         //Future Work: Change the material to take satellite imagery from cache
         Material mat = Resources.Load("Materials/Stylize_Grass", 
             typeof(Material)) as Material;
+        mat.color = Color.white;
+        mat.mainTexture = imgLoader.texture;
 
         //Perform array size calculations
         int length = ElevList.Count;
@@ -92,7 +95,8 @@ public class AppHandler : MonoBehaviour
         Obj.GetComponent<MeshFilter>().mesh = mesh;
 
         //Assign the object's renderer with specified material
-        Obj.GetComponent<MeshRenderer>().material = mat;
+        Obj.GetComponent<MeshRenderer>().material.mainTexture = imgLoader.texture;
+        Obj.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2((float)(1.0/212.0), (float)(1.0/212.0));
     }
 
     /// <summary>
