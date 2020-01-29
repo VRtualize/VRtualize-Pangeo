@@ -16,8 +16,11 @@ public class UsgsMapResources : IMapResources
         int meshLength = 212;
 		List<float> mesh = new List<float>(meshLength);
 
-		//for (int i = 0; i < b.Length; i += 4)
-        for (int i = x; i < x + meshLength; i++)
+        // for (int i = 0; i < b.Length; i += 4)
+        // {
+        //     mesh.Add(BitConverter.ToSingle(b, i));
+        // }
+            for (int i = x; i < x + meshLength; i++)
         {
             for (int j = z; j < z + meshLength; j++)
             {
