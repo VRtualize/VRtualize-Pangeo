@@ -104,36 +104,5 @@ namespace DataManagerUtils
             return quadKeyURL;
         }
 
-        //public static void QuadKeyToTileXY(string quadKey, out int latitude, out int longitude, out int zoomLevel)
-        //{
-        //    tileX = tileY = 0;
-        //    levelOfDetail = quadKey.Length;
-        //    for (int i = levelOfDetail; i > 0; i--)
-        //    {
-        //        int mask = 1 << (i - 1);
-        //        switch (quadKey[levelOfDetail - i])
-        //        {
-        //            case '0':
-        //                break;
-
-        //            case '1':
-        //                tileX |= mask;
-        //                break;
-
-        //            case '2':
-        //                tileY |= mask;
-        //                break;
-
-        //            case '3':
-        //                tileX |= mask;
-        //                tileY |= mask;
-        //                break;
-
-        //            default:
-        //                throw new ArgumentException("Invalid QuadKey digit sequence.");
-        //        }
-        //    }
-        //}
-
     }
 }

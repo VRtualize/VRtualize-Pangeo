@@ -1,22 +1,36 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Text;
 using System.Collections.Generic;
 using UnityEngine;
+
+using DataManagerUtils;
+
+
 
 /// <summary>
 /// This class handles the generation of environment meshes.
 /// </summary>
 public class AppHandler : MonoBehaviour
 {
+    //Retrieving the map chunk from the cache class
+    private UsgsMapResources res = new UsgsMapResources();
+    private Cache cache = new Cache();
+    int chosenZoomLevel = 14;
+
     /// <summary>
     /// The first function called at the start of running the application. 
     /// Starts by building the mesh tiles that compose the starting location.
     /// </summary>
+    /// 
     void Awake()
     {
+        cache.setMesh(res);
         //Future Work: Query starting location from user via menu.
 
         //Expected side length of each tile
-        int tileSize = 212;
+        int tileSize = 256;
+        //int tileSize = Globals.meshLength;
 
         //The starting environment will be size^2 tiles in a square shape
         int size = 1;
@@ -42,12 +56,13 @@ public class AppHandler : MonoBehaviour
     /// <param name="name">The name of the tile in the Unity hierarchy</param>
     async void BuildNewTile(float x, float y, float z, string name)
     {
-        //Retrieving the map chunk from the cache class
-        UsgsMapResources res = new UsgsMapResources();
-        Cache cache = new Cache();
-        cache.setMesh(res, (int) x, (int) z);
-        WWW imgLoader = await cache.getSatelliteImagery();
-        List<float> ElevList = cache.getMesh();
+        
+        
+        
+
+        //Get image at proper latitude and longitude
+        WWW imgLoader = await cache.getSatelliteImagery(Globals.latitude, Globals.longitude, chosenZoomLevel);
+        List<float> ElevList = await cache.getMesh(chosenZoomLevel);
         
         //Assign the GameObject material from the Resources folder
         //Future Work: Change the material to take satellite imagery from cache
@@ -59,6 +74,7 @@ public class AppHandler : MonoBehaviour
         //Perform array size calculations
         int length = ElevList.Count;
         int side = (int) Mathf.Sqrt(length);
+        Debug.Log("Side " + length);
         int sqrPtCount = (int) (Mathf.Pow( (side - 1), 2) * 6);
 
         //Create empty vertices, uv, and triangles arrays and set their values
@@ -89,14 +105,14 @@ public class AppHandler : MonoBehaviour
         //in the tile location, so the call accounts for this when placing
         //tiles into th egame world
         Obj.transform.position = new Vector3(x - (x/side), y, 
-            (side - z) - 212 + (z/side));
+            (side - z) - 256 + (z/side));
 
         //Set the object's mesh filter with our created mesh
         Obj.GetComponent<MeshFilter>().mesh = mesh;
 
         //Assign the object's renderer with specified material
         Obj.GetComponent<MeshRenderer>().material.mainTexture = imgLoader.texture;
-        Obj.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2((float)(1.0/212.0), (float)(1.0/212.0));
+        Obj.GetComponent<MeshRenderer>().material.mainTextureScale = new Vector2((float)(1.0/256.0), (float)(1.0/256.0));
     }
 
     /// <summary>
@@ -114,7 +130,9 @@ public class AppHandler : MonoBehaviour
         //Define the separation between points. Used to translate elevation
         //points into Unity space size so Y coordinates are consistent with 
         //X-Z plane points
-        const float pointSep = 10.29F;
+
+        //TODO Make this our global zoom level
+        float pointSep = Convert.ToSingle(Globals.zoomLevelMetersPerPixel[chosenZoomLevel]);
 
         //Assign the points to a temporary array
         int pos = 0;

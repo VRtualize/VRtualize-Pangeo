@@ -18,8 +18,6 @@ public class OpenMenuScript : MonoBehaviour
     /// </summary>
     void Start()
     {
-        Debug.Log("Activating menu");
-
         OpenMenu.AddOnStateUpListener(MenuInactive, handType);
         OpenMenu.AddOnStateDownListener(MenuActive, handType);
     }

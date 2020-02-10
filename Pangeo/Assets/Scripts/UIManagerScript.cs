@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using DataManagerUtils;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -121,9 +120,14 @@ public class UIManagerScript : MonoBehaviour
     public void GoToCoordinates()
     {
         Debug.Log("Going to Coordinates");
-        //double longitude = Convert.ToDouble(longitudeInputField.text);
-        //double latitude = Convert.ToDouble(latitudeInputField.text);
-        
+        double longitude = Convert.ToDouble(longitudeInputField.text);
+        double latitude = Convert.ToDouble(latitudeInputField.text);
+
+        Globals.latitude = latitude;
+        Globals.longitude = longitude;
+
+        Debug.Log("Current Latitude " + Globals.latitude);
+        Debug.Log("Current Longitude " + Globals.longitude);
 
         SceneManager.LoadScene("World");
     }

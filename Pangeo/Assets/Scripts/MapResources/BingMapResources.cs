@@ -29,7 +29,7 @@ public class BingMapResources : IMapResources
             public string traceId { get; set; }
         }
     }
-    List<float> IMapResources.getMesh(int x, int z) {
+    List<float> IMapResources.getMesh() {
         // For now, we're stubbing out a concrete example
         bingSchema.RootObject items;
         using (StreamReader fs = new StreamReader(@"bingExample.json")) 
