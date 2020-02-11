@@ -23,38 +23,46 @@ public class Cache
         restapiurl = new imageURLRequest(apikey);
     }
     
-	async public Task<List<float>> getMesh(int chosenZoomLevel)
+	async public Task<List<float>> getMesh(String quadkey)
     {
-        int meshLength = 256;
         BingMaps quadKeyFuncs = new BingMaps();
-
-        //Get latitude and longitude of upper left corner of the Image tile using the quad key backwards
-        String tempQuadKey = quadKeyFuncs.getQuadKey(Globals.latitude, Globals.longitude, chosenZoomLevel);
-        double ucLat = Globals.latitude;
-        double ucLong = Globals.longitude;
-        Debug.Log("YEEUTSTHE1ST");
-        quadKeyFuncs.QuadKeyToLatLong(tempQuadKey, out ucLat, out ucLong);
+        double ucLat;
+        double ucLong;
+        quadKeyFuncs.QuadKeyToLatLong(quadkey, out ucLat, out ucLong);
+        double lcLat;
+        double lcLong;
+        //Get the lower right corner
+        int tilex = 0;
+        int tilez = 0;
+        int chosenZoomLevel;
+        BingMaps.QuadKeyToTileXY(quadkey, out tilex, out tilez, out chosenZoomLevel);
+        tilex = tilex + 1;
+        tilez = tilez + 1;
+        String lcquadkey = BingMaps.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
+        quadKeyFuncs.QuadKeyToLatLong(lcquadkey, out lcLat, out lcLong);
         //Get chunks from database in Image tile range
         DataManager tempDataManager = new DataManager();
 
-        List<float> mesh = await tempDataManager.ElevationRequest(ucLat, ucLong, ucLat - (256 * Globals.zoomLevelMetersPerPixel[chosenZoomLevel]) / 111255.48, ucLong + (256 * Globals.zoomLevelMetersPerPixel[chosenZoomLevel]) / 111255.48, 256, chosenZoomLevel);
+        List<float> mesh = await tempDataManager.ElevationRequest(ucLat, ucLong, lcLat, lcLong, 256, quadkey.Length);
         
         return mesh;
     }
 
 	public void setMesh(IMapResources resources) { mesh = resources.getMesh(); }
-	public async Task<WWW> getSatelliteImagery(double latitude, double longitude, int zoomLevel)
+	public async Task<WWW> getSatelliteImagery(String QuadKey)
     {
         if (String.IsNullOrEmpty(restapiurl.subdomain))
         {
             await restapiurl.initializeURL();
         }
-        string imageURL = restapiurl.GetQuadKeyURL(latitude, longitude, zoomLevel);
-        WWW wwwLoader = new WWW(imageURL.Replace("\\", ""));
+        String quadKeyURL = restapiurl.exampleURL;
+        quadKeyURL = quadKeyURL.Replace("{subdomain}", restapiurl.subdomain);
+        quadKeyURL = quadKeyURL.Replace("r{quadkey}", "a" + (string)QuadKey.ToString());
+        quadKeyURL = quadKeyURL.Replace("{culture}", "en-US");
+        WWW wwwLoader = new WWW(quadKeyURL.Replace("\\", ""));
         while (!wwwLoader.isDone);
         return wwwLoader;
-        //await Task.CompletedTask;
-        //return new WWW("https://thenewstalkers.com/group/image/group_image/149/large/_v=63f541505439300");
+
     }
 }
 

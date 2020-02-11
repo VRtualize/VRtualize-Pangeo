@@ -33,7 +33,7 @@ public class AppHandler : MonoBehaviour
         //int tileSize = Globals.meshLength;
 
         //The starting environment will be size^2 tiles in a square shape
-        int size = 1;
+        int size = 3;
 
         ////Build the starting area
         for (int i = 0; i < size; i++)
@@ -56,14 +56,30 @@ public class AppHandler : MonoBehaviour
     /// <param name="name">The name of the tile in the Unity hierarchy</param>
     async void BuildNewTile(float x, float y, float z, string name)
     {
+        //Get latitude/longitude offset using quadkeys and x/z offsets
+        BingMaps quadKeyFuncs = new BingMaps();
+        Double Lat = Globals.latitude;
+        Double Long = Globals.longitude;
+        int i = 0;
+        int j = 0;
+
+        //Get latitude and longitude of upper left corner of the Image tile using the quad key backwards
+        String tempQuadKey = quadKeyFuncs.getQuadKey(Lat, Long, chosenZoomLevel);
         
-        
-        
+        //Use x and z to offset the quadkey
+        int tilex = 0;
+        int tilez = 0;
+        BingMaps.QuadKeyToTileXY(tempQuadKey, out tilex, out tilez, out chosenZoomLevel);
+        tilex = tilex + Convert.ToInt32(x)/256;
+        tilez = tilez + Convert.ToInt32(z)/256;
+        String newQuadKey = BingMaps.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
+
 
         //Get image at proper latitude and longitude
-        WWW imgLoader = await cache.getSatelliteImagery(Globals.latitude, Globals.longitude, chosenZoomLevel);
-        List<float> ElevList = await cache.getMesh(chosenZoomLevel);
-        
+        WWW imgLoader = await cache.getSatelliteImagery(newQuadKey);
+        List<float> ElevList = await cache.getMesh(newQuadKey);
+
+
         //Assign the GameObject material from the Resources folder
         //Future Work: Change the material to take satellite imagery from cache
         Material mat = Resources.Load("Materials/Stylize_Grass", 

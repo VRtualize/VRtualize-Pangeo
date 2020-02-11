@@ -19,7 +19,7 @@ namespace DataManagerUtils
     /// </summary>
     public class imageURLRequest
     {
-        private string exampleURL;
+        public string exampleURL;
         private string BingMapsAPIKey;
         public string subdomain;
 

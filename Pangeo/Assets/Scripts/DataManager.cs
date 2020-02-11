@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using System.Linq;
+using System.Threading;
 
 namespace DataManagerUtils
 {
@@ -158,6 +159,7 @@ namespace DataManagerUtils
                         retrieved_chunk.Add(Convert.ToSingle(elevation_strings[k]));
                     }
                     retrieved_chunks.Add(retrieved_chunk);
+                    Thread.Sleep(250);
                 }
             }
 
@@ -184,11 +186,16 @@ namespace DataManagerUtils
                     }
                 }
             }
-            
+
+            List<float> newElevChunk = new List<float>();
             //Place elevations into elevation chunk
+            for(i=0;i<Math.Sqrt(elevation_chunk.Count);i++){
+                for (j = 0; j < Math.Sqrt(elevation_chunk.Count); j++){
+                    newElevChunk.Add(elevation_chunk[j * Convert.ToInt32(Math.Sqrt(elevation_chunk.Count)) + i]);
+                }
+            }
 
-
-            return elevation_chunk;
+            return newElevChunk;
         }
 
 

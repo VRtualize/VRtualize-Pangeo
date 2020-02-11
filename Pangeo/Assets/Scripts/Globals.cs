@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Globals
 {
-    public static double latitude = 44.5, longitude = -109.5;
+    public static double latitude = 39, longitude = -106.5;
     public static int length, meshLength;
 
     //Bing Maps meters per pixel at different zoom levels
