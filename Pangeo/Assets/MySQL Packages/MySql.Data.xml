@@ -1455,11 +1455,6 @@
       </code>
     </example>
         </member>
-        <member name="F:MySql.Data.MySqlClient.MySqlConnection._sshHandler">
-            <summary>
-            The client used to handle SSH connections.
-            </summary>
-        </member>
         <member name="E:MySql.Data.MySqlClient.MySqlConnection.InfoMessage">
             <summary>Occurs when MySQL returns warnings as a result of executing a command or query.</summary><remarks>
     </remarks>
@@ -1565,11 +1560,6 @@
       You can change the value for these properties only by using the <B>ConnectionString</B> property.
     </remarks><example>
     </example><param name="connectionString">The connection properties used to open the MySQL database. </param>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlConnection.IsClone">
-            <summary>
-            Determines whether the connection is a clone of other connection.
-            </summary>
         </member>
         <member name="P:MySql.Data.MySqlClient.MySqlConnection.ServerThread">
             <summary>
@@ -1719,7 +1709,7 @@
         myConnection.Close();
         }
       </code>
-    </example>
+    </example>#if !NETSTANDARD1_6
         </member>
         <member name="P:MySql.Data.MySqlClient.MySqlConnection.ConnectionString">
             <summary>
@@ -2492,23 +2482,6 @@
         }
       </code>
     </example>
-        </member>
-        <member name="M:MySql.Data.MySqlClient.MySqlConnection.ParseHostList(System.String)">
-            <summary>
-            Initializes the <see cref="T:MySql.Data.Failover.FailoverManager"/> if more than one host is found.
-            </summary>
-            <param name="hierPart">A string containing an unparsed list of hosts.</param>
-            <param name="connectionDataIsUri"><c>true</c> if the connection data is a URI; otherwise <c>false</c>.</param>
-            <returns>The number of hosts found, -1 if an error was raised during parsing.</returns>
-        </member>
-        <member name="M:MySql.Data.MySqlClient.MySqlConnection.ConvertToFailoverServer(System.String,System.Int32,System.Int32)">
-            <summary>
-            Creates a <see cref="T:MySql.Data.Failover.FailoverServer"/> object based on the provided parameters.
-            </summary>
-            <param name="host">The host string which can be a simple host name or a host name and port.</param>
-            <param name="priority">The priority of the host.</param>
-            <param name="port">The port number of the host.</param>
-            <returns></returns>
         </member>
         <member name="M:MySql.Data.MySqlClient.MySqlConnection.CreateCommand">
             <summary>
@@ -6126,12 +6099,6 @@
             protocol is being used.
             </summary>
         </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.DnsSrv">
-            <summary>
-            Gets or sets a boolean value that indicates whether this connection
-            should resolve DNS SRV records.
-            </summary>
-        </member>
         <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.UserID">
             <summary>
             Gets or sets the user ID that should be used to connect with.
@@ -6167,13 +6134,15 @@
             Indicates whether to use SSL connections and how to handle server certificate errors.
             </summary>
         </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.TlsVersion">
+        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.Keepalive">
             <summary>
-            Sets the TLS versions to use in a <see cref="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SslMode">SSL connection</see> to the server.
+            Gets or sets the idle connection time(seconds) for TCP connections.
             </summary>
-            <example>
-            Tls version=TLSv1.1,TLSv1.2;
-            </example>
+        </member>
+        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.CharacterSet">
+            <summary>
+            Gets or sets the character set that should be used for sending queries to the server.
+            </summary>
         </member>
         <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SslKey">
             <summary>
@@ -6185,53 +6154,11 @@
             Gets or sets the path to a local certificate file in PEM format to use for establishing an encrypted connection.
             </summary>
         </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshHostName">
-            <summary>
-            Gets or sets the name of the SSH server.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshPort">
-            <summary>
-            Gets or sets the port number to use when authenticating to the SSH server.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshUserName">
-            <summary>
-            Gets or sets the user name to authenticate to the SSH server.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshPassword">
-            <summary>
-            Gets or sets the password to authenticate to the SSH server.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshKeyFile">
-            <summary>
-            Gets or sets the SSH key file to authenticate to the SSH server.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.SshPassphrase">
-            <summary>
-            Gets or sets the passphrase of the key file to authenticate to the SSH server.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.Keepalive">
-            <summary>
-            Gets or sets the idle connection time(seconds) for TCP connections.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.CharacterSet">
-            <summary>
-            Gets or sets the character set that should be used for sending queries to the server.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.AnalyzeConnectionString(System.String,System.Boolean,System.Boolean)">
+        <member name="M:MySql.Data.MySqlClient.MySqlBaseConnectionStringBuilder.AnalyzeConnectionString(System.String,System.Boolean)">
             <summary>
             Analyzes the connection string for potential duplicated or invalid connection options.
             </summary>
             <param name="connectionString">Connection string.</param>
-            <param name="isXProtocol">Flag that indicates if the connection is using X Protocol.</param>
-            <param name="isDefaultPort">Flag that indicates if the default port is used.</param>
         </member>
         <member name="T:MySql.Data.MySqlClient.MySqlClientFactory">
             <summary>
@@ -9634,30 +9561,9 @@
             Summary description for MySqlPoolManager.
             </summary>
         </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlPoolManager.DemotedHosts">
-            <summary>
-            Queue of demoted hosts.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlPoolManager.Hosts">
-            <summary>
-            List of hosts that will be attempted to connect to.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.MySqlClient.MySqlPoolManager.DemotedServersTimer">
-            <summary>
-            Timer to be used when a host have been demoted.
-            </summary>
-        </member>
         <member name="M:MySql.Data.MySqlClient.MySqlPoolManager.CleanIdleConnections(System.Object)">
             <summary>
             Remove drivers that have been idle for too long.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.MySqlClient.MySqlPoolManager.ReleaseDemotedHosts(System.Object)">
-            <summary>
-            Remove hosts that have been on the demoted list for more
-            than 120,000 milliseconds and add them to the available hosts list.
             </summary>
         </member>
         <member name="T:MySql.Data.MySqlClient.MySqlScript">
@@ -10766,90 +10672,6 @@
       </code>
     </example>
         </member>
-        <member name="T:MySql.Data.Common.DnsResolver">
-            <summary>
-            DNS resolver that runs queries against a server.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Common.DnsResolver.CreateResolver(System.String,Ubiety.Dns.Core.Common.TransportType)">
-            <summary>
-            Initializes a new instance of the <see cref="T:Ubiety.Dns.Core.Resolver"/> class.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Common.DnsResolver.GetDnsSrvRecords(System.String)">
-            <summary>
-            Gets the DNS SVR records of the service name that is provided.
-            </summary>
-            <returns>A list of <see cref="T:MySql.Data.Common.DnsSrvRecord"/>s sorted as described in RFC2782.</returns>
-        </member>
-        <member name="M:MySql.Data.Common.DnsResolver.SortSrvRecords(System.Collections.Generic.List{MySql.Data.Common.DnsSrvRecord})">
-            <summary>
-            Sorts a list of DNS SRV records according to the sorting rules described in RFC2782.
-            </summary>
-            <param name="srvRecords">List of <see cref="T:MySql.Data.Common.DnsSrvRecord"/>s to sort.</param>
-            <returns>A new list of sorted <see cref="T:MySql.Data.Common.DnsSrvRecord"/>s.</returns>
-        </member>
-        <member name="M:MySql.Data.Common.DnsResolver.Reset">
-            <summary>
-            Resets the DnsSrvResolver
-            </summary>
-        </member>
-        <member name="T:MySql.Data.Common.DnsSrvRecord">
-            <summary>
-            Class that represents a DNS SRV record.
-            RFC 2782 (https://tools.ietf.org/html/rfc2782)
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Common.DnsSrvRecord.Port">
-            <summary>
-            Gets the port.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Common.DnsSrvRecord.Priority">
-            <summary>
-            Gets the priority.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Common.DnsSrvRecord.Target">
-            <summary>
-            Gets the target domain name.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Common.DnsSrvRecord.Weight">
-            <summary>
-            Gets the weight.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Common.DnsSrvRecord.#ctor(System.Int32,System.Int32,System.String,System.Int32)">
-            <summary>
-            Initializes a new instance of <see cref="T:MySql.Data.Common.DnsSrvRecord"/> class.
-            </summary>
-            <param name="port">The port.</param>
-            <param name="priority">The priority.</param>
-            <param name="target">The target.</param>
-            <param name="weight">The weight.</param>
-        </member>
-        <member name="M:MySql.Data.Common.DnsSrvRecord.#ctor(Ubiety.Dns.Core.Records.RecordSrv)">
-            <summary>
-            Initializes a new instance of <see cref="T:MySql.Data.Common.DnsSrvRecord"/> class.
-            </summary>
-            <param name="recordSRV">The DNS SRV record.</param>
-        </member>
-        <member name="M:MySql.Data.Common.DnsSrvRecord.Compare(MySql.Data.Common.DnsSrvRecord,MySql.Data.Common.DnsSrvRecord)">
-            <summary>
-            Compare two <see cref="T:MySql.Data.Common.DnsSrvRecord"/> objects. First, using their priority and
-            if both have the same, then using their weights.
-            </summary>
-            <param name="x">A <see cref="T:MySql.Data.Common.DnsSrvRecord"/> to compare.</param>
-            <param name="y">A <see cref="T:MySql.Data.Common.DnsSrvRecord"/> to compare.</param>
-            <returns></returns>
-        </member>
-        <member name="M:MySql.Data.Common.DnsSrvRecord.op_Implicit(Ubiety.Dns.Core.Records.RecordSrv)~MySql.Data.Common.DnsSrvRecord">
-            <summary>
-            Initializes a new instance of the <see cref="T:MySql.Data.Common.DnsSrvRecord"/> class from a <see cref="T:Ubiety.Dns.Core.Records.RecordSrv"/>.
-            </summary>
-            <param name="recordSRV">The DNS SRV record.</param>
-        </member>
         <member name="T:MySql.Data.Common.LowResolutionStopwatch">
             <summary>
             This class is modeled after .NET Stopwatch. It provides better
@@ -10885,36 +10707,6 @@
             <param name="s">socket</param>
             <param name="time">keepalive timeout, in seconds</param>
         </member>
-        <member name="T:MySql.Data.Common.MySqlSshClientManager">
-            <summary>
-            Static class to manage SSH connections created with SSH .NET.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Common.MySqlSshClientManager.CurrentSshClient">
-            <summary>
-            Gets or sets the SSH client initialized when calling the <seealso cref="M:MySql.Data.Common.MySqlSshClientManager.SetupSshClient(System.String,System.String,System.String,System.String,System.String,System.UInt32,System.String,System.UInt32,System.Boolean)"/> method.
-            </summary>
-        </member>
-        <member name="F:MySql.Data.Common.MySqlSshClientManager._sshClientList">
-            <summary>
-            Stores a list of SSH clients having different connection settings.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Common.MySqlSshClientManager.SetupSshClient(System.String,System.String,System.String,System.String,System.String,System.UInt32,System.String,System.UInt32,System.Boolean)">
-            <summary>
-            Initializes an <see cref="T:Renci.SshNet.SshClient"/> instance if no SSH client with similar connection options has already been initialized.
-            </summary>
-            <param name="sshHostName">The SSH host name.</param>
-            <param name="sshUserName">The SSH user name.</param>
-            <param name="sshPassword">The SSH password.</param>
-            <param name="sshKeyFile">The SSH key file.</param>
-            <param name="sshPassphrase">The SSH pass phrase.</param>
-            <param name="sshPort">The SSH port.</param>
-            <param name="server">The local host name.</param>
-            <param name="port">The local port number.</param>
-            <param name="isXProtocol">Flag to indicate if the connection will be created for the classic or X Protocol.</param>
-            <returns></returns>
-        </member>
         <member name="M:MySql.Data.Common.MySqlTokenizer.ReadQuotedToken(System.Char)">
             <summary>
              Read a single quoted identifier from the stream
@@ -10943,21 +10735,6 @@
             Mark - or + signs that are unary ops as no output
             </summary>
             <param name="tok"></param>
-        </member>
-        <member name="T:MySql.Data.Common.Ssh">
-            <summary>
-            Wrapper class used for handling SSH connections.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Common.Ssh.StartClient">
-            <summary>
-            Starts the SSH client.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Common.Ssh.StopClient">
-            <summary>
-            Stops the SSH client.
-            </summary>
         </member>
         <member name="T:MySql.Data.Common.Ssl">
             <summary>
@@ -11005,6 +10782,13 @@
             <param name="sslPolicyErrors">One or more errors associated with the remote certificate.</param>
             <returns><c>true</c> if no errors were found based on the selected SSL mode; <c>false</c>, otherwise.</returns>
         </member>
+        <member name="M:MySql.Data.Common.Ssl.GetBuffer(System.String)">
+            <summary>
+            Reads the specified file as a byte array.
+            </summary>
+            <param name="fileName">The path of the file to read.</param>
+            <returns>A byte array representing the read file.</returns>
+        </member>
         <member name="M:MySql.Data.Common.Ssl.GetCertificateFileExtension(System.String,System.Boolean)">
             <summary>
             Gets the extension of the specified file.
@@ -11013,6 +10797,60 @@
             <param name="toLowerCase">Flag to indicate if the result should be converted to lower case.</param>
             <remarks>The . character is ommited from the result.</remarks>
             <returns></returns>
+        </member>
+        <member name="M:MySql.Data.Common.Ssl.ReadSslCertificate(System.String)">
+            <summary>
+            Reads the SSL certificate file.
+            </summary>
+            <param name="filePath">The path to the certificate file.</param>
+            <returns>A <see cref="T:Org.BouncyCastle.X509.X509Certificate"/> instance representing the SSL certificate file.</returns>
+        </member>
+        <member name="M:MySql.Data.Common.Ssl.ReadKey(System.String)">
+            <summary>
+            Reads the SSL certificate key file.
+            </summary>
+            <param name="filePath">The path to the certificate key file.</param>
+            <returns>A <see cref="T:Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair"/> instance representing the SSL certificate key file.</returns>
+        </member>
+        <member name="M:MySql.Data.Common.Ssl.VerifyDates(Org.BouncyCastle.X509.X509Certificate)">
+            <summary>
+            Verifies that the certificate has not yet expired.
+            </summary>
+            <param name="certificate">The certificate to verify.</param>
+        </member>
+        <member name="M:MySql.Data.Common.Ssl.VerifyCAStatus(Org.BouncyCastle.X509.X509Certificate,System.Boolean)">
+            <summary>
+            Verifies a certificate CA status.
+            </summary>
+            <param name="certificate">The certificate to validate.</param>
+            <param name="expectedCAStatus">A flag indicating the expected CA status.</param>
+        </member>
+        <member name="M:MySql.Data.Common.Ssl.VerifySignature(Org.BouncyCastle.X509.X509Certificate,Org.BouncyCastle.X509.X509Certificate)">
+            <summary>
+            Verifies that the certificate was signed using the private key that corresponds to the specified public key
+            </summary>
+            <param name="certificate">The client side certificate containing the public key.</param>
+            <param name="serverCertificate">The server certificate.</param>
+        </member>
+        <member name="M:MySql.Data.Common.Ssl.VerifyIdentity(System.Net.Security.SslPolicyErrors)">
+            <summary>
+            Verifies that no SSL policy errors regarding the identitfy of the host were raised.
+            </summary>
+            <param name="sslPolicyErrors">A <see cref="T:System.Net.Security.SslPolicyErrors"/> instance set with the raised SSL errors.</param>
+        </member>
+        <member name="M:MySql.Data.Common.Ssl.VerifyIssuer(Org.BouncyCastle.X509.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate)">
+            <summary>
+            Verifies that the CA by comparing the CA certificate issuer and the server certificate issuer.
+            </summary>
+            <param name="CACertificate">The CA certificate.</param>
+            <param name="serverCertificate">The server certificate.</param>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:MySql.Data.Common.Ssl.IsCA(Org.BouncyCastle.X509.X509Certificate,System.Int32@)" -->
+        <member name="M:MySql.Data.Common.Ssl.VerifyEmptyOrWhitespaceSslConnectionOption(System.String,System.String)">
+            <summary>
+            Raises an exception if the specified connection option is null, empty or whitespace.
+            </summary>
+            <param name="connectionOption">The connection option to verify.</param>
         </member>
         <member name="T:MySql.Data.Common.StreamCreator">
             <summary>
@@ -11030,278 +10868,6 @@
             <summary>
             Summary description for Version.
             </summary>
-        </member>
-        <member name="T:MySql.Data.common.SslPemCertificateValidator">
-            <summary>
-            Provides functionality to read SSL PEM certificates and to perform multiple validations via Bouncy Castle.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifyEmptyOrWhitespaceSslConnectionOption(System.String,System.String)">
-            <summary>
-            Raises an exception if the specified connection option is null, empty or whitespace.
-            </summary>
-            <param name="connectionOption">The connection option to verify.</param>
-        </member>
-        <member name="M:MySql.Data.common.SslPemCertificateValidator.GetBuffer(System.String)">
-            <summary>
-            Reads the specified file as a byte array.
-            </summary>
-            <param name="fileName">The path of the file to read.</param>
-            <returns>A byte array representing the read file.</returns>
-        </member>
-        <member name="M:MySql.Data.common.SslPemCertificateValidator.ReadSslCertificate(System.String)">
-            <summary>
-            Reads the SSL certificate file.
-            </summary>
-            <param name="filePath">The path to the certificate file.</param>
-            <returns>A <see cref="T:Org.BouncyCastle.X509.X509Certificate"/> instance representing the SSL certificate file.</returns>
-        </member>
-        <member name="M:MySql.Data.common.SslPemCertificateValidator.ReadKey(System.String)">
-            <summary>
-            Reads the SSL certificate key file.
-            </summary>
-            <param name="filePath">The path to the certificate key file.</param>
-            <returns>A <see cref="T:Org.BouncyCastle.Crypto.AsymmetricCipherKeyPair"/> instance representing the SSL certificate key file.</returns>
-        </member>
-        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifyDates(Org.BouncyCastle.X509.X509Certificate)">
-            <summary>
-            Verifies that the certificate has not yet expired.
-            </summary>
-            <param name="certificate">The certificate to verify.</param>
-        </member>
-        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifyCAStatus(Org.BouncyCastle.X509.X509Certificate,System.Boolean)">
-            <summary>
-            Verifies a certificate CA status.
-            </summary>
-            <param name="certificate">The certificate to validate.</param>
-            <param name="expectedCAStatus">A flag indicating the expected CA status.</param>
-        </member>
-        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifySignature(Org.BouncyCastle.X509.X509Certificate,Org.BouncyCastle.X509.X509Certificate)">
-            <summary>
-            Verifies that the certificate was signed using the private key that corresponds to the specified public key
-            </summary>
-            <param name="certificate">The client side certificate containing the public key.</param>
-            <param name="serverCertificate">The server certificate.</param>
-        </member>
-        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifyIdentity(System.Net.Security.SslPolicyErrors)">
-            <summary>
-            Verifies that no SSL policy errors regarding the identitfy of the host were raised.
-            </summary>
-            <param name="sslPolicyErrors">A <see cref="T:System.Net.Security.SslPolicyErrors"/> instance set with the raised SSL errors.</param>
-        </member>
-        <member name="M:MySql.Data.common.SslPemCertificateValidator.VerifyIssuer(Org.BouncyCastle.X509.X509Certificate,System.Security.Cryptography.X509Certificates.X509Certificate)">
-            <summary>
-            Verifies that the issuer matches the CA by comparing the CA certificate issuer and the server certificate issuer.
-            </summary>
-            <param name="CACertificate">The CA certificate.</param>
-            <param name="serverCertificate">The server certificate.</param>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:MySql.Data.common.SslPemCertificateValidator.IsCA(Org.BouncyCastle.X509.X509Certificate,System.Int32@)" -->
-        <member name="P:MySql.Data.Failover.FailoverGroup.Hosts">
-            <summary>
-            Gets and sets the host list.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Failover.FailoverGroup.ActiveHost">
-            <summary>
-            Gets the active host.
-            </summary>
-        </member>
-        <member name="F:MySql.Data.Failover.FailoverGroup._activeHost">
-            <summary>
-            Active host.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Failover.FailoverGroup.SetInitialActiveServer">
-            <summary>
-            Sets the initial active host.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Failover.FailoverGroup.GetNextHost">
-            <summary>
-            Determines the next host.
-            </summary>
-            <returns><see cref="T:MySql.Data.Failover.FailoverServer"/> object that represents the next available host.</returns>
-        </member>
-        <member name="T:MySql.Data.Failover.FailoverManager">
-            <summary>
-            Implements common elements that allow to manage the hosts available for client side failover.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Failover.FailoverManager.FailoverGroup">
-            <summary>
-            Gets and sets the failover group which consists of a host list.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Failover.FailoverManager.Reset">
-            <summary>
-            Resets the manager.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Failover.FailoverManager.SetHostList(System.Collections.Generic.List{MySql.Data.Failover.FailoverServer},MySql.Data.Failover.FailoverMethod)">
-            <summary>
-            Sets the host list to be used during failover operations.
-            </summary>
-            <param name="hostList">The host list.</param>
-            <param name="failoverMethod">The failover method.</param>
-        </member>
-        <member name="M:MySql.Data.Failover.FailoverManager.AttemptConnectionXProtocol(System.String,System.String@,System.Boolean,MySqlX.XDevAPI.Client)">
-            <summary>
-            Attempts to establish a connection to a host specified from the list.
-            </summary>
-            <param name="originalConnectionString">The original connection string set by the user.</param>
-            <param name="connectionString">An out parameter that stores the updated connection string.</param>
-            <param name="client">A <see cref="T:MySqlX.XDevAPI.Client"/> object in case this is a pooling scenario.</param>
-            <returns>An <see cref="T:MySqlX.Sessions.InternalSession"/> instance if the connection was succesfully established, a <see cref="T:MySql.Data.MySqlClient.MySqlException"/> exception is thrown otherwise.</returns>
-        </member>
-        <!-- Badly formed XML comment ignored for member "M:MySql.Data.Failover.FailoverManager.AttemptConnection(MySql.Data.MySqlClient.MySqlConnection,System.String,System.String@,System.Boolean)" -->
-        <member name="M:MySql.Data.Failover.FailoverManager.ParseHostList(System.String,System.Boolean,System.Boolean)">
-            <summary>
-            Creates a <see cref="P:MySql.Data.Failover.FailoverManager.FailoverGroup"/> if more than one host is found.
-            </summary>
-            <param name="hierPart">A string containing an unparsed list of hosts.</param>
-            <param name="isXProtocol"><c>true</c> if the connection is X Protocol; otherwise <c>false</c>.</param>
-            <param name="connectionDataIsUri"><c>true</c> if the connection data is a URI; otherwise <c>false</c>.</param>
-            <returns>The number of hosts found, -1 if an error was raised during parsing.</returns>
-        </member>
-        <member name="M:MySql.Data.Failover.FailoverManager.ConvertToFailoverServer(System.String,System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Creates a <see cref="T:MySql.Data.Failover.FailoverServer"/> object based on the provided parameters.
-            </summary>
-            <param name="host">The host string that can be a simple host name or a host name and port.</param>
-            <param name="priority">The priority of the host.</param>
-            <param name="port">The port number of the host.</param>
-            <param name="connectionDataIsUri"><c>true</c> if the connection data is a URI; otherwise <c>false</c>.</param>
-            <returns></returns>
-        </member>
-        <member name="F:MySql.Data.Failover.FailoverMethod.Sequential">
-            <summary>
-            Attempts the next host in the list. Moves to the first element if the end of the list is reached.
-            </summary>
-        </member>
-        <member name="F:MySql.Data.Failover.FailoverMethod.Priority">
-            <summary>
-            Determines the next host on which to attempt a connection by checking the value of the Priority property in descending order.
-            </summary>
-        </member>
-        <member name="F:MySql.Data.Failover.FailoverMethod.Random">
-            <summary>
-            Determines the next host on which to attempt a connection randomly.
-            </summary>
-        </member>
-        <member name="T:MySql.Data.Failover.FailoverServer">
-            <summary>
-            Depicts a host which can be failed over to.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Failover.FailoverServer.Host">
-            <summary>
-            Gets and sets the name or address of the host.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Failover.FailoverServer.Port">
-            <summary>
-            Gets and sets the port number.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Failover.FailoverServer.Priority">
-            <summary>
-            Gets a value between 0 and 100 which represents the priority of the host.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Failover.FailoverServer.IsActive">
-            <summary>
-            Flag to indicate if this host is currently being used.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Failover.FailoverServer.Attempted">
-            <summary>
-            Flag to indicate if this host has been attempted to connection.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Failover.FailoverServer.DemotedTime">
-            <summary>
-            Time since the host has been demoted.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Failover.FailoverServer.#ctor(System.String,System.Int32,System.Nullable{System.Int32})">
-            <summary>
-            Initializes a <see cref="T:MySql.Data.Failover.FailoverServer"/> object.
-            </summary>
-            <param name="host">The host.</param>
-            <param name="port">The port.</param>
-            <param name="priority">The priority.</param>
-        </member>
-        <member name="M:MySql.Data.Failover.FailoverServer.Equals(MySql.Data.Failover.FailoverServer)">
-            <summary>
-            Compares two objects of type <see cref="T:MySql.Data.Failover.FailoverServer"/>.
-            </summary>
-            <param name="other">FailoverServer object to compare.</param>
-            <returns><c>True</c> if host properties are the same. Otherwise, <c>false</c>.</returns>
-        </member>
-        <member name="T:MySql.Data.Failover.RandomFailoverGroup">
-            <summary>
-            Manages the hosts available for client side failover using the Random Failover method.
-            The Random Failover method attempts to connect to the hosts specified in the list randomly until all the hosts have been attempted.
-            </summary>
-        </member>
-        <member name="F:MySql.Data.Failover.RandomFailoverGroup._initialHost">
-            <summary>
-            The initial host taken from the list.
-            </summary>
-        </member>
-        <member name="F:MySql.Data.Failover.RandomFailoverGroup._currentHost">
-            <summary>
-            The host for the current connection attempt.
-            </summary>
-        </member>
-        <member name="F:MySql.Data.Failover.RandomFailoverGroup.rnd">
-            <summary>
-            Random object to get the next host.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Failover.RandomFailoverGroup.SetInitialActiveServer">
-            <summary>
-            Sets the initial active host.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Failover.RandomFailoverGroup.GetNextHost">
-            <summary>
-            Determines the next host.
-            </summary>
-            <returns>A <see cref="T:MySql.Data.Failover.FailoverServer"/> object that represents the next available host.</returns>
-        </member>
-        <member name="T:MySql.Data.Failover.SequentialFailoverGroup">
-            <summary>
-            Manages the hosts available for client side failover using the Sequential Failover method.
-            The Sequential Failover method attempts to connect to the hosts specified in the list one after another until the initial host is reached.
-            </summary>
-        </member>
-        <member name="F:MySql.Data.Failover.SequentialFailoverGroup._initialHost">
-            <summary>
-            The initial host taken from the list.
-            </summary>
-        </member>
-        <member name="F:MySql.Data.Failover.SequentialFailoverGroup._hostIndex">
-            <summary>
-            The index of the current host.
-            </summary>
-        </member>
-        <member name="F:MySql.Data.Failover.SequentialFailoverGroup._currentHost">
-            <summary>
-            The host for the current connection attempt.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Failover.SequentialFailoverGroup.SetInitialActiveServer">
-            <summary>
-            Sets the initial active host.
-            </summary>
-        </member>
-        <member name="M:MySql.Data.Failover.SequentialFailoverGroup.GetNextHost">
-            <summary>
-            Determines the next host.
-            </summary>
-            <returns>A <see cref="T:MySql.Data.Failover.FailoverServer"/> object that represents the next available host.</returns>
         </member>
         <member name="T:MySql.Data.Resources">
             <summary>
@@ -11459,31 +11025,6 @@
               Looks up a localized string similar to MySQL Connector/NET does not currently support distributed transactions..
             </summary>
         </member>
-        <member name="P:MySql.Data.Resources.DnsSrvInvalidConnOptionMultihost">
-            <summary>
-              Looks up a localized string similar to Specifying multiple host names with DNS SRV lookup is not permitted..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.DnsSrvInvalidConnOptionPort">
-            <summary>
-              Looks up a localized string similar to Specifying a port number with DNS SRV lookup is not permitted..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.DnsSrvInvalidConnOptionUnixSocket">
-            <summary>
-              Looks up a localized string similar to Using Unix domain sockets with DNS SRV lookup is not permitted..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.DnsSrvNoHostsAvailable">
-            <summary>
-              Looks up a localized string similar to Unable to locate any hosts for {0}..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.DuplicatedConnectionOption">
-            <summary>
-              Looks up a localized string similar to Connection option &apos;{0}&apos; is duplicated..
-            </summary>
-        </member>
         <member name="P:MySql.Data.Resources.DuplicatedSslConnectionOption">
             <summary>
               Looks up a localized string similar to SSL connection option &apos;{0}&apos; is duplicated..
@@ -11594,11 +11135,6 @@
               Looks up a localized string similar to The requested value &apos;{0}&apos; is invalid for the given keyword &apos;{1}&apos;..
             </summary>
         </member>
-        <member name="P:MySql.Data.Resources.InvalidHostNameOrAddress">
-            <summary>
-              Looks up a localized string similar to The host name or IP address is invalid..
-            </summary>
-        </member>
         <member name="P:MySql.Data.Resources.InvalidMicrosecondValue">
             <summary>
               Looks up a localized string similar to Microsecond must be a value between 0 and 999999..
@@ -11637,16 +11173,6 @@
         <member name="P:MySql.Data.Resources.InvalidSslMode">
             <summary>
               Looks up a localized string similar to Value &apos;{0}&apos; is not of the correct type..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.InvalidTlsVersionAndSslModeOption">
-            <summary>
-              Looks up a localized string similar to Option &quot;tls-version&quot; can not be specified when SSL connections are disabled..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.InvalidTlsVersionOption">
-            <summary>
-              Looks up a localized string similar to &apos;{0}&apos; not recognized as a valid TLS protocol version (should be one of TLSv1, TLSv1.1, TLSv1.2{1})..
             </summary>
         </member>
         <member name="P:MySql.Data.Resources.InvalidValueForBoolean">
@@ -11727,7 +11253,7 @@
         </member>
         <member name="P:MySql.Data.Resources.LocalInfileDisabled">
             <summary>
-              Looks up a localized string similar to Server asked for stream in response to LOAD DATA LOCAL INFILE, but the functionality is disabled by the client setting &apos;allowlocalinfile&apos; to &apos;false&apos;..
+              Looks up a localized string similar to Server asked for stream in response to LOAD DATA LOCAL INFILE, but the functionality is disabled by client setting &apos;allowlocalinfile&apos; to &apos;false&apos;..
             </summary>
         </member>
         <member name="P:MySql.Data.Resources.MixedParameterNamingNotAllowed">
@@ -11828,11 +11354,6 @@
         <member name="P:MySql.Data.Resources.ParameterCannotBeNull">
             <summary>
               Looks up a localized string similar to Parameter cannot be null.
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.ParameterCannotBeNullOrEmpty">
-            <summary>
-              Looks up a localized string similar to Parameter &apos;{0}&apos; can&apos;t be null or empty..
             </summary>
         </member>
         <member name="P:MySql.Data.Resources.ParameterIndexNotFound">
@@ -11980,16 +11501,6 @@
               Looks up a localized string similar to Stored procedures are not supported on this version of MySQL.
             </summary>
         </member>
-        <member name="P:MySql.Data.Resources.SshAuthenticationModeNotSet">
-            <summary>
-              Looks up a localized string similar to The SSH Key File and/or SSH Password must be provided..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.SshInvalidPassphrase">
-            <summary>
-              Looks up a localized string similar to The provided passphrase is invalid..
-            </summary>
-        </member>
         <member name="P:MySql.Data.Resources.SslCertificateCAMismatch">
             <summary>
               Looks up a localized string similar to The certificate authority (CA) does not match..
@@ -12038,21 +11549,6 @@
         <member name="P:MySql.Data.Resources.TimeoutGettingConnection">
             <summary>
               Looks up a localized string similar to error connecting: Timeout expired.  The timeout period elapsed prior to obtaining a connection from the pool.  This may have occurred because all pooled connections were in use and max pool size was reached..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.TimeOutMultipleHost">
-            <summary>
-              Looks up a localized string similar to All server connection attempts were aborted. Timeout of {0} seconds was exceeded for each selected server..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.Tlsv13NotSupported">
-            <summary>
-              Looks up a localized string similar to TLSv1.3 is supported in .NET Framework 4.8 or .NET Core 3.0..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.Resources.TlsVersionNotSupported">
-            <summary>
-              Looks up a localized string similar to No supported TLS protocol version found in the &apos;tls-versions&apos; list..
             </summary>
         </member>
         <member name="P:MySql.Data.Resources.TraceCloseConnection">
@@ -12299,16 +11795,6 @@
         <member name="P:MySql.Data.ResourcesX.CollectionTableDoesNotExist">
             <summary>
               Looks up a localized string similar to {0} &apos;{1}&apos; does not exist in schema &apos;{2}&apos;..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.ResourcesX.DnsSrvConflictingOptions">
-            <summary>
-              Looks up a localized string similar to &apos;{0}&apos; cannot be set to false with DNS SRV lookup enabled..
-            </summary>
-        </member>
-        <member name="P:MySql.Data.ResourcesX.DnsSrvInvalidScheme">
-            <summary>
-              Looks up a localized string similar to Scheme &apos;{0}&apos; is not valid..
             </summary>
         </member>
         <member name="P:MySql.Data.ResourcesX.DuplicateUserDefinedAttribute">
@@ -12793,6 +12279,119 @@
             <param name="guid2">The second <see cref="T:System.Guid"/> to compare.</param>
             <returns>An integer that indicates the lexical relationship between the two comparands, similar to <see cref="M:System.String.Compare(System.String,System.String)"/></returns>
         </member>
+        <member name="P:MySqlX.Failover.FailoverGroup.Hosts">
+            <summary>
+            Gets and sets the host list.
+            </summary>
+        </member>
+        <member name="P:MySqlX.Failover.FailoverGroup.ActiveHost">
+            <summary>
+            Gets the active host.
+            </summary>
+        </member>
+        <member name="F:MySqlX.Failover.FailoverGroup._activeHost">
+            <summary>
+            Active host.
+            </summary>
+        </member>
+        <member name="M:MySqlX.Failover.FailoverGroup.SetInitialActiveServer">
+            <summary>
+            Sets the initial active host.
+            </summary>
+        </member>
+        <member name="M:MySqlX.Failover.FailoverGroup.GetNextHost">
+            <summary>
+            Determines the next host.
+            </summary>
+            <returns><see cref="T:MySqlX.Failover.XServer"/> object that represents the next available host.</returns>
+        </member>
+        <member name="T:MySqlX.Failover.FailoverManager">
+            <summary>
+            Implements common elements that allow to manage the hosts available for client side failover.
+            </summary>
+        </member>
+        <member name="P:MySqlX.Failover.FailoverManager.FailoverGroup">
+            <summary>
+            Gets and sets the failover group which consists of a host list.
+            </summary>
+        </member>
+        <member name="M:MySqlX.Failover.FailoverManager.Reset">
+            <summary>
+            Resets the manager.
+            </summary>
+        </member>
+        <member name="M:MySqlX.Failover.FailoverManager.SetHostList(System.Collections.Generic.List{MySqlX.Failover.XServer},MySqlX.Failover.FailoverMethod)">
+            <summary>
+            Sets the host list to be used during failover operations.
+            </summary>
+            <param name="hostList">The host list.</param>
+            <param name="failoverMethod">The failover method.</param>
+        </member>
+        <member name="M:MySqlX.Failover.FailoverManager.AttemptConnection(System.String,System.String@)">
+            <summary>
+            Attempts to establish a connection to a host specified from the list.
+            </summary>
+            <param name="originalConnectionString">The original connection string set by the user.</param>
+            <param name="connectionString">An out parameter that stores the updated connection string.</param>
+            <returns>An <see cref="T:MySqlX.Sessions.InternalSession"/> instance if the connection was succesfully established, a <see cref="T:MySql.Data.MySqlClient.MySqlException"/> exception is thrown otherwise.</returns>
+        </member>
+        <member name="F:MySqlX.Failover.FailoverMethod.Sequential">
+            <summary>
+            Attempts the next host in the list. Moves to the first element if the end of the list is reached.
+            </summary>
+        </member>
+        <member name="F:MySqlX.Failover.FailoverMethod.Priority">
+            <summary>
+            Determines the next host on which to attempt a connection by checking the value of the Priority property in descending order.
+            </summary>
+        </member>
+        <member name="T:MySqlX.Failover.SequentialFailoverGroup">
+            <summary>
+            Manages the hosts available for client side failover using the Sequential Failover method.
+            The Sequential Failover method attempts to connect to the hosts specified in the list one after another until the initial host is reached.
+            </summary>
+        </member>
+        <member name="F:MySqlX.Failover.SequentialFailoverGroup._hostIndex">
+            <summary>
+            The index of the current host.
+            </summary>
+        </member>
+        <member name="M:MySqlX.Failover.SequentialFailoverGroup.SetInitialActiveServer">
+            <summary>
+            Sets the initial active host.
+            </summary>
+        </member>
+        <member name="M:MySqlX.Failover.SequentialFailoverGroup.GetNextHost">
+            <summary>
+            Determines the next host.
+            </summary>
+            <returns>A <see cref="T:MySqlX.Failover.XServer"/> object that represents the next available host.</returns>
+        </member>
+        <member name="T:MySqlX.Failover.XServer">
+            <summary>
+            Depicts a host which can be failed over to.
+            </summary>
+        </member>
+        <member name="P:MySqlX.Failover.XServer.Host">
+            <summary>
+            Gets and sets the name or address of the host.
+            </summary>
+        </member>
+        <member name="P:MySqlX.Failover.XServer.Port">
+            <summary>
+            Gets and sets the port number.
+            </summary>
+        </member>
+        <member name="P:MySqlX.Failover.XServer.Priority">
+            <summary>
+            Gets a value between 0 and 100 which represents the priority of the host.
+            </summary>
+        </member>
+        <member name="P:MySqlX.Failover.XServer.IsActive">
+            <summary>
+            Flag to indicate if this host is currently being used.
+            </summary>
+        </member>
         <member name="T:MySqlX.Protocol.ProtocolBase">
             <summary>
             Abstract class for the protocol base operations in client/server communication.
@@ -13087,11 +12686,6 @@
             Implementation class of InternalSession to manage connections using the Xprotocol type object.
             </summary>
         </member>
-        <member name="F:MySqlX.Sessions.XInternalSession._sshHandler">
-            <summary>
-            The used client to handle SSH connections.
-            </summary>
-        </member>
         <member name="T:MySqlX.XDevAPI.BaseSession">
             <summary>
             Represents a base class for a Session.
@@ -13260,7 +12854,7 @@
             </summary>
             <param name="name">The name of the transaction savepoint.</param>
         </member>
-        <member name="M:MySqlX.XDevAPI.BaseSession.ParseConnectionData(System.String,MySqlX.XDevAPI.Client)">
+        <member name="M:MySqlX.XDevAPI.BaseSession.ParseConnectionData(System.String)">
             <summary>
             Parses the connection data.
             </summary>
@@ -13281,7 +12875,7 @@
             <param name="unixSocket">The Unix socket to evaluate.</param>
             <returns><c>true</c> if <paramref name="unixSocket"/> is a valid Unix socket; otherwise, <c>false</c>.</returns>
         </member>
-        <member name="M:MySqlX.XDevAPI.BaseSession.ConvertToConnectionString(System.Uri,System.String,System.Boolean,System.Boolean)">
+        <member name="M:MySqlX.XDevAPI.BaseSession.ConvertToConnectionString(System.Uri,System.String,System.Boolean)">
             <summary>
             Converts the URI object into a connection string.
             </summary>
@@ -13296,6 +12890,24 @@
             </summary>
             <param name="connectionString">The connection string to parse.</param>
             <returns>The parsed connection string.</returns>
+        </member>
+        <member name="M:MySqlX.XDevAPI.BaseSession.ParseHostList(System.String,System.Boolean)">
+            <summary>
+            Initializes the <see cref="T:MySqlX.Failover.FailoverManager"/> if more than one host is found.
+            </summary>
+            <param name="hierPart">A string containing an unparsed list of hosts.</param>
+            <param name="connectionDataIsUri"><c>true</c> if the connection data is a URI; otherwise <c>false</c>.</param>
+            <returns>The number of hosts found, -1 if an error was raised during parsing.</returns>
+        </member>
+        <member name="M:MySqlX.XDevAPI.BaseSession.ConvertToXServer(System.String,System.Boolean,System.Int32,System.Int32)">
+            <summary>
+            Creates a <see cref="T:MySqlX.Failover.XServer"/> object based on the provided parameters.
+            </summary>
+            <param name="host">The host string which can be a simple host name or a host name and port.</param>
+            <param name="connectionDataIsUri"><c>true</c> if the connection data is a URI; otherwise <c>false</c>.</param>
+            <param name="priority">The priority of the host.</param>
+            <param name="port">The port number of the host.</param>
+            <returns></returns>
         </member>
         <member name="M:MySqlX.XDevAPI.BaseSession.NormalizeUnixSocket(System.String)">
             <summary>
@@ -13343,27 +12955,6 @@
         <member name="T:MySqlX.XDevAPI.Client">
             <summary>
             Class encapsulating a session pooling functionality.
-            </summary>
-        </member>
-        <member name="P:MySqlX.XDevAPI.Client.DemotedHosts">
-            <summary>
-            Queue of demoted hosts.
-            </summary>
-        </member>
-        <member name="P:MySqlX.XDevAPI.Client.Hosts">
-            <summary>
-            List of hosts that will be attempted to connect to.
-            </summary>
-        </member>
-        <member name="P:MySqlX.XDevAPI.Client.DemotedServersTimer">
-            <summary>
-            Timer to be used when a host have been demoted.
-            </summary>
-        </member>
-        <member name="M:MySqlX.XDevAPI.Client.ReleaseDemotedHosts(System.Object)">
-            <summary>
-            Remove hosts from the demoted list that have already been there for more
-            than 120,000 milliseconds and add them to the available hosts list.
             </summary>
         </member>
         <member name="M:MySqlX.XDevAPI.Client.GetSession">
@@ -13509,7 +13100,6 @@
             <para />- TIMESTAMP
             <para />- DATETIME
             <para />- TEXT[(length)]
-            <para />- CHAR[(lenght)] 
             <para />- GEOJSON (extra options: options, srid)
             </para>
             </remarks>
@@ -13747,7 +13337,7 @@
         </member>
         <member name="M:MySqlX.XDevAPI.Common.FilterableStatement`3.Where(System.String)">
             <summary>
-            Enables the setting of Where condition for this operation.
+            Allows the user to set the where condition for this operation.
             </summary>
             <param name="condition">The Where condition.</param>
             <returns>The implementing statement type.</returns>
@@ -13975,13 +13565,6 @@
             <param name="order">The order criteria.</param>
             <returns>A generic object representing the implementing statement type.</returns>
         </member>
-        <member name="M:MySqlX.XDevAPI.CRUD.FindStatement.Where(System.String)">
-            <summary>
-            Enables the setting of Where condition for this operation.
-            </summary>
-            <param name="condition">The Where condition.</param>
-            <returns>The implementing statement type.</returns>
-        </member>
         <member name="T:MySqlX.XDevAPI.CRUD.ModifyStatement">
             <summary>
             Represents a chaining collection modify statement.
@@ -14044,13 +13627,6 @@
             <param name="order">The order criteria.</param>
             <returns>A generic object representing the implementing statement type.</returns>
         </member>
-        <member name="M:MySqlX.XDevAPI.CRUD.ModifyStatement.Where(System.String)">
-            <summary>
-            Enables the setting of Where condition for this operation.
-            </summary>
-            <param name="condition">The Where condition.</param>
-            <returns>The implementing statement type.</returns>
-        </member>
         <member name="M:MySqlX.XDevAPI.CRUD.ModifyStatement.Execute">
             <summary>
             Executes the modify statement.
@@ -14069,13 +13645,6 @@
             </summary>
             <param name="order">The order criteria.</param>
             <returns>A generic object representing the implementing statement type.</returns>
-        </member>
-        <member name="M:MySqlX.XDevAPI.CRUD.RemoveStatement.Where(System.String)">
-            <summary>
-            Enables the setting of Where condition for this operation.
-            </summary>
-            <param name="condition">The Where condition.</param>
-            <returns>The implementing statement type.</returns>
         </member>
         <member name="M:MySqlX.XDevAPI.CRUD.RemoveStatement.Execute">
             <summary>

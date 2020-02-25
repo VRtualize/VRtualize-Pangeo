@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-using MySql.Data;
 using MySql.Data.MySqlClient;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using System.Linq;
-using System.Threading;
 
 namespace DataManagerUtils
 {
@@ -132,8 +129,6 @@ namespace DataManagerUtils
             int i = 0;
             int j = 0;
             int k = 0;
-            int num_results = 0;
-            double metersPerDegree = 111255.48;
             double lat_distance = (latupper - latlower)/8;
             double long_distance = (longright - longleft)/8;
 

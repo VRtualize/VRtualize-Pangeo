@@ -54,6 +54,11 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/XZ_Movement",
+      "type": "vector2",
+      "requirement": "suggested"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
