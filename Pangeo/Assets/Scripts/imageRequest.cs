@@ -55,7 +55,6 @@ namespace DataManagerUtils
             int subdomainsBegin = content.IndexOf("imageUrlSubdomains") + 22;
             int subdomainsEnd = content.IndexOf("\"", subdomainsBegin);
             this.subdomain = content.Substring(subdomainsBegin, subdomainsEnd - subdomainsBegin);
-            Debug.Log(this.subdomain);
         }
 
         /// <summary>

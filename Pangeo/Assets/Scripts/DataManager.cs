@@ -158,12 +158,6 @@ namespace DataManagerUtils
                 }
             }
 
-
-
-            for(i=0;i<retrieved_chunks[0].Count;i++){
-                Debug.Log(retrieved_chunks[0][i]);
-            }
-
             //Put squares into elevation chunks
             int l = 0;
             //Get through every row

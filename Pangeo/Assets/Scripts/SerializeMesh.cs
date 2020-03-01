@@ -1,7 +1,8 @@
-﻿#if UNITY_EDITOR
+#if UNITY_EDITOR
 using UnityEditor;
 #endif
 using UnityEngine;
+using System;
 
 namespace TheTide.utils
 {
@@ -23,8 +24,15 @@ namespace TheTide.utils
             }
         }
 
-        void Start()
+        async void Start()
         {
+            float i = Convert.ToSingle(name.Substring(name.IndexOf('x') + 1, name.IndexOf('y') - name.IndexOf('x') - 1))*256;
+            float j = Convert.ToSingle(name.Substring(name.IndexOf('y') + 1))*256;
+
+            GetComponent<MeshRenderer>().material = await TileBuilder.GetMaterial(i, j);
+            GetComponent<MeshFilter>().mesh = await TileBuilder.GetMesh(i, j);
+            transform.localScale = Vector3.one;
+
             if (serialized) return;
 
             Serialize();

@@ -15,11 +15,8 @@ public class Cache
 
     public Cache()
     {
-        Debug.Log("Length: " + Globals.length);
-        Debug.Log("MeshLength: " + Globals.meshLength);
         string[] lines = System.IO.File.ReadAllLines(@"Assets/config");
         string apikey = lines[0].Substring(17, lines[0].Length - 18);
-        Debug.Log(apikey);
         restapiurl = new imageURLRequest(apikey);
     }
     
