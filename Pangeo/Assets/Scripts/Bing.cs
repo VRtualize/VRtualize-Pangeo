@@ -17,18 +17,9 @@ namespace DataManagerUtils
     /// the imageRequest class. Any later calls to the imageRequest class are done
     /// using this sampleURL. This complies with Microsoft's Terms of Service. 
     /// </summary>
-    public class BingMaps
+    public static class QuadKeyFuncs
     {
-        public BingMaps(){
-
-        }
-
-        //public void getLatLong(string quadKey, out double latitiude, out double longitude)
-        //{
-            
-        //}
-
-        public string getQuadKey(double latitude, double longitude, int zoomLevel)
+        public static string getQuadKey(double latitude, double longitude, int zoomLevel)
         {
             //Calculate the QuadKey
             double sinLatitude = Math.Sin(latitude * Math.PI / 180);
@@ -57,7 +48,7 @@ namespace DataManagerUtils
         }
 
 
-        public void QuadKeyToLatLong(string quadKey, out double latitude, out double longitude)
+        public static void QuadKeyToLatLong(string quadKey, out double latitude, out double longitude)
         {
 
             int tileX, tileY, pixelX, pixelY;

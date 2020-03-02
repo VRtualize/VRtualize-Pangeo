@@ -16,22 +16,21 @@ public static class TileBuilder
     async public static Task<Mesh> GetMesh(float x, float z)
     {
         //Get latitude/longitude offset using quadkeys and x/z offsets
-        BingMaps quadKeyFuncs = new BingMaps();
         Double Lat = Globals.latitude;
         Double Long = Globals.longitude;
         int chosenZoomLevel = 14;
         Cache cache = new Cache();
 
         //Get latitude and longitude of upper left corner of the Image tile using the quad key backwards
-        String tempQuadKey = quadKeyFuncs.getQuadKey(Lat, Long, chosenZoomLevel);
+        String tempQuadKey = QuadKeyFuncs.getQuadKey(Lat, Long, chosenZoomLevel);
 
         //Use x and z to offset the quadkey
         int tilex = 0;
         int tilez = 0;
-        BingMaps.QuadKeyToTileXY(tempQuadKey, out tilex, out tilez, out chosenZoomLevel);
+        QuadKeyFuncs.QuadKeyToTileXY(tempQuadKey, out tilex, out tilez, out chosenZoomLevel);
         tilex = tilex + Convert.ToInt32(x) / 256;
         tilez = tilez + Convert.ToInt32(z) / 256;
-        String newQuadKey = BingMaps.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
+        String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
 
 
         //Get image at proper latitude and longitude
@@ -69,22 +68,21 @@ public static class TileBuilder
     async public static Task<Material> GetMaterial(float x, float z)
     {
         //Get latitude/longitude offset using quadkeys and x/z offsets
-        BingMaps quadKeyFuncs = new BingMaps();
         Double Lat = Globals.latitude;
         Double Long = Globals.longitude;
         int chosenZoomLevel = 14;
         Cache cache = new Cache();
 
         //Get latitude and longitude of upper left corner of the Image tile using the quad key backwards
-        String tempQuadKey = quadKeyFuncs.getQuadKey(Lat, Long, chosenZoomLevel);
+        String tempQuadKey = QuadKeyFuncs.getQuadKey(Lat, Long, chosenZoomLevel);
 
         //Use x and z to offset the quadkey
         int tilex = 0;
         int tilez = 0;
-        BingMaps.QuadKeyToTileXY(tempQuadKey, out tilex, out tilez, out chosenZoomLevel);
+        QuadKeyFuncs.QuadKeyToTileXY(tempQuadKey, out tilex, out tilez, out chosenZoomLevel);
         tilex = tilex + Convert.ToInt32(x) / 256;
         tilez = tilez + Convert.ToInt32(z) / 256;
-        String newQuadKey = BingMaps.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
+        String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
 
 
         //Get image at proper latitude and longitude

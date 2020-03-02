@@ -22,21 +22,20 @@ public class Cache
     
 	async public Task<List<float>> getMesh(String quadkey)
     {
-        BingMaps quadKeyFuncs = new BingMaps();
         double ucLat;
         double ucLong;
-        quadKeyFuncs.QuadKeyToLatLong(quadkey, out ucLat, out ucLong);
+        QuadKeyFuncs.QuadKeyToLatLong(quadkey, out ucLat, out ucLong);
         double lcLat;
         double lcLong;
         //Get the lower right corner
         int tilex = 0;
         int tilez = 0;
         int chosenZoomLevel;
-        BingMaps.QuadKeyToTileXY(quadkey, out tilex, out tilez, out chosenZoomLevel);
+        QuadKeyFuncs.QuadKeyToTileXY(quadkey, out tilex, out tilez, out chosenZoomLevel);
         tilex = tilex + 1;
         tilez = tilez + 1;
-        String lcquadkey = BingMaps.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
-        quadKeyFuncs.QuadKeyToLatLong(lcquadkey, out lcLat, out lcLong);
+        String lcquadkey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
+        QuadKeyFuncs.QuadKeyToLatLong(lcquadkey, out lcLat, out lcLong);
         //Get chunks from database in Image tile range
         DataManager tempDataManager = new DataManager();
 
