@@ -17,7 +17,7 @@ public class AppHandler : MonoBehaviour
         //Future Work: Query starting location from user via menu.
 
         //The starting environment will be size^2 tiles in a square shape
-        int size = 2;
+        int size = 3;
 
         UnityEngine.Object pPrefab = Resources.Load("Prefabs/Tile");
 
