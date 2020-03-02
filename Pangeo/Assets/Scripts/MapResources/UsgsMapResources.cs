@@ -1,11 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using DataManagerUtils;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class UsgsMapResources : IMapResources
 {
-    List<float> IMapResources.getMesh()
+    async Task<List<float>> IMapResources.getMesh(string quadkey)
     {
         // For now, we're stubbing out a concrete example
         byte[] b;
@@ -32,5 +33,8 @@ public class UsgsMapResources : IMapResources
             mesh.Add(BitConverter.ToSingle(b, i));
         return mesh;
     }
-    void IMapResources.getSatelliteImagery() { }
+    async Task<WWW> IMapResources.getSatelliteImagery(string Quadkey)
+    {
+        return new WWW("");
+    }
 }

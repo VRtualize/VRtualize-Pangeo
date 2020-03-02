@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using DataManagerUtils;
 using System.Threading.Tasks;
 
@@ -34,7 +35,7 @@ public static class TileBuilder
 
 
         //Get image at proper latitude and longitude
-        List<float> ElevList = await cache.getMesh(newQuadKey);
+        List<float> ElevList = await cache.getMesh(new BingMapResources(), newQuadKey);
 
         //Perform array size calculations
         int length = ElevList.Count;
@@ -86,7 +87,7 @@ public static class TileBuilder
 
 
         //Get image at proper latitude and longitude
-        WWW imgLoader = await cache.getSatelliteImagery(newQuadKey);
+        WWW imgLoader = await cache.getSatelliteImagery(new BingMapResources(), newQuadKey);
 
 
         //Assign the GameObject material from the Resources folder
