@@ -16,26 +16,10 @@ public static class TileBuilder
     /// <param name="name">The name of the tile in the Unity hierarchy</param>
     async public static Task<Mesh> GetMesh(float x, float z)
     {
-        //Get latitude/longitude offset using quadkeys and x/z offsets
-        Double Lat = Globals.latitude;
-        Double Long = Globals.longitude;
-        int chosenZoomLevel = 14;
         Cache cache = new Cache();
 
-        //Get latitude and longitude of upper left corner of the Image tile using the quad key backwards
-        String tempQuadKey = QuadKeyFuncs.getQuadKey(Lat, Long, chosenZoomLevel);
-
-        //Use x and z to offset the quadkey
-        int tilex = 0;
-        int tilez = 0;
-        QuadKeyFuncs.QuadKeyToTileXY(tempQuadKey, out tilex, out tilez, out chosenZoomLevel);
-        tilex = tilex + Convert.ToInt32(x) / 256;
-        tilez = tilez + Convert.ToInt32(z) / 256;
-        String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
-
-
         //Get image at proper latitude and longitude
-        List<float> ElevList = await cache.getMesh(new BingMapResources(), newQuadKey);
+        List<float> ElevList = await cache.getMesh(new BingMapResources(), x, z);
 
         //Perform array size calculations
         int length = ElevList.Count;
@@ -59,43 +43,21 @@ public static class TileBuilder
     }
 
     /// <summary>
-    /// This function is used to create a new tile and place it into the play
-    /// environment.
+    /// This creates and returns a material out of satellite imagery corresponding to the global latitude
+    /// and global longitude plus an x and z offset.
     /// </summary>
     /// <param name="x">The x coordinate for the tile</param>
-    /// <param name="y">The y coordinate for the tile</param>
     /// <param name="z">The z coordinate for the tile</param>
-    /// <param name="name">The name of the tile in the Unity hierarchy</param>
     async public static Task<Material> GetMaterial(float x, float z)
     {
-        //Get latitude/longitude offset using quadkeys and x/z offsets
-        Double Lat = Globals.latitude;
-        Double Long = Globals.longitude;
-        int chosenZoomLevel = 14;
         Cache cache = new Cache();
 
-        //Get latitude and longitude of upper left corner of the Image tile using the quad key backwards
-        String tempQuadKey = QuadKeyFuncs.getQuadKey(Lat, Long, chosenZoomLevel);
+        // Get image at proper latitude and longitude
+        WWW imgLoader = await cache.getSatelliteImagery(new BingMapResources(), x, z);
 
-        //Use x and z to offset the quadkey
-        int tilex = 0;
-        int tilez = 0;
-        QuadKeyFuncs.QuadKeyToTileXY(tempQuadKey, out tilex, out tilez, out chosenZoomLevel);
-        tilex = tilex + Convert.ToInt32(x) / 256;
-        tilez = tilez + Convert.ToInt32(z) / 256;
-        String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
-
-
-        //Get image at proper latitude and longitude
-        WWW imgLoader = await cache.getSatelliteImagery(new BingMapResources(), newQuadKey);
-
-
-        //Assign the GameObject material from the Resources folder
-        //Future Work: Change the material to take satellite imagery from cache
+        // Create and set the material
         Material mat = new Material(Shader.Find("Standard"));
         mat.mainTexture = imgLoader.texture;
-
-        //Assign the object's renderer with specified material
         mat.mainTextureScale = new Vector2((float)(1.0 / 256.0), (float)(1.0 / 256.0));
 
         return mat;

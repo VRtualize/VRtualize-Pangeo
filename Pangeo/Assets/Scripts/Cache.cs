@@ -9,8 +9,8 @@ public class Cache
 {
 	private List<float> mesh;
     
-	async public Task<List<float>> getMesh(IMapResources res, String quadkey) { return await res.getMesh(quadkey); }
+	async public Task<List<float>> getMesh(IMapResources res, float x, float z) { return await res.getMesh(x, z); }
 
-	async public void setMesh(IMapResources resources, string quadkey) { mesh = await resources.getMesh(quadkey); }
-	async public Task<WWW> getSatelliteImagery(IMapResources res, String QuadKey) { return await res.getSatelliteImagery(QuadKey); }
+	async public void setMesh(IMapResources resources, float x, float z) { mesh = await resources.getMesh(x, z); }
+	async public Task<WWW> getSatelliteImagery(IMapResources res, float x, float z) { return await res.getSatelliteImagery(x, z); }
 }

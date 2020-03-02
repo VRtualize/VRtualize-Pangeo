@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class UsgsMapResources : IMapResources
 {
-    async Task<List<float>> IMapResources.getMesh(string quadkey)
+    async Task<List<float>> IMapResources.getMesh(float x, float z)
     {
         // For now, we're stubbing out a concrete example
         byte[] b;
@@ -33,7 +33,7 @@ public class UsgsMapResources : IMapResources
             mesh.Add(BitConverter.ToSingle(b, i));
         return mesh;
     }
-    async Task<WWW> IMapResources.getSatelliteImagery(string Quadkey)
+    async Task<WWW> IMapResources.getSatelliteImagery(float x, float z)
     {
         return new WWW("");
     }
