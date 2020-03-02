@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
-using DataManagerUtils;
 using System.Threading.Tasks;
 
 public static class TileBuilder

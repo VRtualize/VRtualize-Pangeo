@@ -4,7 +4,6 @@ using MySql.Data.MySqlClient;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityEngine;
 using System.Linq;
 
 namespace DataManagerUtils

@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public static class Globals
+﻿public static class Globals
 {
     public static double latitude = 39, longitude = -106.5;
     public static int length, meshLength;
