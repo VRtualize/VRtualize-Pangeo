@@ -1,12 +1,5 @@
 using System;
-using System.Collections;
-using System.Text;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
-using DataManagerUtils;
-
-
 
 /// <summary>
 /// This class handles the generation of environment meshes.
