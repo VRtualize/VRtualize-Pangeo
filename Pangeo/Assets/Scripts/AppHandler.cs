@@ -28,15 +28,12 @@ public class AppHandler : MonoBehaviour
 
         UnityEngine.Object pPrefab = Resources.Load("Prefabs/Tile");
 
-        List<GameObject> tiles = new List<GameObject>();
-
         //Build the starting area
         for (int i = 0; i < size*size; i++)
         {
             GameObject Obj = (GameObject)GameObject.Instantiate(pPrefab, new Vector3(i/size*256 - i/size, 0, (i%size) - (i % size) * 256), Quaternion.identity);
             Obj.name = "Tilex" + Convert.ToString(i/size) + "y" + Convert.ToString(i%size);
             Obj.transform.localScale = new Vector3(256 / 10+1, 256 / 10+1, 256 / 10+1);
-            tiles.Add(Obj);
         }
     }
 
