@@ -59,6 +59,10 @@
       "requirement": "suggested"
     },
     {
+      "name": "/actions/default/in/ToggleTooltip",
+      "type": "boolean"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -90,6 +94,10 @@
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/PangeoControls/in/ToggleTooltips",
+      "type": "boolean"
     }
   ],
   "action_sets": [
@@ -107,6 +115,10 @@
     },
     {
       "name": "/actions/mixedreality",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/PangeoControls",
       "usage": "single"
     }
   ],

@@ -17,8 +17,6 @@ public class UIManagerScript : MonoBehaviour
     public InputField latitudeInputField;
     public GameObject eventSystem;
 
-
-
     bool fieldCoordinate;
 
     /// <summary>
@@ -51,6 +49,7 @@ public class UIManagerScript : MonoBehaviour
             fieldCoordinate = true;
             Debug.Log("Input Field: " + field.name);
         }
+        Debug.Log(field.name);
     }
 
     /// <summary>
@@ -61,7 +60,6 @@ public class UIManagerScript : MonoBehaviour
     {
         if (fieldCoordinate)
         {
-            Debug.Log(latitudeInputField.text);
             Debug.Log(latitudeInputField.text.GetType());
             if (key.name == "ButtonBack")
             {
