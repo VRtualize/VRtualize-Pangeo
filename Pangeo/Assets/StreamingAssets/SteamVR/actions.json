@@ -63,6 +63,10 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/Y_Movement",
+      "type": "vector2"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
