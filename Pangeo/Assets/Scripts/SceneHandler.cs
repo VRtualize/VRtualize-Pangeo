@@ -1,8 +1,5 @@
-﻿/* SceneHandler.cs*/
-using System.Collections;
-using System.Collections.Generic;
+/* SceneHandler.cs*/
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Valve.VR.Extras;
 
@@ -85,11 +82,11 @@ public class SceneHandler : MonoBehaviour
 
             button = e.target.gameObject.GetComponent<Button>();
         }
-        else if (e.target.name.Contains("InputField"))
-        {
-            Debug.Log("InputField is deselected");
-            field = e.target.gameObject.GetComponent<InputField>();
-        }
+        //else if (e.target.name.Contains("InputField"))
+        //{
+        //    Debug.Log("InputField is deselected");
+        //    field = e.target.gameObject.GetComponent<InputField>();
+        //}
 
         eventSystem.GetComponent<UnityEngine.EventSystems.EventSystem>().SetSelectedGameObject(null);
     }

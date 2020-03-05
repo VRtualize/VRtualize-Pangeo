@@ -54,6 +54,19 @@
       "type": "boolean"
     },
     {
+      "name": "/actions/default/in/XZ_Movement",
+      "type": "vector2",
+      "requirement": "suggested"
+    },
+    {
+      "name": "/actions/default/in/ToggleTooltip",
+      "type": "boolean"
+    },
+    {
+      "name": "/actions/default/in/Y_Movement",
+      "type": "vector2"
+    },
+    {
       "name": "/actions/default/out/Haptic",
       "type": "vibration"
     },
@@ -85,6 +98,10 @@
       "name": "/actions/mixedreality/in/ExternalCamera",
       "type": "pose",
       "requirement": "optional"
+    },
+    {
+      "name": "/actions/PangeoControls/in/ToggleTooltips",
+      "type": "boolean"
     }
   ],
   "action_sets": [
@@ -102,6 +119,10 @@
     },
     {
       "name": "/actions/mixedreality",
+      "usage": "single"
+    },
+    {
+      "name": "/actions/PangeoControls",
       "usage": "single"
     }
   ],
