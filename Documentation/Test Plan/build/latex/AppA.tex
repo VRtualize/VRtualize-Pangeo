@@ -1,0 +1,45 @@
+\chapter{Repository Management}
+
+The repository is owned by Michael Theesen and is stored in the GitHub server under the name VRtualize-Pangeo. All members of the team have Developer permissions.
+
+
+\subsection{Branch Structure}
+\label{\detokenize{test_plan/repository_management:branch-structure}}
+\noindent\sphinxincludegraphics[width=600\sphinxpxdimen]{{branch_structure}.png}
+
+
+\subsubsection{Feature Branches}
+\label{\detokenize{test_plan/repository_management:feature-branches}}
+Each issue with have a feature branch for the purpose of developement specifically for that issue named using the following standard:
+
+\sphinxstyleemphasis{developer-name}/\sphinxstyleemphasis{issue\#-name-of-issue}
+
+Unit tests will be developed, run, and passed in this branch before a code review can be scheduled.
+
+
+\subsubsection{Integration Branch}
+\label{\detokenize{test_plan/repository_management:integration-branch}}
+\sphinxtitleref{Cost of Entry}: Passes unit tests and code review.
+
+The relationships between units of code is tested within this branch.
+
+Advancement to upper branches will not occur until the code base of Certification 2 is in the integration branch.
+
+
+\subsubsection{Testing Branch}
+\label{\detokenize{test_plan/repository_management:testing-branch}}
+\sphinxtitleref{Cost of Entry}: Passes integration tests (Certification 2)
+
+The application as a whole is tested within this branch.
+
+
+\subsubsection{Master}
+\label{\detokenize{test_plan/repository_management:master}}
+\sphinxtitleref{Cost of Entry}: Passes all tests.
+
+Product-ready code is found in this branch.
+
+
+
+\renewcommand{\indexname}{Index}
+\printindex

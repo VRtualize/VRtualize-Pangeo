@@ -1,0 +1,54 @@
+\babel@toc {english}{}
+\contentsline {chapter}{\numberline {1}Introduction}{2}{chapter.1}
+\contentsline {section}{\numberline {1.1}Purpose}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Overview}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Audience}{2}{section.1.3}
+\contentsline {chapter}{\numberline {2}Strategy}{3}{chapter.2}
+\contentsline {section}{\numberline {2.1}Objectives}{3}{section.2.1}
+\contentsline {section}{\numberline {2.2}Assumptions}{3}{section.2.2}
+\contentsline {section}{\numberline {2.3}Testing Scope}{4}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Unit}{4}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}Back-end}{4}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Code Reviews}{4}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}QA Testing}{4}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}Integration}{5}{subsection.2.3.5}
+\contentsline {subsection}{\numberline {2.3.6}Regression}{5}{subsection.2.3.6}
+\contentsline {subsection}{\numberline {2.3.7}System and Functional}{5}{subsection.2.3.7}
+\contentsline {subsection}{\numberline {2.3.8}Soak and Performance}{5}{subsection.2.3.8}
+\contentsline {subsection}{\numberline {2.3.9}Stress}{6}{subsection.2.3.9}
+\contentsline {subsection}{\numberline {2.3.10}Exploratory and Alpha}{6}{subsection.2.3.10}
+\contentsline {chapter}{\numberline {3}Issue Management}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}Issue Life-Cycle}{7}{section.3.1}
+\contentsline {section}{\numberline {3.2}Defect Reporting}{8}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Bug Life-cycle}{8}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Severity Levels}{9}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}Metrics}{9}{section.3.3}
+\contentsline {section}{\numberline {3.4}Start and End Criteria}{9}{section.3.4}
+\contentsline {chapter}{\numberline {4}Test Management}{11}{chapter.4}
+\contentsline {section}{\numberline {4.1}Test Design}{11}{section.4.1}
+\contentsline {section}{\numberline {4.2}Executing the Test Plan}{11}{section.4.2}
+\contentsline {section}{\numberline {4.3}Risks and Risk Response}{12}{section.4.3}
+\contentsline {chapter}{\numberline {5}Test Environment and Product Requirements}{13}{chapter.5}
+\contentsline {section}{\numberline {5.1}External Interfaces and Requirements}{13}{section.5.1}
+\contentsline {section}{\numberline {5.2}Hardware}{13}{section.5.2}
+\contentsline {section}{\numberline {5.3}Software}{13}{section.5.3}
+\contentsline {chapter}{\numberline {6}Project Timeline}{14}{chapter.6}
+\contentsline {chapter}{\numberline {7}Effort Estimation}{16}{chapter.7}
+\contentsline {chapter}{\numberline {8}Roles and Responsibilities}{18}{chapter.8}
+\contentsline {section}{\numberline {8.1}Project Management}{18}{section.8.1}
+\contentsline {section}{\numberline {8.2}QA Team}{18}{section.8.2}
+\contentsline {section}{\numberline {8.3}Development Team}{19}{section.8.3}
+\contentsline {chapter}{\numberline {9}Team Members and Contact Info}{20}{chapter.9}
+\contentsline {chapter}{\numberline {10}Sign Off}{21}{chapter.10}
+\contentsline {chapter}{APPENDICES}{21}{chapter.10}
+\contentsline {chapter}{\numberline {A}Repository Management}{22}{appendix.A}
+\contentsline {subsection}{\numberline {A.0.1}Branch Structure}{22}{subsection.A.0.1}
+\contentsline {subsubsection}{Feature Branches}{23}{subsubsection*.3}
+\contentsline {subsubsection}{Integration Branch}{23}{subsubsection*.4}
+\contentsline {subsubsection}{Testing Branch}{23}{subsubsection*.5}
+\contentsline {subsubsection}{Master}{23}{subsubsection*.6}
+\contentsline {chapter}{\numberline {B}Issue Tracking Manager}{24}{appendix.B}
+\contentsline {subsection}{\numberline {B.0.1}Installation}{24}{subsection.B.0.1}
+\contentsline {subsection}{\numberline {B.0.2}Structure}{24}{subsection.B.0.2}
+\contentsline {subsection}{\numberline {B.0.3}Issue Types}{24}{subsection.B.0.3}
+\contentsline {subsection}{\numberline {B.0.4}Issue Complexities}{25}{subsection.B.0.4}
