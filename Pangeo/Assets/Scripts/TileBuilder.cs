@@ -2,9 +2,83 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
+using DataManagerUtils;
 
 public static class TileBuilder
 {
+    async public static Task<Tuple<Mesh, Material>> BuildTile(float x, float z){
+        
+
+        //Calculate the quadkey for the given tile
+        String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
+        //Use x and z to offset the quadkey
+        int initx = 0;
+        int initz = 0;
+        int initChosenZoomLevel = 14;
+        QuadKeyFuncs.QuadKeyToTileXY(originQuadKey, out initx, out initz, out initChosenZoomLevel);
+        initx = initx + Convert.ToInt32(x) / 256;
+        initz = initz + Convert.ToInt32(z) / 256;
+        String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(initx, initz, initChosenZoomLevel);
+        double ucLat;
+        double ucLong;
+        QuadKeyFuncs.QuadKeyToLatLong(newQuadKey, out ucLat, out ucLong);
+        double lcLat;
+        double lcLong;
+        //Get the lower right corner
+        int tilex = 0;
+        int tilez = 0;
+        int chosenZoomLevel;
+        QuadKeyFuncs.QuadKeyToTileXY(newQuadKey, out tilex, out tilez, out chosenZoomLevel);
+        tilex = tilex + 1;
+        tilez = tilez + 1;
+        String lcquadkey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
+
+        //Check DB for current entry
+        Cache cache = new Cache();
+        bool entryExists = cache.DBcheck(lcquadkey);
+
+        Mesh mesh = new Mesh();
+        Material mat = new Material(Shader.Find("Standard"));
+
+        if (entryExists){
+            Tuple<List<float>, Texture> TileTuple = cache.DBGet(lcquadkey);
+
+            //Ready the mesh
+            //Perform array size calculations
+            int length = TileTuple.Item1.Count;
+            int side = (int)Mathf.Sqrt(length);
+            int sqrPtCount = (int)(Mathf.Pow((side - 1), 2) * 6);
+
+            //Create empty vertices, uv, and triangles arrays and set their values
+            Vector3[] vertices = fillVert(length, side, TileTuple.Item1);
+            Vector2[] uv = fillUv(length, side);
+            int[] triangles = fillTri(sqrPtCount, side);
+
+            //Create a new Mesh to render, assign its components, and recalculate
+            //its normals for smooth rendering
+            mesh.vertices = vertices;
+            mesh.uv = uv;
+            mesh.triangles = triangles;
+            mesh.RecalculateNormals();
+
+            //Ready the material
+            mat.mainTexture = TileTuple.Item2;
+            mat.mainTextureScale = new Vector2((float)(1.0 / 256.0), (float)(1.0 / 256.0));
+
+        }
+        else
+        {
+            Tuple<Mesh, List<float>> ElevTuple = await GetMesh(x, z);
+            mesh = ElevTuple.Item1;
+            mat = await GetMaterial(x, z);
+            cache.DBInsert(lcquadkey, ElevTuple.Item2, mat.mainTexture);
+        }
+
+
+
+        return new Tuple<Mesh, Material>(mesh, mat);
+    }
+
     /// <summary>
     /// This function is used to create a new tile and place it into the play
     /// environment.
@@ -12,9 +86,11 @@ public static class TileBuilder
     /// <param name="x">The x coordinate for the tile</param>
     /// <param name="z">The z coordinate for the tile</param>
     /// <param name="name">The name of the tile in the Unity hierarchy</param>
-    async public static Task<Mesh> GetMesh(float x, float z)
+    async public static Task<Tuple<Mesh,List<float>>> GetMesh(float x, float z)
     {
         Cache cache = new Cache();
+
+
 
         //Get image at proper latitude and longitude
         List<float> ElevList = await cache.getMesh(new BingMapResources(), x, z);
@@ -37,7 +113,7 @@ public static class TileBuilder
         mesh.triangles = triangles;
         mesh.RecalculateNormals();
 
-        return mesh;
+        return new Tuple<Mesh,List<float>>(mesh,ElevList);
     }
 
     /// <summary>
@@ -69,7 +145,7 @@ public static class TileBuilder
     /// <param name="side">The square root of len</param>
     /// <param name="ElevPts">The array of elevation points</param>
     /// <returns>A Vector3 array assigned our elevation points</returns>
-    static Vector3[] fillVert(int len, int side, List<float> ElevPts)
+    public static Vector3[] fillVert(int len, int side, List<float> ElevPts)
     {
         int chosenZoomLevel = 14;
         Vector3[] tmp = new Vector3[len];
@@ -102,7 +178,7 @@ public static class TileBuilder
     /// <param name="len">The total length of the array of points</param>
     /// <param name="side">The square root of len</param>
     /// <returns>A Vector2 array assigned UV point locations</returns>
-    static Vector2[] fillUv(int len, int side)
+    public static Vector2[] fillUv(int len, int side)
     {
         Vector2[] tmp = new Vector2[len];
 
@@ -132,7 +208,7 @@ public static class TileBuilder
     /// The square root of the number of squares in mesh
     /// </param>
     /// <returns>An int array of points to define the mesh triangles</returns>
-    static int[] fillTri(int ptCount, int side)
+    public static int[] fillTri(int ptCount, int side)
     {
         int[] tmp = new int[ptCount];
 

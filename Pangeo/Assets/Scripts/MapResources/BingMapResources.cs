@@ -1,9 +1,10 @@
-﻿using System;
+using System;
 // using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
 using DataManagerUtils;
+using MySql.Data.MySqlClient;
 
 public class BingMapResources : IMapResources
 {
@@ -77,12 +78,15 @@ public class BingMapResources : IMapResources
         tilex = tilex + 1;
         tilez = tilez + 1;
         String lcquadkey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
-        QuadKeyFuncs.QuadKeyToLatLong(lcquadkey, out lcLat, out lcLong);
-        //Get chunks from database in Image tile range
-        DataManager tempDataManager = new DataManager();
 
+        QuadKeyFuncs.QuadKeyToLatLong(lcquadkey, out lcLat, out lcLong);
+        //Get chunks from database if it exists
+
+        //Otherwise, get the mesh from Bing's REST API
+        DataManager tempDataManager = new DataManager();
         List<float> mesh = await tempDataManager.ElevationRequest(ucLat, ucLong, lcLat, lcLong, 256, newQuadKey.Length);
-        
+
+
         return mesh;
     }
     async Task<WWW> IMapResources.getSatelliteImagery(float x, float z)

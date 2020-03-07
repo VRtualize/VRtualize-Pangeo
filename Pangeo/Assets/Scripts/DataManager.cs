@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
+using UnityEngine;
 
 namespace DataManagerUtils
 {
@@ -77,12 +78,16 @@ namespace DataManagerUtils
             {
                 // Open connection.
                 this.conn.Open();
+                while(conn.State != System.Data.ConnectionState.Open){
+                    Task.Delay(100);
+                    this.conn.Open();
+                }
                 return true;
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e);
-                Console.WriteLine(e.StackTrace);
+                Debug.Log("Error: " + e);
+                Debug.Log(e.StackTrace);
                 return false;
             }
         }
@@ -109,18 +114,6 @@ namespace DataManagerUtils
             this.DBConnection = this.DBUtil.GetDBConnection();
         }
 
-        //ElevationDataRequest num chunks
-        public int ElevationRequestNumChunks(double longupperleft, double latupperleft, double longlowerright, double latlowerright){
-            int num_results = 0;
-
-            //Get range of chunks from the database
-            String countText = "Select count(*) from usgs_header_data where xulcorner <= " + longlowerright.ToString()
-                + " and yulcorner >= " + latlowerright.ToString() + " and xulcorner >= " + longupperleft.ToString() + " and yulcorner <= "
-                + latupperleft.ToString();
-            MySqlCommand countcmd = new MySqlCommand(countText, this.DBConnection);
-            num_results = Convert.ToInt32(countcmd.ExecuteScalar());
-            return num_results;
-        }
         //mesh.Add(BitConverter.ToSingle(elevationChunk, i));
         //ElevationDataRequest
         async public Task<List<float>> ElevationRequest(double latupper, double longleft, double latlower, double longright, int sideLength, int zoomLevel)
@@ -153,7 +146,7 @@ namespace DataManagerUtils
                         retrieved_chunk.Add(Convert.ToSingle(elevation_strings[k]));
                     }
                     retrieved_chunks.Add(retrieved_chunk);
-                    Thread.Sleep(250);
+                    await Task.Delay(200);
                 }
             }
 

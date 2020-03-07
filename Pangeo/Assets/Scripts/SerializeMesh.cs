@@ -29,8 +29,9 @@ namespace TheTide.utils
             float i = Convert.ToSingle(name.Substring(name.IndexOf('x') + 1, name.IndexOf('y') - name.IndexOf('x') - 1))*256;
             float j = Convert.ToSingle(name.Substring(name.IndexOf('y') + 1))*256;
 
-            GetComponent<MeshRenderer>().material = await TileBuilder.GetMaterial(i, j);
-            GetComponent<MeshFilter>().mesh = await TileBuilder.GetMesh(i, j);
+            Tuple<Mesh, Material> TileTuple = await TileBuilder.BuildTile(i, j);
+            GetComponent<MeshRenderer>().material = TileTuple.Item2;
+            GetComponent<MeshFilter>().mesh = TileTuple.Item1;
             transform.localScale = Vector3.one;
 
             if (serialized) return;
