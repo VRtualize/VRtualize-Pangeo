@@ -1,4 +1,4 @@
-/*xz_movementScript.cs*/
+/*Y_Movement.cs*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
@@ -7,40 +7,54 @@ using Valve.VR;
 using UnityEngine.VR;
 
 /// <summary>
-/// xz_MovementScript class that opens the menu with the click of the menu button.
+/// Y_Movement class that allows the movement in the y axis with the use of
+/// the right controller trackpad.
+/// 
+/// Up - ascend
+/// Down - descend
 /// </summary>
 public class Y_Movement : MonoBehaviour
 {
-    //Variable for grabbing the desired actionset
+    //Variable for the y_movement actionset
     public SteamVR_ActionSet m_ActionSet;
-    // varaibles for storing if the touchpads have been used on the controller
+    // Touch location on the right trackpad
     public SteamVR_Action_Vector2 m_TouchPosition;
-    // varaible for storing the character controller
+
+    // Variable for storing the character controller
     private CharacterController m_CharacterController = null;
-    //location values for the player position and the head position
+
+    // Location values for the player position and the head position
     private Transform m_CameraRig = null;
     private Transform m_Head = null;
     public GameObject Head;
 
-
-    //sets the deadzone for how far the player needs to move their thumb before
+    // Sets the deadzone for how far the player needs to move their thumb before
+    // activating movement
     public Vector2 m_deadzone = new Vector2(0.1f, 0.1f);
     public Vector2 m_NeutralPosition = new Vector2(0.0f, 0.0f);
 
     float speed = 25.0f;       // Default speed
 
+    /// <summary>
+    /// Initialize the character controller.
+    /// </summary>
     private void Awake()
     {
         m_CharacterController = GetComponent<CharacterController>();
     }
-    // Start is called before the first frame update
+    
+    /// <summary>
+    /// Initialize the camera rig and head for tracking.
+    /// </summary>
     void Start()
     {
         m_CameraRig = SteamVR_Render.Top().origin;
         m_Head = SteamVR_Render.Top().head;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Update the player location by reading in the touch position on the trackpad.
+    /// </summary>
     void Update()
     {
         Vector3 p = GetBaseInput();
@@ -51,6 +65,11 @@ public class Y_Movement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Gets the touch position on the trackpad and convert them to a vector to
+    /// map movement direction.
+    /// </summary>
+    /// <returns></returns>
     private Vector3 GetBaseInput()
     {
         Vector2 delta = m_TouchPosition[SteamVR_Input_Sources.RightHand].axis;
