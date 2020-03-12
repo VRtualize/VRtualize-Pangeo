@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1114,6 +1114,7 @@ GameObject:
   - component: {fileID: 298966445}
   - component: {fileID: 298966444}
   - component: {fileID: 298966447}
+  - component: {fileID: 298966448}
   m_Layer: 5
   m_Name: ExitControlsButton
   m_TagString: Untagged
@@ -1245,6 +1246,64 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 75, y: 20, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &298966448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 298966442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 856675738}
+          m_MethodName: CloseControlsPanel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 856675738}
+          m_MethodName: OnPointerEnter
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 298966444}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 856675738}
+          m_MethodName: OnPointerExit
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 298966444}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &350031886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1881,7 +1940,7 @@ RectTransform:
   - {fileID: 1401373557}
   - {fileID: 650624741}
   m_Father: {fileID: 1599376681}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1950,8 +2009,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 622951407}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 420}
-  m_LocalScale: {x: 1.4, y: 1.4, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 920217042}
   - {fileID: 2047971216}
@@ -1964,11 +2023,11 @@ RectTransform:
   - {fileID: 1138192914}
   - {fileID: 1136042975}
   m_Father: {fileID: 1599376681}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 111.111115, y: -44.444443}
+  m_AnchoredPosition: {x: 80, y: -20}
   m_SizeDelta: {x: 400, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &622951409
@@ -2496,17 +2555,6 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 856675736}
-          m_MethodName: ActivateLongitudeInputField
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 856675738}
           m_MethodName: SelectInputField
           m_Mode: 2
@@ -2518,8 +2566,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 856675736}
-          m_MethodName: DisableNSHemisphere
+          m_MethodName: ActivateLongitudeInputField
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2529,10 +2581,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 10
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!222 &757376301
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2993,6 +3041,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ff8bac1f8c0be4090b0418ec50ca2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  N: {fileID: 776443566}
+  S: {fileID: 2073416681}
+  E: {fileID: 1978923904}
+  W: {fileID: 1138192915}
+  longitude: {fileID: 757376298}
+  latitude: {fileID: 1409294375}
 --- !u!4 &856675737
 Transform:
   m_ObjectHideFlags: 0
@@ -4783,17 +4837,6 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 856675736}
-          m_MethodName: ActivateLatitudeInputField
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
         - m_Target: {fileID: 856675738}
           m_MethodName: SelectInputField
           m_Mode: 2
@@ -4805,8 +4848,12 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
         - m_Target: {fileID: 856675736}
-          m_MethodName: DisableEWHemisphere
+          m_MethodName: ActivateLatitudeInputField
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4816,10 +4863,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  - eventID: 10
-    callback:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!222 &1409294378
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5350,9 +5393,9 @@ RectTransform:
   m_Children:
   - {fileID: 54737391}
   - {fileID: 1156668560}
-  - {fileID: 622951408}
   - {fileID: 2098414539}
   - {fileID: 562436429}
+  - {fileID: 622951408}
   m_Father: {fileID: 1553213635}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7402,7 +7445,7 @@ RectTransform:
   - {fileID: 298966443}
   - {fileID: 1259838023}
   m_Father: {fileID: 1599376681}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

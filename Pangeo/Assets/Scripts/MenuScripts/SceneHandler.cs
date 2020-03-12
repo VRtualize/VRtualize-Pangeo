@@ -32,7 +32,7 @@ public class SceneHandler : MonoBehaviour
     {
         if (e.target.name.Contains("Button"))
         {
-            Debug.Log("Button was clicked");
+            Debug.Log(e.target.name + " was clicked");
 
             button = e.target.gameObject.GetComponent<Button>();
             button.Select();
@@ -57,7 +57,7 @@ public class SceneHandler : MonoBehaviour
     {
         if (e.target.name.Contains("Button"))
         {
-            Debug.Log("Button is selected");
+            Debug.Log(e.target.name + " is selected");
 
             button = e.target.gameObject.GetComponent<Button>();
             button.Select();
@@ -78,7 +78,7 @@ public class SceneHandler : MonoBehaviour
     {
         if (e.target.name.Contains("Button"))
         {
-            Debug.Log("Button is deselected");
+            Debug.Log(e.target.name + " is deselected");
 
             button = e.target.gameObject.GetComponent<Button>();
         }
