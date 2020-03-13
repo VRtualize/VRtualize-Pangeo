@@ -24,9 +24,10 @@ public class UIManagerScript : MonoBehaviour
     /// </summary>
     public void OpenCoordinatesPanel()
     {
+        //background.SetBool("MainMenu", false);
         exitButton.SetBool("Enabled", false);
         controlsButton.SetBool("Enabled", false);
-        background.SetBool("Enabled", true);
+        background.SetBool("CoordinatesPanelEnabled", true);
         background.SetBool("KeyboardEnabled", false);
 
         Debug.Log("Active Coordinates Button");
@@ -130,8 +131,7 @@ public class UIManagerScript : MonoBehaviour
     {
         Debug.Log("Close Coordinates Panel");
 
-        background.SetBool("Enabled", false);
-        background.SetBool("KeyboardEnabled", false);
+        background.SetBool("CoordinatesPanelEnabled", false);
         controlsButton.SetBool("Enabled", true);
         exitButton.SetBool("Enabled", true);
     }
@@ -141,10 +141,10 @@ public class UIManagerScript : MonoBehaviour
     /// </summary>
     public void OpenControlsPanel()
     {
+        background.SetBool("ControlsPanelEnabled", true);
         coordinatesButton.SetBool("Enabled", false);
         exitButton.SetBool("Enabled", false);
-        background.SetBool("ControlsPanelEnabled", true);
-        background.SetBool("Enabled", false);
+
         Debug.Log("Active Controls Button");
     }
 
@@ -155,9 +155,9 @@ public class UIManagerScript : MonoBehaviour
     {
         Debug.Log("Close Controls Panel");
 
+        background.SetBool("ControlsPanelEnabled", false);
         coordinatesButton.SetBool("Enabled", true);
         exitButton.SetBool("Enabled", true);
-        background.SetBool("ControlsPanelEnabled", false);
     }
 
     /// <summary>
