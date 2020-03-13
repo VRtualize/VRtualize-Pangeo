@@ -7,45 +7,62 @@ using Valve.VR;
 using UnityEngine.VR;
 
 /// <summary>
-/// xz_MovementScript class that opens the menu with the click of the menu button.
+/// XZ_Movement class allows movement in the XZ plane with the use of the left
+/// controller trackpad.
+/// 
+/// Up - forward
+/// Down - backward
+/// Left - left
+/// Right - right
 /// </summary>
 public class XZ_Movement : MonoBehaviour
 {
-    //Variable for grabbing the desired actionset
+    // Variable for the xz_movement actionset
     public SteamVR_ActionSet m_ActionSet;
-    // varaibles for storing if the touchpads have been used on the controller
+    // Touch position on the controller
     public SteamVR_Action_Vector2 m_TouchPosition;
-    // varaible for storing the character controller
+
     private CharacterController m_CharacterController = null;
-    //location values for the player position and the head position
+
+    // Location values for the player position and the head position
     private Transform m_CameraRig = null;
     private Transform m_Head = null;
-    public GameObject Head;
 
-
-    //sets the deadzone for how far the player needs to move their thumb before
+    // Sets the deadzone for how far the player needs to move their thumb before
+    // activating a movement
     public Vector2 m_deadzone = new Vector2(0.1f, 0.1f);
     public Vector2 m_NeutralPosition = new Vector2(0.0f, 0.0f);
     public GameObject AxisHand;
 
     float speed = 50.0f;       // Default speed
 
+    /// <summary>
+    /// Initialize the character controller.
+    /// </summary>
     private void Awake()
     {
         m_CharacterController = GetComponent<CharacterController>();
     }
-    // Start is called before the first frame update
+
+    /// <summary>
+    /// Initialize the the camera rig and head to be tracked.
+    /// </summary>
     void Start()
     {
         m_CameraRig = SteamVR_Render.Top().origin;
         m_Head = SteamVR_Render.Top().head;
     }
 
-    // Update is called once per frame
+    /// <summary>
+    /// Update the player location by reading in the touch position of the trackpad
+    /// with the controller rotation angle.
+    /// </summary>
     void Update()
     {
-        Quaternion handRotation = Quaternion.identity;   // Create new quaternion with no rotation
-        handRotation = AxisHand.transform.localRotation;
+        Quaternion handRotation = Quaternion.identity;      // Create new quaternion with no rotation
+        handRotation = AxisHand.transform.localRotation;    // Check the orientation of the controller
+
+        // Adjust the orientation of the player
         Vector3 newRotation = new Vector3(0, transform.eulerAngles.y + handRotation.y, 0);
         Debug.Log("Rotation: " + newRotation);
 
@@ -57,6 +74,11 @@ public class XZ_Movement : MonoBehaviour
         transform.Translate(moveDirection * speed * Time.deltaTime);
     }
 
+    /// <summary>
+    /// Gets the touch position on the trackpad and convert them to a vector to
+    /// map movement direction.
+    /// </summary>
+    /// <returns>velocity of player movement</returns>
     private Vector3 GetBaseInput()
     {
         Vector2 delta = m_TouchPosition[SteamVR_Input_Sources.LeftHand].axis;

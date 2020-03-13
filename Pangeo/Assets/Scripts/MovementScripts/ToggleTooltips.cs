@@ -1,9 +1,13 @@
+/*ToggeleTooltips.cs*/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
-
+/// <summary>
+/// ToggleTooltips class handles the activation and deactivation of the 
+/// controller tooltips with the use of the left and right controller bumpers.
+/// </summary>
 public class ToggleTooltips : MonoBehaviour
 {
     public GameObject ControllerTooltips;
@@ -20,7 +24,7 @@ public class ToggleTooltips : MonoBehaviour
     }
 
     /// <summary>
-    /// Activates the Menu Scene.
+    /// Activates the tooltips.
     /// </summary>
     /// <param name="fromAction">Action that triggered the behavior.</param>
     /// <param name="fromSource">Source of the action.</param>
@@ -31,7 +35,7 @@ public class ToggleTooltips : MonoBehaviour
     }
 
     /// <summary>
-    /// Deactivates the Menu Scene.
+    /// Deactivates the tooltips.
     /// </summary>
     /// <param name="fromAction">Action that triggered the behavior.</param>
     /// <param name="fromSource">Source of the action.</param>
