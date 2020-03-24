@@ -6,7 +6,7 @@ using Valve.VR;
 
 /// <summary>
 /// toggleLocation class handles the activation and deactivation of the 
-/// controller tooltips with the use of the left and right controller bumpers.
+/// location coordinates panel with the use of the left and right controller triggers.
 /// </summary>
 public class VRToggleLocation : MonoBehaviour
 {
@@ -17,7 +17,7 @@ public class VRToggleLocation : MonoBehaviour
     bool active;
 
     /// <summary>
-    /// Adds listeners to the Bumper buttons of the controllers
+    /// Adds listeners to the trigger buttons of the controllers
     /// </summary>
     void Start()
     {
@@ -28,7 +28,7 @@ public class VRToggleLocation : MonoBehaviour
     }
 
     /// <summary>
-    /// Activates the tooltips.
+    /// Toggles the active state of the location panel.
     /// </summary>
     /// <param name="fromAction">Action that triggered the behavior.</param>
     /// <param name="fromSource">Source of the action.</param>
@@ -46,15 +46,4 @@ public class VRToggleLocation : MonoBehaviour
         }
 
     }
-
-    /// <summary>
-    /// Deactivates the tooltips.
-    /// </summary>
-    /// <param name="fromAction">Action that triggered the behavior.</param>
-    /// <param name="fromSource">Source of the action.</param>
-    //public void TooltipInactive(SteamVR_Action_Boolean fromAction, SteamVR_Input_Sources fromSource)
-    //{
-    //    Debug.Log("Deactivating tooltip");
-    //    ControllerTooltips.SetActive(false);
-    //}
 }
