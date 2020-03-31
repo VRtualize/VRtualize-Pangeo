@@ -120,6 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &265540945 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9206834406477399184, guid: 2030b626b49b343428bb4ddee677039e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1807540025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &402536677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -373,13 +379,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82c2855179fa0884ab063236a5f599d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LocDisplay: {fileID: 265540945}
 --- !u!20 &1741485214 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 5303685683826501798, guid: 6aed27f5ab7057f4d8d3eca0132a53ab,
     type: 3}
   m_PrefabInstance: {fileID: 402536677}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1983734007
+--- !u!1001 &1807540025
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -501,5 +508,25 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1741485214}
+    - target: {fileID: 8677881829785269952, guid: 2030b626b49b343428bb4ddee677039e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 186.67
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677881829785269952, guid: 2030b626b49b343428bb4ddee677039e,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 190.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677881829785269952, guid: 2030b626b49b343428bb4ddee677039e,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -373.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 8677881829785269952, guid: 2030b626b49b343428bb4ddee677039e,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -381.13
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2030b626b49b343428bb4ddee677039e, type: 3}

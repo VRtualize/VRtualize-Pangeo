@@ -9,7 +9,7 @@ using UnityEngine;
 /// </summary>
 public class ToggleLocation : MonoBehaviour
 {
-    GameObject LocDisplay;
+    public GameObject LocDisplay;
     bool active;
 
     /// <summary>
@@ -30,6 +30,7 @@ public class ToggleLocation : MonoBehaviour
     {
         if(Input.GetKeyUp(KeyCode.E))
         {
+            Debug.Log("Pressed E");
             if(active)
             {
                 active = false;
