@@ -82,7 +82,7 @@ public class XZ_Movement : MonoBehaviour
     private Vector3 GetBaseInput()
     {
         Vector2 delta = m_TouchPosition[SteamVR_Input_Sources.LeftHand].axis;
-        Debug.Log(delta.x + " " + delta.y);
+        Debug.Log("XZ: " + delta.x + " " + delta.y);
 
         Vector3 p_Velocity = new Vector3(-delta.y, 0, delta.x);
 
