@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 5303685683826501798}
   - component: {fileID: 5303685683826501799}
   - component: {fileID: 5303685683826501796}
+  - component: {fileID: 5936015197256244899}
+  - component: {fileID: 1274195288029946564}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: KeyboardControls
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,3 +98,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49f49bcf5b5a42945bf06bfb8b6171ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5936015197256244899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5303685683826501792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42571786b394b7044b1486c6d81936a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1274195288029946564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5303685683826501792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82c2855179fa0884ab063236a5f599d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocDisplay: {fileID: 0}
