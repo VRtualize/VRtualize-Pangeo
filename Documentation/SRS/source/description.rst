@@ -4,14 +4,20 @@ High Level Description
 System Environment
 -----------------------
 
-.. figure:: _static/images/Local_System.png
-   :width: 50%
+.. figure:: _static/images/System_Architecture.png
+   :width: 75%
 
    Diagram depicting application component interactions
 
-The overall system has one active user (the Explorer), one Local System, and Cooperating Systems. The Explorer interacts with the Local System via VR Equipment. The solid line shows a undirected connection where the Explorer may interact with the Application and send it control signals, and the Application may update and provide Generated Terrain to the Explorer. The Local System is comprised of two major parts, the Application, and the Local Database. The diagram shows these two parts separately to illustrate data flow, but the two parts are not separate, as the one tightly coupled piece, signified by the dotted line. The Local System retrieves Terrain Data from a Cooperating System, and stores it within the Local Database for caching logic. This is one directional from the Cooperating System to the Local Database and is reflected on the diagram. The Application requests Terrain Data from the Local Database through an abstraction layer to loosely couple the Terrain Data to the Application. The Application will use the Terrain Data to create Generated Terrain for the Explorer.
+The overall system has one active user (the explorer), one local system, and cooperating systems. The local system can be further broken down into smaller components, including the application, location manager, data manager, and local database. The application is responsible for requesting and receiving terrain data, and rendering generated terrain for the explorer. It requests data from the location manager, which consists of two parts the data request, which will immediately supply the requested terrain, and the chunk prediction, which tries to predict the next tile of terrain the application will request, and queries the data manager to ensure the terrain data is available and ready. The data manager will handle data preparation, ensuring the terrain data is available and in the requested format. If the data is not in the database, the data manager will request data through an abstraction layer to the cooperating systems. This will ensure that data can be retrieved from multiple sources. Current cooperating systems we support are the USGS database and Bing Maps Developer REST API.
 
 Assumptions, Risks, and Dependencies
 -------------------------------------
 
-Each individual requirement will describe its own assumptions and dependencies if it has any, in the next chapter. The biggest risk would be the motion sickness the Explorer may encounter typical with software using VR Equipment. VRtualize seeks to mitigate this with Application characteristics described in section 3.2.
+A number of factors may affect the requirements specified by the Software Requirements Specifications
+
+* The physical machine may not meet requirements specified by System Characteristics in chapter 3.2.1
+* The local system may be unable to communicate with cooperating systems.
+* Cooperating systems update APIs with breaking changes for our abstraction layer.
+* The explorer may not be familiar with VR equipment.
+* The explorer is prone to motion sickness with VR equipment.
