@@ -7,16 +7,34 @@ The purpose of this document is to present a detailed description of Project Pan
 
 Scope
 ------------------------
-The SDSMT VRtualize Team is working together with L3Harris on Project Pangeo. Pangeo is a research project aiming to render the real world with 3D technology in a dynamically generated virtual reality environment. There are three main goals that contribute to this overall project: imagery retrieval, image caching, and virtual rendering.
 
-Pangeo uses a Local Database to take advantage of table lookups for Terrain Data, and adding an extra layer for predictive buffering of more Terrain Data over the network. This enables the quick access of Terrain Data for new location requests, but does not require the supported locations to be immediately available to the application, which reduces space necessary to store Terrain Data and reduces labor for maintaining and updating that Terrain Data. The Local Database will also serve as the gateway between the Application and multiple Cooperating Systems, sources of Terrain Data. The Local Database will intelligently choose a Cooperating System at Terrain Data request to ensure data availability. This reduces reliability on the availability of a single Cooperating System. Pangeo also utilizes a caching algorithm between the Local Database and the Application to have Terrain Data immediately relevant to the Explorer available. The caching algorithm provides the smooth transition between sections of Generated Terrain to minimize time and increase efficiency of rendering different Terrain Data segments into Generated Terrain as the Explorer moves between Generated Terrain.
+The SDSMT VRtualize Team is working together with L3Harris on Project Pangeo. Pangeo is a platform aiming to render the real world with 3D technology in a dynamically generated virtual reality environment. This platform will cover two major needs of L3-Harris. The first is a method to quickly and easily survey an area in the real world. The second is a cost effective method to train their computer vision algorithms.
+
+For the first method, VRtualize approximates these savings:
+
+* 60% time saved per 5 square miles
+* 196 times more area covered per square degree than distance surveyed in a given work day
+* $1540 saved from room and board to support surveying one square degree
+
+According to our source, within a given work day, data is gathered on latitude and longitude,
+elevation, geographical features, soil composition, and in some cases, civilian features, for 5
+square miles. Pangeo provides latitude and longitude, elevation, and geographical features.
+
+VRtualize also estimated saved costs for training computer vision algorithms below:
+
+* Depending on the aircraft, L3-Harris will save $1,500-$4,000 per flight hour
+* The salary of a cargo pilot, which is around $60,000 a year
 
 Audience
 ------------------------
-Pangeo is first and foremost an internal research project for the company L3Harris. However, the aim is to provide an open source proof of concept for a faster and more efficient method of handling and rendering Terrain Data. This proof of concept has many applications; thus, the target audience is also any project utilizing Generated Terrain.
+
+Pangeo is first and foremost an internal platform for the company L3Harris. However, the aim is to provide an open source proof of concept for a faster and more efficient method of handling and rendering Terrain Data. This proof of concept has many applications; thus, the target audience is also any project utilizing Generated Terrain.
 
 Glossary
 ------------------------
+
+.. tabularcolumns:: |L|L|
+
 +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | Term                                | Definition                                                                                                                                                                                                    |
 +-------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -51,8 +69,8 @@ Glossary
 
 Overview
 ------------------------
-This document is comprised of two parts. First, the High-Level Description, followed by the Requirements Specification.
+This document is comprised of two parts, the high-level description and the requirements specification. 
 
-The High-Level Description includes the overall System Environment; and assumptions, risks, and dependencies VRtualize has considered for this project.
+The high-level description includes the overall system environment; and assumptions, risks, and dependencies VRtualize has considered for this project.
 
-The Requirements Specification outlines the functional and non-functional requirements. Functional requirements can be broken down into use case requirements, Local System requirements, and external interface requirements. Use case requirements are requirements of supported usages between the Application and the Explorer. Local System requirements are requirements of supported usages of the Local System. Local System requirements are further broken down into the Application functions and the Local Database functions. Last, External interface requirements are the requirements of the Cooperating Systems necessary for the Local Database to fetch Terrain Data.
+The requirements specification outlines the functional and non-functional requirements. Functional requirements can be broken down into use case requirements, local system requirements, and external interface requirements. Use case requirements are requirements of supported usages between the application and the explorer. local system requirements are requirements of supported usages of the local system. local system requirements are further broken down into the application functions and the local database functions. Last, external interface requirements are the requirements of the cooperating systems necessary for the local database to fetch terrain data.
