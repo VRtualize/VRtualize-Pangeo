@@ -67,7 +67,6 @@ public class AppHandler : MonoBehaviour
     }
 
     IEnumerator<int> tileMonitor(){
-        Debug.Log("ACTUALYL RUNNING");
         // Check current position
         Vector3 currpos = Globals.position;
         int x = Convert.ToInt32(Math.Round(currpos[0] / 32));
