@@ -2,6 +2,7 @@ using System;
 using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
+using UnityEngine.Networking;
 
 namespace DataManagerUtils
 {
@@ -35,25 +36,41 @@ namespace DataManagerUtils
          * **********************************************************************/
         public void initializeURL()
         {
-            var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
-
-            //Get the imagery sample metadata
-            var response = client.GetAsync("http://dev.virtualearth.net/REST/V1/Imagery/Metadata/Road?output=json&include=ImageryProviders&key=" + this.BingMapsAPIKey).Result;
-
-            if (response.IsSuccessStatusCode)
+            using (UnityWebRequest request = UnityWebRequest.Get("http://dev.virtualearth.net/REST/V1/Imagery/Metadata/Road?output=json&include=ImageryProviders&key=" + this.BingMapsAPIKey))
             {
-                var content = response.Content.ToString();
+                request.SendWebRequest();
 
-                //Get example URL
-                int exampleURLBegin = content.IndexOf("imageUrl") + 11;
-                int exampleURLEnd = content.IndexOf("imageUrlSubdomains");
-                this.exampleURL = content.Substring(exampleURLBegin, exampleURLEnd - (3 + exampleURLBegin));
+                //while (DateTime.Now.Millisecond - start < 200) { await Task.Delay(1); }
+                bool tooManyRequestFlag = false;
+                do
+                {
+                    try
+                    {
+                        while (!request.isDone) ;
+                        if (request.isDone)
+                        {
+                            var content = request.downloadHandler.text;
 
-                //Get the subdomain
-                int subdomainsBegin = content.IndexOf("imageUrlSubdomains") + 22;
-                int subdomainsEnd = content.IndexOf("\"", subdomainsBegin);
-                this.subdomain = content.Substring(subdomainsBegin, subdomainsEnd - subdomainsBegin);
+                            //Get example URL
+                            int exampleURLBegin = content.IndexOf("imageUrl") + 11;
+                            int exampleURLEnd = content.IndexOf("imageUrlSubdomains");
+                            this.exampleURL = content.Substring(exampleURLBegin, exampleURLEnd - (3 + exampleURLBegin));
+
+                            //Get the subdomain
+                            int subdomainsBegin = content.IndexOf("imageUrlSubdomains") + 22;
+                            int subdomainsEnd = content.IndexOf("\"", subdomainsBegin);
+                            this.subdomain = content.Substring(subdomainsBegin, subdomainsEnd - subdomainsBegin);
+                        }
+                    }
+                    catch (HttpRequestException e)
+                    {
+                        if (e.Message == "429 (Too Many Requests)")
+                            tooManyRequestFlag = true;
+                        else
+                            throw e;
+                    }
+                } while (tooManyRequestFlag);
+
             }
         }
 

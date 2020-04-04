@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Net.Http;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public static class BingApiRequestManager
 {
@@ -17,28 +18,34 @@ public static class BingApiRequestManager
     public static string getUrlData(string url)
     {
         Globals.mut.WaitOne();
-        int start = DateTime.Now.Millisecond;
-        var response = client.GetAsync(url).Result;
-        //while (DateTime.Now.Millisecond - start < 200) { await Task.Delay(1); }
-        bool tooManyRequestFlag = false;
-        do
+        using (UnityWebRequest request = UnityWebRequest.Get(url))
         {
-            try
+            request.SendWebRequest();
+
+            //while (DateTime.Now.Millisecond - start < 200) { await Task.Delay(1); }
+            bool tooManyRequestFlag = false;
+            do
             {
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    var content = response.Content;
-                    return response.Content.ToString();
+                    while (!request.isDone);
+                    if (request.isDone)
+                    {
+                        var content = request.downloadHandler.text;
+                        Debug.Log(content);
+                        return content;
+                    }
                 }
-            }
-            catch (HttpRequestException e)
-            {
-                if (e.Message == "429 (Too Many Requests)")
-                    tooManyRequestFlag = true;
-                else
-                    throw e;
-            }
-        } while (tooManyRequestFlag);
+                catch (HttpRequestException e)
+                {
+                    if (e.Message == "429 (Too Many Requests)")
+                        tooManyRequestFlag = true;
+                    else
+                        throw e;
+                }
+            } while (tooManyRequestFlag);
+
+        }
         Globals.mut.ReleaseMutex();
         return "NOTFOUND IN BING API REQUEST MANAGER";
     }

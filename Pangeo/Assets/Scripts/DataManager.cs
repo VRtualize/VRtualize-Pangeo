@@ -18,6 +18,7 @@ namespace DataManagerUtils
         //ElevationDataRequest
         public List<float> ElevationRequest(double latupper, double longleft, double latlower, double longright, int sideLength, int zoomLevel)
         {
+            Debug.Log("DSTART");
             int i = 0;
             int j = 0;
             int k = 0;
@@ -48,7 +49,7 @@ namespace DataManagerUtils
                     newElevChunk.Add(retrieved_chunk[(31-j) * Convert.ToInt32(Math.Sqrt(retrieved_chunk.Count)) + (31-i)]);
                 }
             }
-
+            Debug.Log("DEND");
             return newElevChunk;
         }
 
