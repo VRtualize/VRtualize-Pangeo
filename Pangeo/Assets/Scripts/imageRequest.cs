@@ -33,23 +33,28 @@ namespace DataManagerUtils
         /*************************************************************************
          * 
          * **********************************************************************/
-        async public Task initializeURL()
+        public void initializeURL()
         {
             var client = new HttpClient();
             client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
 
             //Get the imagery sample metadata
-            var content = await client.GetStringAsync("http://dev.virtualearth.net/REST/V1/Imagery/Metadata/Road?output=json&include=ImageryProviders&key=" + this.BingMapsAPIKey);
+            var response = client.GetAsync("http://dev.virtualearth.net/REST/V1/Imagery/Metadata/Road?output=json&include=ImageryProviders&key=" + this.BingMapsAPIKey).Result;
 
-            //Get example URL
-            int exampleURLBegin = content.IndexOf("imageUrl") + 11;
-            int exampleURLEnd = content.IndexOf("imageUrlSubdomains");
-            this.exampleURL = content.Substring(exampleURLBegin, exampleURLEnd - (3 + exampleURLBegin));
+            if (response.IsSuccessStatusCode)
+            {
+                var content = response.Content.ToString();
 
-            //Get the subdomain
-            int subdomainsBegin = content.IndexOf("imageUrlSubdomains") + 22;
-            int subdomainsEnd = content.IndexOf("\"", subdomainsBegin);
-            this.subdomain = content.Substring(subdomainsBegin, subdomainsEnd - subdomainsBegin);
+                //Get example URL
+                int exampleURLBegin = content.IndexOf("imageUrl") + 11;
+                int exampleURLEnd = content.IndexOf("imageUrlSubdomains");
+                this.exampleURL = content.Substring(exampleURLBegin, exampleURLEnd - (3 + exampleURLBegin));
+
+                //Get the subdomain
+                int subdomainsBegin = content.IndexOf("imageUrlSubdomains") + 22;
+                int subdomainsEnd = content.IndexOf("\"", subdomainsBegin);
+                this.subdomain = content.Substring(subdomainsBegin, subdomainsEnd - subdomainsBegin);
+            }
         }
 
         /// <summary>

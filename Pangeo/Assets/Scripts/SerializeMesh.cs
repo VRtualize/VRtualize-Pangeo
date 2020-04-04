@@ -24,16 +24,8 @@ namespace TheTide.utils
             }
         }
 
-        async void Start()
+        void Start()
         {
-            float i = Convert.ToSingle(name.Substring(name.IndexOf('x') + 1, name.IndexOf('y') - name.IndexOf('x') - 1))*256;
-            float j = Convert.ToSingle(name.Substring(name.IndexOf('y') + 1))*256;
-
-            Tuple<Mesh, Material> TileTuple = await TileBuilder.BuildTile(i, j);
-            GetComponent<MeshRenderer>().material = TileTuple.Item2;
-            GetComponent<MeshFilter>().mesh = TileTuple.Item1;
-            transform.localScale = Vector3.one;
-
             if (serialized) return;
 
             Serialize();
@@ -63,14 +55,15 @@ namespace TheTide.utils
             return mesh;
         }
 
-        public void UpdateMesh(Vector3[] newVerticies, Vector2[] newUv)
+        public void UpdateMesh()
         {
-            var mesh = GetComponent<MeshFilter>().mesh;
-            mesh.vertices = newVerticies;
-            mesh.uv = newUv;
+            float i = Convert.ToSingle(name.Substring(name.IndexOf('x') + 1, name.IndexOf('y') - name.IndexOf('x') - 1)) * 32;
+            float j = Convert.ToSingle(name.Substring(name.IndexOf('y') + 1)) * 32;
 
-            mesh.RecalculateNormals();
-            mesh.RecalculateBounds();
+            Tuple<Mesh, Material> TileTuple = TileBuilder.BuildTile(i, j);
+            GetComponent<MeshRenderer>().material = TileTuple.Item2;
+            GetComponent<MeshFilter>().mesh = TileTuple.Item1;
+            transform.localScale = Vector3.one;
         }
     }
 

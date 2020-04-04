@@ -42,7 +42,7 @@ public class BingMapResources : IMapResources
 
         originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
     }
-    async Task<List<float>> IMapResources.getMesh(float x, float z) {
+    List<float> IMapResources.getMesh(float x, float z) {
         // // For now, we're stubbing out a concrete example
         // bingSchema.RootObject items;
         // using (StreamReader fs = new StreamReader(@"bingExample.json")) 
@@ -84,16 +84,16 @@ public class BingMapResources : IMapResources
 
         //Otherwise, get the mesh from Bing's REST API
         DataManager tempDataManager = new DataManager();
-        List<float> mesh = await tempDataManager.ElevationRequest(ucLat, ucLong, lcLat, lcLong, 256, newQuadKey.Length);
+        List<float> mesh = tempDataManager.ElevationRequest(ucLat, ucLong, lcLat, lcLong, 32, newQuadKey.Length);
 
 
         return mesh;
     }
-    async Task<WWW> IMapResources.getSatelliteImagery(float x, float z)
+    WWW IMapResources.getSatelliteImagery(float x, float z)
     {
         if (String.IsNullOrEmpty(restapiurl.subdomain))
         {
-            await restapiurl.initializeURL();
+            restapiurl.initializeURL();
         }
 
         //Use x and z to offset the quadkey

@@ -14,18 +14,22 @@ public static class BingApiRequestManager
         client = new HttpClient();
         client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
     }
-    async public static Task<string> getUrlData(string url)
+    public static string getUrlData(string url)
     {
         Globals.mut.WaitOne();
         int start = DateTime.Now.Millisecond;
-        var content = await client.GetStringAsync(url);
+        var response = client.GetAsync(url).Result;
         //while (DateTime.Now.Millisecond - start < 200) { await Task.Delay(1); }
         bool tooManyRequestFlag = false;
         do
         {
             try
             {
-                content = await client.GetStringAsync(url);
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = response.Content;
+                    return response.Content.ToString();
+                }
             }
             catch (HttpRequestException e)
             {
@@ -34,9 +38,8 @@ public static class BingApiRequestManager
                 else
                     throw e;
             }
-            await Task.Delay(200);
         } while (tooManyRequestFlag);
         Globals.mut.ReleaseMutex();
-        return content;
+        return "NOTFOUND IN BING API REQUEST MANAGER";
     }
 }

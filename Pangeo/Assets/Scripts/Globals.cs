@@ -2,7 +2,7 @@ using System.Threading;
 using UnityEngine;
 public static class Globals
 {
-    public static double latitude = 39.5, longitude = -108.5;
+    public static double latitude = 39.5, longitude = -106.5;
     public static int length, meshLength;
     public static Mutex mut = new Mutex();
 

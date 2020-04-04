@@ -17,9 +17,9 @@ public class Cache
     private string password;
 
     private List<float> mesh;
-	async public Task<List<float>> getMesh(IMapResources res, float x, float z) { return await res.getMesh(x, z); }
-	async public void setMesh(IMapResources resources, float x, float z) { mesh = await resources.getMesh(x, z); }
-	async public Task<WWW> getSatelliteImagery(IMapResources res, float x, float z) { return await res.getSatelliteImagery(x, z); }
+	public List<float> getMesh(IMapResources res, float x, float z) { return res.getMesh(x, z); }
+	async public void setMesh(IMapResources resources, float x, float z) { mesh = resources.getMesh(x, z); }
+	public WWW getSatelliteImagery(IMapResources res, float x, float z) { return res.getSatelliteImagery(x, z); }
     public bool DBcheck(string quadkey){
 
         //Create a connection to the MySQL Database
@@ -48,7 +48,7 @@ public class Cache
         MySqlDataReader queryResult = cmd.ExecuteReader();
         queryResult.Read();
 
-        Texture2D mat = new Texture2D(256,256, TextureFormat.RGBA32, false);
+        Texture2D mat = new Texture2D(32,32, TextureFormat.RGBA32, false);
         mat.LoadImage((byte[])queryResult[2]);
 
         List<float> ElevList = new List<float>();
@@ -61,7 +61,7 @@ public class Cache
         return new Tuple< List<float>, Texture > (ElevList, mat);
     }
 
-    async public void DBInsert(String quadkey, List<float> elevations, Texture mat){
+    public void DBInsert(String quadkey, List<float> elevations, Texture mat){
         //Create a connection to the MySQL Database
         MySqlConnection conn = DBConnect();
 

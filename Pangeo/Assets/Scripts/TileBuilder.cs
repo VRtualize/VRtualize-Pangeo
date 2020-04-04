@@ -6,7 +6,7 @@ using DataManagerUtils;
 
 public static class TileBuilder
 {
-    async public static Task<Tuple<Mesh, Material>> BuildTile(float x, float z){
+    public static Tuple<Mesh, Material> BuildTile(float x, float z){
         
 
         //Calculate the quadkey for the given tile
@@ -22,6 +22,10 @@ public static class TileBuilder
         double ucLat;
         double ucLong;
         QuadKeyFuncs.QuadKeyToLatLong(newQuadKey, out ucLat, out ucLong);
+        Debug.Log(x);
+        Debug.Log(z);
+        Debug.Log(ucLat);
+        Debug.Log(ucLong);
         double lcLat;
         double lcLong;
         //Get the lower right corner
@@ -63,14 +67,14 @@ public static class TileBuilder
 
             //Ready the material
             mat.mainTexture = TileTuple.Item2;
-            mat.mainTextureScale = new Vector2((float)(1.0 / 256.0), (float)(1.0 / 256.0));
+            mat.mainTextureScale = new Vector2((float)(1.0 / 32.0), (float)(1.0 / 32.0));
 
         }
         else
         {
-            Tuple<Mesh, List<float>> ElevTuple = await GetMesh(x, z);
+            Tuple<Mesh, List<float>> ElevTuple = GetMesh(x, z);
             mesh = ElevTuple.Item1;
-            mat = await GetMaterial(x, z);
+            mat = GetMaterial(x, z);
             cache.DBInsert(lcquadkey, ElevTuple.Item2, mat.mainTexture);
         }
 
@@ -86,14 +90,14 @@ public static class TileBuilder
     /// <param name="x">The x coordinate for the tile</param>
     /// <param name="z">The z coordinate for the tile</param>
     /// <param name="name">The name of the tile in the Unity hierarchy</param>
-    async public static Task<Tuple<Mesh,List<float>>> GetMesh(float x, float z)
+    public static Tuple<Mesh,List<float>> GetMesh(float x, float z)
     {
         Cache cache = new Cache();
 
 
 
         //Get image at proper latitude and longitude
-        List<float> ElevList = await cache.getMesh(new BingMapResources(), x, z);
+        List<float> ElevList = cache.getMesh(new BingMapResources(), x, z);
 
         //Perform array size calculations
         int length = ElevList.Count;
@@ -122,17 +126,17 @@ public static class TileBuilder
     /// </summary>
     /// <param name="x">The x coordinate for the tile</param>
     /// <param name="z">The z coordinate for the tile</param>
-    async public static Task<Material> GetMaterial(float x, float z)
+    public static Material GetMaterial(float x, float z)
     {
         Cache cache = new Cache();
 
         // Get image at proper latitude and longitude
-        WWW imgLoader = await cache.getSatelliteImagery(new BingMapResources(), x, z);
+        WWW imgLoader = cache.getSatelliteImagery(new BingMapResources(), x, z);
 
         // Create and set the material
         Material mat = new Material(Shader.Find("Standard"));
         mat.mainTexture = imgLoader.texture;
-        mat.mainTextureScale = new Vector2((float)(1.0 / 256.0), (float)(1.0 / 256.0));
+        mat.mainTextureScale = new Vector2((float)(1.0 / 32.0), (float)(1.0 / 32.0));
 
         return mat;
     }
@@ -155,7 +159,7 @@ public static class TileBuilder
         //X-Z plane points
 
         //TODO Make this our global zoom level
-        float pointSep = Convert.ToSingle(Globals.zoomLevelMetersPerPixel[chosenZoomLevel]);
+        float pointSep = Convert.ToSingle(Globals.zoomLevelMetersPerPixel[chosenZoomLevel] * 8);
 
         //Assign the points to a temporary array
         int pos = 0;
