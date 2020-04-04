@@ -5,7 +5,6 @@ using UnityEngine;
 
 /// <summary>
 /// Takes in the keyboard input and moves the camera respectively.
-/// 
 /// WSAD: Forward, backward, left, right
 /// Space: Ascend
 /// Left CTRL: Descend
@@ -13,7 +12,7 @@ using UnityEngine;
 /// </summary>
 public class KeyboardMovement : MonoBehaviour
 {
-    float speed = 200.0f;       // Default speed
+    float speed = 20.0f;       // Default speed
     float sensitivity = 0.25f;  // Mouse sensitivity
     private Vector3 centerMouse = new Vector3(255, 255, 255);   // Place mouse in the middle of the screen rather than at the top
     private float totalRun = 1.0f;
@@ -48,12 +47,13 @@ public class KeyboardMovement : MonoBehaviour
         newPosition.x = transform.position.x;
         newPosition.z = transform.position.z;
 
-        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftShift))
         {
             newPosition.y = transform.position.y;
         }
         
         transform.position = newPosition;
+        Globals.position = newPosition;
     }
    
     /// <summary>
@@ -64,8 +64,6 @@ public class KeyboardMovement : MonoBehaviour
     { 
         //returns the basic values, if it's 0 than it's not active.
         Vector3 p_Velocity = new Vector3();
-
-
         if (Input.GetKey(KeyCode.W))
         {
             p_Velocity += new Vector3(0, 0, 1);
@@ -82,7 +80,7 @@ public class KeyboardMovement : MonoBehaviour
         {
             p_Velocity += new Vector3(1, 0, 0);
         }
-        if (Input.GetKey(KeyCode.LeftControl))
+        if (Input.GetKey(KeyCode.LeftShift))
         {
             p_Velocity += new Vector3(0, -1, 0);
         }
