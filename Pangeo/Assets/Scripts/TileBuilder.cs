@@ -66,15 +66,6 @@ public static class TileBuilder
             mat.mainTextureScale = new Vector2((float)(1.0 / 32.0), (float)(1.0 / 32.0));
 
         }
-        else
-        {
-            Tuple<Mesh, List<float>> ElevTuple = GetMesh(x, z);
-            mesh = ElevTuple.Item1;
-            mat = GetMaterial(x, z);
-            cache.DBInsert(lcquadkey, ElevTuple.Item2, mat.mainTexture);
-        }
-
-
 
         return new Tuple<Mesh, Material>(mesh, mat);
     }
@@ -116,6 +107,8 @@ public static class TileBuilder
         return new Tuple<Mesh,List<float>>(mesh,ElevList);
     }
 
+
+    //TODO THIS FUNCTION IS NO LONGER NEEDED
     /// <summary>
     /// This creates and returns a material out of satellite imagery corresponding to the global latitude
     /// and global longitude plus an x and z offset.
@@ -127,11 +120,11 @@ public static class TileBuilder
         Cache cache = new Cache();
 
         // Get image at proper latitude and longitude
-        WWW imgLoader = cache.getSatelliteImagery(new BingMapResources(), x, z);
+        //WWW imgLoader = cache.getSatelliteImagery(new BingMapResources(), x, z);
 
         // Create and set the material
         Material mat = new Material(Shader.Find("Standard"));
-        mat.mainTexture = imgLoader.texture;
+        //mat.mainTexture = imgLoader.texture;
         mat.mainTextureScale = new Vector2((float)(1.0 / 32.0), (float)(1.0 / 32.0));
 
         return mat;

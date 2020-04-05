@@ -33,8 +33,8 @@ public class UsgsMapResources : IMapResources
             mesh.Add(BitConverter.ToSingle(b, i));
         return mesh;
     }
-    WWW IMapResources.getSatelliteImagery(float x, float z)
+    async Task<byte[]> IMapResources.getSatelliteImagery(float x, float z)
     {
-        return new WWW("");
+        return null;
     }
 }

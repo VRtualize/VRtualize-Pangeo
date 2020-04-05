@@ -34,34 +34,31 @@ namespace DataManagerUtils
         /*************************************************************************
          * 
          * **********************************************************************/
-        public void initializeURL()
+        async public Task<int> initializeURL()
         {
-            using (UnityWebRequest request = UnityWebRequest.Get("http://dev.virtualearth.net/REST/V1/Imagery/Metadata/Road?output=json&include=ImageryProviders&key=" + this.BingMapsAPIKey))
-            {
-                request.SendWebRequest();
+            HttpClient client = new HttpClient();
+            string requestString = "http://dev.virtualearth.net/REST/V1/Imagery/Metadata/Road?output=json&include=ImageryProviders&key=" + this.BingMapsAPIKey;
 
                 //while (DateTime.Now.Millisecond - start < 200) { await Task.Delay(1); }
                 bool tooManyRequestFlag = false;
                 do
                 {
+                    tooManyRequestFlag = false;
                     try
                     {
-                        while (!request.isDone) ;
-                        if (request.isDone)
-                        {
-                            var content = request.downloadHandler.text;
 
-                            //Get example URL
-                            int exampleURLBegin = content.IndexOf("imageUrl") + 11;
-                            int exampleURLEnd = content.IndexOf("imageUrlSubdomains");
-                            this.exampleURL = content.Substring(exampleURLBegin, exampleURLEnd - (3 + exampleURLBegin));
+                        var content = await client.GetStringAsync(requestString);
 
-                            //Get the subdomain
-                            int subdomainsBegin = content.IndexOf("imageUrlSubdomains") + 22;
-                            int subdomainsEnd = content.IndexOf("\"", subdomainsBegin);
-                            this.subdomain = content.Substring(subdomainsBegin, subdomainsEnd - subdomainsBegin);
-                        }
-                    }
+                        //Get example URL
+                        int exampleURLBegin = content.IndexOf("imageUrl") + 11;
+                        int exampleURLEnd = content.IndexOf("imageUrlSubdomains");
+                        this.exampleURL = content.Substring(exampleURLBegin, exampleURLEnd - (3 + exampleURLBegin));
+
+                        //Get the subdomain
+                        int subdomainsBegin = content.IndexOf("imageUrlSubdomains") + 22;
+                        int subdomainsEnd = content.IndexOf("\"", subdomainsBegin);
+                        this.subdomain = content.Substring(subdomainsBegin, subdomainsEnd - subdomainsBegin);
+                }
                     catch (HttpRequestException e)
                     {
                         if (e.Message == "429 (Too Many Requests)")
@@ -70,8 +67,7 @@ namespace DataManagerUtils
                             throw e;
                     }
                 } while (tooManyRequestFlag);
-
-            }
+            return 0;
         }
 
         /// <summary>

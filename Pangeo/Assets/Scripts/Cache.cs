@@ -19,7 +19,7 @@ public class Cache
     private List<float> mesh;
 	public List<float> getMesh(IMapResources res, float x, float z) { return res.getMesh(x, z); }
 	async public void setMesh(IMapResources resources, float x, float z) { mesh = resources.getMesh(x, z); }
-	public WWW getSatelliteImagery(IMapResources res, float x, float z) { return res.getSatelliteImagery(x, z); }
+	async public Task<byte[]> getSatelliteImagery(IMapResources res, float x, float z) { return await res.getSatelliteImagery(x, z); }
     public bool DBcheck(string quadkey){
 
         //Create a connection to the MySQL Database
@@ -61,12 +61,9 @@ public class Cache
         return new Tuple< List<float>, Texture > (ElevList, mat);
     }
 
-    public void DBInsert(String quadkey, List<float> elevations, Texture mat){
+    public void DBInsert(String quadkey, List<float> elevations, byte[] mat){
         //Create a connection to the MySQL Database
         MySqlConnection conn = DBConnect();
-
-        Texture2D t2d = (Texture2D)mat;
-        var satellite_image = t2d.EncodeToPNG();
 
         byte[] elevationList = new byte[elevations.Count*4];
         for(int i = 0; i < elevations.Count; i++){
@@ -82,7 +79,7 @@ public class Cache
         {
             cmd.Parameters.Add("@quadkey", MySqlDbType.VarChar).Value = quadkey;
             cmd.Parameters.Add("@zoomLevel", MySqlDbType.Int16).Value = quadkey.Length;
-            cmd.Parameters.Add("@image_data", MySqlDbType.MediumBlob).Value = satellite_image;
+            cmd.Parameters.Add("@image_data", MySqlDbType.MediumBlob).Value = mat;
             cmd.Parameters.Add("@elevations", MySqlDbType.MediumBlob).Value = elevationList;
             cmd.ExecuteNonQuery();
         }
