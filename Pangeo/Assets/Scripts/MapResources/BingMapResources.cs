@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Threading.Tasks;
 using DataManagerUtils;
 using MySql.Data.MySqlClient;
+using System.Net.Http;
 
 public class BingMapResources : IMapResources
 {
@@ -89,13 +90,16 @@ public class BingMapResources : IMapResources
 
         return mesh;
     }
-    WWW IMapResources.getSatelliteImagery(float x, float z)
+    async Task<byte[]> IMapResources.getSatelliteImagery(float x, float z)
     {
+        HttpClient client = new HttpClient();
         if (String.IsNullOrEmpty(restapiurl.subdomain))
         {
-            restapiurl.initializeURL();
+            Debug.Log("ABout to initialize url");
+            await restapiurl.initializeURL();
         }
 
+        Debug.Log("YEET");
         //Use x and z to offset the quadkey
         int tilex = 0;
         int tilez = 0;
@@ -106,11 +110,18 @@ public class BingMapResources : IMapResources
         String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
 
         String quadKeyURL = restapiurl.exampleURL;
+        Debug.Log(restapiurl.exampleURL);
+        Debug.Log(restapiurl.subdomain);
         quadKeyURL = quadKeyURL.Replace("{subdomain}", restapiurl.subdomain);
+        Debug.Log("RANDOMG EBSDL");
         quadKeyURL = quadKeyURL.Replace("r{quadkey}", "a" + (string)newQuadKey.ToString());
+        Debug.Log("RANDOMG EBSD");
         quadKeyURL = quadKeyURL.Replace("{culture}", "en-US");
-        WWW wwwLoader = new WWW(quadKeyURL.Replace("\\", ""));
-        while (!wwwLoader.isDone);
-        return wwwLoader;
+        Debug.Log(quadKeyURL);
+        var response = await client.GetAsync(quadKeyURL.Replace("\\", ""));
+        Debug.Log("LOADED");
+        var imageData = response.Content;
+        var imageBytes = await imageData.ReadAsByteArrayAsync();
+        return imageBytes;
     }
 }

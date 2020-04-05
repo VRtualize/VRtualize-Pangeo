@@ -5,6 +5,7 @@ using System.Net.Http;
 using UnityEngine;
 using UnityEngine.Networking;
 
+
 public static class BingApiRequestManager
 {
     private static Semaphore pool;
@@ -32,7 +33,6 @@ public static class BingApiRequestManager
                     if (request.isDone)
                     {
                         var content = request.downloadHandler.text;
-                        Debug.Log(content);
                         return content;
                     }
                 }
@@ -41,7 +41,11 @@ public static class BingApiRequestManager
                     if (e.Message == "429 (Too Many Requests)")
                         tooManyRequestFlag = true;
                     else
+                    {
+                        Globals.mut.ReleaseMutex();
                         throw e;
+                        
+                    }
                 }
             } while (tooManyRequestFlag);
 
