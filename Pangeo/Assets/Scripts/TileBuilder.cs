@@ -6,7 +6,7 @@ using DataManagerUtils;
 
 public static class TileBuilder
 {
-    public static Tuple<Mesh, Material> BuildTile(float x, float z){
+    public static Tuple<Mesh, Material, bool> BuildTile(float x, float z){
         
 
         //Calculate the quadkey for the given tile
@@ -67,7 +67,7 @@ public static class TileBuilder
 
         }
 
-        return new Tuple<Mesh, Material>(mesh, mat);
+        return new Tuple<Mesh, Material, bool>(mesh, mat, entryExists);
     }
 
     /// <summary>

@@ -54,17 +54,6 @@ namespace TheTide.utils
 
             return mesh;
         }
-
-        public void UpdateMesh()
-        {
-            float i = Convert.ToSingle(name.Substring(name.IndexOf('x') + 1, name.IndexOf('y') - name.IndexOf('x') - 1)) * 32;
-            float j = Convert.ToSingle(name.Substring(name.IndexOf('y') + 1)) * 32;
-
-            Tuple<Mesh, Material> TileTuple = TileBuilder.BuildTile(i, j);
-            GetComponent<MeshRenderer>().material = TileTuple.Item2;
-            GetComponent<MeshFilter>().mesh = TileTuple.Item1;
-            transform.localScale = Vector3.one;
-        }
     }
 
 #if UNITY_EDITOR

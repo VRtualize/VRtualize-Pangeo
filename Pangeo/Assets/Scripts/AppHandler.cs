@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections;
 using System.Collections.Generic;
 using DataManagerUtils;
 using System.Linq;
@@ -51,7 +52,6 @@ public class AppHandler : MonoBehaviour
 
         Thread t = new Thread(new ThreadStart(tilePredictor));
         t.Start();
-        Debug.Log("ThreadLAUnCH");
 
         ////Build the starting area
         ////for (int i = -2; i < size; i++)
@@ -134,18 +134,9 @@ public class AppHandler : MonoBehaviour
                             if (!inDatabase)
                             {
 
-                                Debug.Log("THREADCALL");
                                 List<float> mesh = await getElevChunk((float)mapi, (float)mapj);
-                                Debug.Log("MESH RECIEVED");
-
                                 var mat = await BMR.getSatelliteImagery((float)mapi, (float)mapj);
-                                
-
-                                Debug.Log("IMAGE RECIEVED");
-                                
                                 cache.DBInsert(lcquadkey, mesh, mat);
-                                Debug.Log("COMPLETE");
-
                             }
                         }
 
@@ -191,7 +182,6 @@ public class AppHandler : MonoBehaviour
 
         String requestString = "http://dev.virtualearth.net/REST/v1/Elevation/Bounds?bounds=" + (lcLat) + "," + (lcLong) + "," + (ucLat) + "," + (ucLong) + "&rows=32&cols=32&key=" + "AvOVJReSdFZbRWwS3JZI91yN4JLK4RH5lW6mdFTcJOdE-U5PFmC2hGgUtWUM6wsr";
 
-        Debug.Log("ABOUT TO ASK FOR HTTP REQUEST");
         ////////////////////////////////////////////////////////////
         HttpClient client = new HttpClient();
         var content = "";
@@ -199,15 +189,10 @@ public class AppHandler : MonoBehaviour
         bool tooManyRequestFlag = false;
         do
         {
-            Debug.Log("IS THIS INFINITE?0");
             tooManyRequestFlag = false;
             try
             {
-                Debug.Log("BEfore awawit");
-                Debug.Log(requestString);
                 content = await client.GetStringAsync(requestString);
-                
-                Debug.Log("After aweirt");
             }
             catch (HttpRequestException e)
             {
@@ -221,7 +206,6 @@ public class AppHandler : MonoBehaviour
             }
         } while (tooManyRequestFlag);
 
-        Debug.Log("GOT HTTP REQ");
         ////////////////////////////////////////////////////////////
 
         int start = content.IndexOf("\"elevations\"") + 14;
@@ -262,21 +246,24 @@ public class AppHandler : MonoBehaviour
                 Tuple<int, int> tempTuple = new Tuple<int, int>(i, j);
                 if (!active.Contains(tempTuple))
                 {
-                    counter = (counter + 1) % worldSize;
-                    active.Add(tempTuple);
                     //order a prefab to be created with the new coordinates
-                    GameObject Obj = worldTiles[counter];
+                    GameObject Obj = worldTiles[counter + 1];
                     Obj.name = "Tilex" + Convert.ToString(i) + "y" + Convert.ToString(j);
                     Obj.transform.position = new Vector3((i * 31), 0, (j) * 31);
                     Obj.transform.rotation = Quaternion.identity;
                     Obj.transform.localScale = new Vector3(256 / 10 + 1, 256 / 10 + 1, 256 / 10 + 1);
 
-                    Tuple<Mesh, Material> TileTuple = TileBuilder.BuildTile(i * 256, -j * 256);
+                    Tuple<Mesh, Material, bool> TileTuple = TileBuilder.BuildTile(i * 256, -j * 256);
                     //Tuple<Mesh, Material> TileTuple = new Tuple<Mesh, Material>(new Mesh(), new Material(Shader.Find("Standard")));
 
-                    Obj.GetComponent<MeshRenderer>().material = TileTuple.Item2;
-                    Obj.GetComponent<MeshFilter>().mesh = TileTuple.Item1;
-                    Obj.transform.localScale = Vector3.one;
+                    if (TileTuple.Item3)
+                    {
+                        Obj.GetComponent<MeshRenderer>().material = TileTuple.Item2;
+                        Obj.GetComponent<MeshFilter>().mesh = TileTuple.Item1;
+                        Obj.transform.localScale = Vector3.one;
+                        active.Add(tempTuple);
+                        counter = (counter + 1) % worldSize;
+                    }
                     yield return 1;
                 }
 

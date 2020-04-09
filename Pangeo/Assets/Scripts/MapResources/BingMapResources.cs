@@ -95,11 +95,9 @@ public class BingMapResources : IMapResources
         HttpClient client = new HttpClient();
         if (String.IsNullOrEmpty(restapiurl.subdomain))
         {
-            Debug.Log("ABout to initialize url");
             await restapiurl.initializeURL();
         }
 
-        Debug.Log("YEET");
         //Use x and z to offset the quadkey
         int tilex = 0;
         int tilez = 0;
@@ -110,16 +108,10 @@ public class BingMapResources : IMapResources
         String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
 
         String quadKeyURL = restapiurl.exampleURL;
-        Debug.Log(restapiurl.exampleURL);
-        Debug.Log(restapiurl.subdomain);
         quadKeyURL = quadKeyURL.Replace("{subdomain}", restapiurl.subdomain);
-        Debug.Log("RANDOMG EBSDL");
         quadKeyURL = quadKeyURL.Replace("r{quadkey}", "a" + (string)newQuadKey.ToString());
-        Debug.Log("RANDOMG EBSD");
         quadKeyURL = quadKeyURL.Replace("{culture}", "en-US");
-        Debug.Log(quadKeyURL);
         var response = await client.GetAsync(quadKeyURL.Replace("\\", ""));
-        Debug.Log("LOADED");
         var imageData = response.Content;
         var imageBytes = await imageData.ReadAsByteArrayAsync();
         return imageBytes;
