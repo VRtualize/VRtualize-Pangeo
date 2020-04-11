@@ -34,6 +34,7 @@ public class Cache
         return (num_results > 0);
 
     }
+    
 
     public Tuple<List<float>, Texture> DBGet(String quadkey)
     {
@@ -87,11 +88,13 @@ public class Cache
 
     public MySqlConnection DBConnect()
     {
-        this.host = "manticorite.duckdns.org";
-        this.port = 33066;
-        this.database = "map_data";
-        this.username = "VRPAN";
-        this.password = "VRPAN";
+        string[] lines = System.IO.File.ReadAllLines(@"Assets/config");
+
+        this.host = lines[1].Substring(9, lines[1].Length - 10); ;
+        this.port = Convert.ToInt32(lines[2].Substring(9, lines[2].Length - 10)) ;
+        this.database = lines[3].Substring(18, lines[3].Length - 19); ;
+        this.username = lines[4].Substring(13, lines[4].Length - 14); ;
+        this.password = lines[5].Substring(13, lines[5].Length - 14); ;
 
         // Create string with connection credentials.
         String connString = "Server=" + this.host + ";Database=" + this.database

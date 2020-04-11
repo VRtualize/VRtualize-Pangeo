@@ -12,6 +12,18 @@ namespace DataManagerUtils
     /// </summary>
     public static class QuadKeyFuncs
     {
+        /// <summary>
+        /// This function allows you to put in a longitude, latitiude, and zoomLevel into it
+        /// and returns a string with the quadkey containing that coordinate at that zoom 
+        /// level. This function was originally created by Microsoft for Bing Maps and
+        /// is owned by Microsoft.
+        /// </summary>
+        /// <param name="latitude">Latitude of coordinate</param>
+        /// <param name="longitude">Longitude of coordinate</param>
+        /// <param name="zoomLevel">Zoom Level of desired quadkey (As described by Bing Maps API)
+        /// https://docs.microsoft.com/en-us/bingmaps/articles/understanding-scale-and-resolution
+        /// </param>
+        /// <returns></returns>
         public static string getQuadKey(double latitude, double longitude, int zoomLevel)
         {
             //Calculate the QuadKey
@@ -40,7 +52,13 @@ namespace DataManagerUtils
             return quadKey.ToString();
         }
 
-
+        /// <summary>
+        /// Converts a quadkey to a latitude and longitude. This function is only as accurate as 
+        /// the Mercator projection provided by Bing Maps
+        /// </summary>
+        /// <param name="quadKey">quadkey of the tile in Bing Maps</param>
+        /// <param name="latitude">A variable to return the latitiude through</param>
+        /// <param name="longitude">A variable to return the longitude through</param>
         public static void QuadKeyToLatLong(string quadKey, out double latitude, out double longitude)
         {
 
