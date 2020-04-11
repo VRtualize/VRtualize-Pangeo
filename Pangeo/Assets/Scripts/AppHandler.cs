@@ -117,19 +117,8 @@ public class AppHandler : MonoBehaviour
                             initx = initx + Convert.ToInt32(mapi) / 256;
                             initz = initz + Convert.ToInt32(mapj) / 256;
                             String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(initx, initz, initChosenZoomLevel);
-                            double ucLat;
-                            double ucLong;
-                            QuadKeyFuncs.QuadKeyToLatLong(newQuadKey, out ucLat, out ucLong);
-                            //Get the lower right corner
-                            int tilex = 0;
-                            int tilez = 0;
-                            int chosenZoomLevel;
-                            QuadKeyFuncs.QuadKeyToTileXY(newQuadKey, out tilex, out tilez, out chosenZoomLevel);
-                            tilex = tilex + 1;
-                            tilez = tilez + 1;
-                            String lcquadkey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
 
-                            bool inDatabase = cache.DBcheck(lcquadkey);
+                            bool inDatabase = cache.DBcheck(newQuadKey);
 
                             
                             //If it doesn't exist in the database, we will add it ourselves
@@ -138,7 +127,7 @@ public class AppHandler : MonoBehaviour
 
                                 List<float> mesh = await getElevChunk((float)mapi, (float)mapj);
                                 var mat = await BMR.getSatelliteImagery((float)mapi, (float)mapj);
-                                cache.DBInsert(lcquadkey, mesh, mat);
+                                cache.DBInsert(newQuadKey, mesh, mat);
                             }
                         }
 

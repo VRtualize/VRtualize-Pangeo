@@ -21,8 +21,7 @@ public class Cache
     private string database;
     private string username;
     private string password;
-	public List<float> getMesh(IMapResources res, float x, float z) { return res.getMesh(x, z); }
-	async public Task<byte[]> getSatelliteImagery(IMapResources res, float x, float z) { return await res.getSatelliteImagery(x, z); }
+
     public bool DBcheck(string quadkey){
 
         //Create a connection to the MySQL Database
