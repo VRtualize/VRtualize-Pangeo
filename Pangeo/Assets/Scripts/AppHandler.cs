@@ -113,7 +113,7 @@ public class AppHandler : MonoBehaviour
                         int mapj = -j * 256;
                         //Check the database for current tile using quadkey
                         //Calculate the quadkey for the given tile
-                        String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
+                        String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.latitude, Globals.longitude, 14);
                         //Use x and z to offset the quadkey
                         int initx = 0;
                         int initz = 0;
@@ -150,7 +150,7 @@ public class AppHandler : MonoBehaviour
     /// <returns></returns>
     async public Task<List<float>> getElevChunk(float x, float z)
     {
-        String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
+        String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.latitude, Globals.longitude, 14);
 
         int initx = 0;
         int initz = 0;
