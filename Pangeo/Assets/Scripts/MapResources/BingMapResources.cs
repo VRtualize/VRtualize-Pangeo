@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataManagerUtils;
 using MySql.Data.MySqlClient;
 using System.Net.Http;
+using System.Linq;
 
 public class BingMapResources : IMapResources
 {
@@ -101,12 +102,7 @@ public class BingMapResources : IMapResources
         int j = 0;
         int k = 0;
 
-        //Request Bing API elevations using input bounding box
-        //var client = new HttpClient();
-        // client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
-
         String requestString = "http://dev.virtualearth.net/REST/v1/Elevation/Bounds?bounds=" + (latlower) + "," + (longright) + "," + (latupper) + "," + (longleft) + "&rows=32&cols=32&key=" + Globals.BingAPIKey;
-        //var content = await client.GetStringAsync(requestString);
         var content = BingApiRequestManager.getUrlData(requestString);
         int start = content.IndexOf("\"elevations\"") + 14;
         int end = content.IndexOf("\"zoomLevel\"") - 2;
