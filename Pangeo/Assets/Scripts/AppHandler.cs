@@ -158,8 +158,8 @@ public class AppHandler : MonoBehaviour
         QuadKeyFuncs.QuadKeyToTileXY(originQuadKey, out initx, out initz, out initChosenZoomLevel);
         initx = initx + Convert.ToInt32(x) / 256;
         initz = initz + Convert.ToInt32(z) / 256;
+        //Get the upper left corner
         String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(initx, initz, initChosenZoomLevel);
-
         double ucLat;
         double ucLong;
         QuadKeyFuncs.QuadKeyToLatLong(newQuadKey, out ucLat, out ucLong);
@@ -173,14 +173,9 @@ public class AppHandler : MonoBehaviour
         tilex = tilex + 1;
         tilez = tilez + 1;
         String lcquadkey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
-
         QuadKeyFuncs.QuadKeyToLatLong(lcquadkey, out lcLat, out lcLong);
 
-        int i = 0;
-        int j = 0;
-        int k = 0;
-
-        //Request Bing API elevations using input bounding box
+        //Request Bing API elevations using the corners as a bounding box
         String requestString = "http://dev.virtualearth.net/REST/v1/Elevation/Bounds?bounds=" + (lcLat) + "," + (lcLong) + "," + (ucLat) + "," + (ucLong) + "&rows=32&cols=32&key=" + Globals.BingAPIKey;
         HttpClient client = new HttpClient();
         var content = "";
@@ -204,7 +199,11 @@ public class AppHandler : MonoBehaviour
             }
         } while (tooManyRequestFlag);
 
+        int i;
+        int j;
+        int k;
 
+        //Convert the retrieved elevations into a usable chunk
         int start = content.IndexOf("\"elevations\"") + 14;
         int end = content.IndexOf("\"zoomLevel\"") - 2;
         String elevation_string = content.Substring(start, end - start);
@@ -215,8 +214,10 @@ public class AppHandler : MonoBehaviour
             retrieved_chunk.Add(Convert.ToSingle(elevation_strings[k]));
         }
 
+        //Flip the values in the retrieved chunks so that it matches the order of satellite imagery
+        //Note that elevations in Bing go from the bottom up in a square while the imagery uses the 
+        //top left corner as its baseline. We chose to change the order of the elevations
         List<float> newElevChunk = new List<float>();
-        //Place elevations into elevation chunk
         for (i = 0; i < Math.Sqrt(retrieved_chunk.Count); i++)
         {
             for (j = 0; j < Math.Sqrt(retrieved_chunk.Count); j++)
@@ -227,14 +228,20 @@ public class AppHandler : MonoBehaviour
         return newElevChunk;
     }
 
-    IEnumerator<int> tileMonitor(){
+    /// <summary>
+    /// This is a coroutine to place tiles into Unity in between frames. This coroutine will
+    /// run until it hits yield and then return control to the main thread. It is essential
+    /// in preventing Unity from freezing up while loading chunks. The only latency left is 
+    /// in the call to the database. Note that we planned to solve this with an on disk cache.
+    /// </summary>
+    IEnumerator tileMonitor(){
         // Check current position
         Vector3 currpos = Globals.position;
         int x = Convert.ToInt32(Math.Round(currpos[0] / 32));
         int z = Convert.ToInt32(Math.Round(currpos[2] / 32));
 
         //Check for tiles within needed range
-        //We want all tiles in a 3x3 range
+        //We want all tiles in a 6x6 range
         for (int i = x - 3; i < x + 3; i++)
         {
             for (int j = z - 3; j < z + 3; j++)
@@ -250,9 +257,10 @@ public class AppHandler : MonoBehaviour
                     Obj.transform.rotation = Quaternion.identity;
                     Obj.transform.localScale = new Vector3(256 / 10 + 1, 256 / 10 + 1, 256 / 10 + 1);
 
+                    //Get elevations and imagery from the database to build the tile
                     Tuple<Mesh, Material, bool> TileTuple = TileBuilder.BuildTile(i * 256, -j * 256);
-                    //Tuple<Mesh, Material> TileTuple = new Tuple<Mesh, Material>(new Mesh(), new Material(Shader.Find("Standard")));
 
+                    //If the database returned a found true in the bool, apply the information to the tile
                     if (TileTuple.Item3)
                     {
                         Obj.GetComponent<MeshRenderer>().material = TileTuple.Item2;
@@ -261,13 +269,10 @@ public class AppHandler : MonoBehaviour
                         active.Add(tempTuple);
                         counter = (counter + 1) % worldSize;
                     }
-                    yield return 1;
+                    yield return null;
                 }
-
             }
         }
     }
-
-
 }
 
