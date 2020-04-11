@@ -18,6 +18,7 @@ public static class TileBuilder
     /// <param name="z">The Z coordinate for the searched position in unity coordinates</param>
     /// <returns></returns>
     public static Tuple<Mesh, Material, bool> BuildTile(float x, float z){
+
         //Calculate the quadkey for the original starting tile
         String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
         int initx = 0;
