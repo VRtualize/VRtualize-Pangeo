@@ -27,57 +27,63 @@ public class AppHandler : MonoBehaviour
     private DateTime prevtime;
     private int counter;
 
+    /// <summary>
+    /// The constructor for AppHandler that sets initial variables
+    /// </summary>
     AppHandler()
     {
         counter = 0;
-        worldSize = 1000;
+        worldSize = 10000;
         active = new HashSet<Tuple<int, int>>();
         prevtime = DateTime.Now;
         worldTiles = new List<GameObject>();
     }
 
+    /// <summary>
+    /// The start function for AppHandler. Being a MonoBehaviour, this will only run once.
+    /// It gets the Bing Maps API key, loads in the tile prefab, reserves space in memory 
+    /// to hold the world and then sets off the thread for the tile predictor which run for
+    /// the entirety of the program.
+    /// </summary>
     void Start()
     {
-        ////Future Work: Query starting location from user via menu.
-
-        ////The starting environment will be size^2 tiles in a square shape
-        //int size = 2;
-
+        //Retrieve the Bing Maps API Key from the config file
         string[] lines = System.IO.File.ReadAllLines(@"Assets/config");
         string apikey = lines[0].Substring(17, lines[0].Length - 18);
         Globals.BingAPIKey = apikey;
 
+        //Load in the prefab for all tiles
         pPrefab = Resources.Load("Prefabs/Tile");
 
+        //Create a reserved list of tiles to be used when loading tiles
         for (int i = 0; i < worldSize; i++)
         {
             worldTiles.Add((GameObject)GameObject.Instantiate(pPrefab, Vector3.one, Quaternion.identity));
         }
 
+        //Launch the Tile Predictor thread
         Thread t = new Thread(new ThreadStart(tilePredictor));
         t.Start();
-
-        ////Build the starting area
-        ////for (int i = -2; i < size; i++)
-        ////{
-        ////    for (int j = -2; j < size; j++)
-        ////    {
-        ////        GameObject Obj = (GameObject)GameObject.Instantiate(pPrefab, new Vector3((i * 256 - i), 0, (j) - (j) * 256), Quaternion.identity);
-        ////        Obj.name = "Tilex" + Convert.ToString(i) + "y" + Convert.ToString(j);
-        ////        Obj.transform.localScale = new Vector3(256 / 10 + 1, 256 / 10 + 1, 256 / 10 + 1);
-        ////    }
-        ////}
-
-        //PositionObserver po = new PositionObserver();
-        //Thread t = new Thread(new ThreadStart(po.update));
-        //t.Start();
     }
 
+    /// <summary>
+    /// The update function runs once for every frame rendered by Unity. It just runs the
+    /// coroutine for placing tiles in Unity. It runs for a small while and then yields 
+    /// control back to the main thread when it hits its yield.
+    /// </summary>
     void Update()
     {
+        //Run the coroutine of loading each tile in the middle of each frame rendered
         StartCoroutine(tileMonitor());
     }
 
+    /// <summary>
+    /// This function is the function run inside the Tile Prediction thread started in 
+    /// AppHandler's start function. It runs for the entire program, checking the current
+    /// location of the camera and loading any tiles nearby that it can't find already into
+    /// the database. Having the database work as a cache like this makes it easy to have tiles
+    /// ready for the actual placement function later.
+    /// </summary>
     async public void tilePredictor()
     {
         //Create a cache object to do a database check
@@ -87,56 +93,61 @@ public class AppHandler : MonoBehaviour
 
         while(true)
         {
-
-
             // Check current position
             Vector3 currpos = Globals.position;
             int x = Convert.ToInt32(Math.Round(currpos[0] / 32));
             int z = Convert.ToInt32(Math.Round(currpos[2] / 32));
 
             //Check for tiles within needed range
-            //We want all tiles in a 3x3 range
-            for (int i = x - 7; i < x + 7; i++)
+            //We want all tiles in a 12x12 range
+            for (int i = x - 6; i < x + 6; i++)
             {
-                for (int j = z - 7; j < z + 7; j++)
+                for (int j = z - 6; j < z + 6; j++)
                 {
-                        //Check if current tile exists
-                        Tuple<int, int> tempTuple = new Tuple<int, int>(i, j);
-                        if (!active.Contains(tempTuple))
+                    //Check if current tile exists
+                    Tuple<int, int> tempTuple = new Tuple<int, int>(i, j);
+                    if (!active.Contains(tempTuple))
+                    {
+                        //Make sure that the maps coordinates are converted from Unity to Bing Maps TileXY
+                        int mapi = i * 256;
+                        int mapj = -j * 256;
+                        //Check the database for current tile using quadkey
+                        //Calculate the quadkey for the given tile
+                        String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
+                        //Use x and z to offset the quadkey
+                        int initx = 0;
+                        int initz = 0;
+                        int initChosenZoomLevel = 14;
+                        QuadKeyFuncs.QuadKeyToTileXY(originQuadKey, out initx, out initz, out initChosenZoomLevel);
+                        initx = initx + Convert.ToInt32(mapi) / 256;
+                        initz = initz + Convert.ToInt32(mapj) / 256;
+                        String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(initx, initz, initChosenZoomLevel);
+
+                        bool inDatabase = cache.DBcheck(newQuadKey);
+
+                        //If it doesn't exist in the database, we will add it ourselves
+                        if (!inDatabase)
                         {
-                            int mapi = i * 256;
-                            int mapj = -j * 256;
-                            //Check the database for current tile using quadkey
-                            //Calculate the quadkey for the given tile
-                            String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
-                            //Use x and z to offset the quadkey
-                            int initx = 0;
-                            int initz = 0;
-                            int initChosenZoomLevel = 14;
-                            QuadKeyFuncs.QuadKeyToTileXY(originQuadKey, out initx, out initz, out initChosenZoomLevel);
-                            initx = initx + Convert.ToInt32(mapi) / 256;
-                            initz = initz + Convert.ToInt32(mapj) / 256;
-                            String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(initx, initz, initChosenZoomLevel);
 
-                            bool inDatabase = cache.DBcheck(newQuadKey);
-
-                            
-                            //If it doesn't exist in the database, we will add it ourselves
-                            if (!inDatabase)
-                            {
-
-                                List<float> mesh = await getElevChunk((float)mapi, (float)mapj);
-                                var mat = await BMR.getSatelliteImagery((float)mapi, (float)mapj);
-                                cache.DBInsert(newQuadKey, mesh, mat);
-                            }
+                            List<float> mesh = await getElevChunk((float)mapi, (float)mapj);
+                            var mat = await BMR.getSatelliteImagery((float)mapi, (float)mapj);
+                            cache.DBInsert(newQuadKey, mesh, mat);
                         }
+                    }
 
                 }
             }
         }
     }
 
-
+    /// <summary>
+    /// This is an asynchronous version of the getElevFunction in BingMapResources.cs.
+    /// It gets an elevation chunk from BingMaps Rest API using an offset from the 
+    /// starting latitude and longitude in globals. 
+    /// </summary>
+    /// <param name="x">The Unity coordinate for X</param>
+    /// <param name="z">The Unity coordinate for Z</param>
+    /// <returns></returns>
     async public Task<List<float>> getElevChunk(float x, float z)
     {
         String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
@@ -170,13 +181,9 @@ public class AppHandler : MonoBehaviour
         int k = 0;
 
         //Request Bing API elevations using input bounding box
-
-        String requestString = "http://dev.virtualearth.net/REST/v1/Elevation/Bounds?bounds=" + (lcLat) + "," + (lcLong) + "," + (ucLat) + "," + (ucLong) + "&rows=32&cols=32&key=" + "AvOVJReSdFZbRWwS3JZI91yN4JLK4RH5lW6mdFTcJOdE-U5PFmC2hGgUtWUM6wsr";
-
-        ////////////////////////////////////////////////////////////
+        String requestString = "http://dev.virtualearth.net/REST/v1/Elevation/Bounds?bounds=" + (lcLat) + "," + (lcLong) + "," + (ucLat) + "," + (ucLong) + "&rows=32&cols=32&key=" + Globals.BingAPIKey;
         HttpClient client = new HttpClient();
         var content = "";
-        //while (DateTime.Now.Millisecond - start < 200) { await Task.Delay(1); }
         bool tooManyRequestFlag = false;
         do
         {
@@ -197,7 +204,6 @@ public class AppHandler : MonoBehaviour
             }
         } while (tooManyRequestFlag);
 
-        ////////////////////////////////////////////////////////////
 
         int start = content.IndexOf("\"elevations\"") + 14;
         int end = content.IndexOf("\"zoomLevel\"") - 2;
