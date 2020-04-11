@@ -11,6 +11,9 @@ public class BingMapResources : IMapResources
 {
     private String originQuadKey;
     private imageURLRequest restapiurl;
+    /// <summary>
+    /// Bing Map's REST API schema as an object for UnityEngine.JSONSerializeModule
+    /// </summary>
     // public class bingSchema
     // {
     //     public class Resource
@@ -35,6 +38,9 @@ public class BingMapResources : IMapResources
     //         public string traceId { get; set; }
     //     }
     // }
+    /// <summary>
+    /// Constructor for BingMapResources.
+    /// </summary>
     public BingMapResources()
     {
         string[] lines = System.IO.File.ReadAllLines(@"Assets/config");
@@ -43,6 +49,12 @@ public class BingMapResources : IMapResources
 
         originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
     }
+    /// <summary>
+    /// Override the getMesh function to get data from Bing's REST API
+    /// </summary>
+    /// <param name="x">Unity units in direction x from origin</param>
+    /// <param name="z">Unity units in direction z from origin</param>
+    /// <returns>A list of elevation points</returns>
     List<float> IMapResources.getMesh(float x, float z) {
         // // For now, we're stubbing out a concrete example
         // bingSchema.RootObject items;
@@ -90,6 +102,12 @@ public class BingMapResources : IMapResources
 
         return mesh;
     }
+    /// <summary>
+    /// Override the getSatelliteImagery to get an image from Bing's REST API
+    /// </summary>
+    /// <param name="x">Unity units in direction x from origin</param>
+    /// <param name="z">Unity units in direction z from origin</param>
+    /// <returns>A 2D texture of the image as a byte stream</returns>
     async Task<byte[]> IMapResources.getSatelliteImagery(float x, float z)
     {
         HttpClient client = new HttpClient();

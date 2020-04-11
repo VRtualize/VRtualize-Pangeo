@@ -30,7 +30,7 @@ namespace DataManagerUtils
         /// accessing Bing Maps Tiles. More information can be found in the 
         /// following URL.https://docs.microsoft.com/en-us/bingmaps/rest-services/directly-accessing-the-bing-maps-tiles
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Success Status</returns>
         /*************************************************************************
          * 
          * **********************************************************************/
@@ -80,7 +80,7 @@ namespace DataManagerUtils
         /// <param name="latitude"> Requested User Latitude</param>
         /// <param name="longitude"> Requested User Longitude</param>
         /// <param name="zoomLevel"> Requested Zoom Level for Tile</param>
-        /// <returns></returns>
+        /// <returns>The Bing REST API url to retrieve data from</returns>
         public string GetQuadKeyURL(double latitude, double longitude, int zoomLevel)
         {
             String quadKeyURL = " ";

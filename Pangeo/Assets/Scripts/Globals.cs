@@ -1,5 +1,8 @@
 using System.Threading;
 using UnityEngine;
+/// <summary>
+/// A class containing variables with a lifetime of the application.
+/// </summary>
 public static class Globals
 {
     public static double latitude = 39.5, longitude = -106.5;
