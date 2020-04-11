@@ -7,7 +7,13 @@ using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-
+/// <summary>
+/// The Cache class provides functions to get a mesh using Unity grid coordinates,
+/// get satellite imagery for a mesh using the same coordinates, and provides 
+/// database functionality to get both meshes and satellite imagery if it exists 
+/// in the connected database. Credentials and address for the database must be 
+/// placed in the config file.
+/// </summary>
 public class Cache
 {
     private string host;
@@ -15,8 +21,6 @@ public class Cache
     private string database;
     private string username;
     private string password;
-
-    private List<float> mesh;
 	public List<float> getMesh(IMapResources res, float x, float z) { return res.getMesh(x, z); }
 	async public Task<byte[]> getSatelliteImagery(IMapResources res, float x, float z) { return await res.getSatelliteImagery(x, z); }
     public bool DBcheck(string quadkey){

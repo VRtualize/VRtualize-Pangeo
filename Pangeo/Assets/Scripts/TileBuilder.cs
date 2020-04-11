@@ -6,40 +6,41 @@ using DataManagerUtils;
 
 public static class TileBuilder
 {
+    /// <summary>
+    /// This function takes in two Unity coordinates and finds the quadkey
+    /// of those coordinates based on the Global starting latitude and longitude.
+    /// It then checks to see if that quad key already exists in the database. 
+    /// If it doesn't find the entry, it will return an empty mesh and material
+    /// with a bool to indicate that these are not database entries, but rather
+    /// defaults
+    /// </summary>
+    /// <param name="x">The X coordinate for the searched position in unity coordinates</param>
+    /// <param name="z">The Z coordinate for the searched position in unity coordinates</param>
+    /// <returns></returns>
     public static Tuple<Mesh, Material, bool> BuildTile(float x, float z){
-        
-
-        //Calculate the quadkey for the given tile
+        //Calculate the quadkey for the original starting tile
         String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
-        //Use x and z to offset the quadkey
         int initx = 0;
         int initz = 0;
         int initChosenZoomLevel = 14;
+        //Find the X and Y coordinate in Bing Maps Tiles
         QuadKeyFuncs.QuadKeyToTileXY(originQuadKey, out initx, out initz, out initChosenZoomLevel);
+        //Offset the BingMapsAPI coordinates from the starting point by x and z in unity
         initx = initx + Convert.ToInt32(x) / 256;
         initz = initz + Convert.ToInt32(z) / 256;
-        String newQuadKey = QuadKeyFuncs.TileXYToQuadKey(initx, initz, initChosenZoomLevel);
-        double ucLat;
-        double ucLong;
-        QuadKeyFuncs.QuadKeyToLatLong(newQuadKey, out ucLat, out ucLong);
-        //Get the lower right corner
-        int tilex = 0;
-        int tilez = 0;
-        int chosenZoomLevel;
-        QuadKeyFuncs.QuadKeyToTileXY(newQuadKey, out tilex, out tilez, out chosenZoomLevel);
-        tilex = tilex + 1;
-        tilez = tilez + 1;
-        String lcquadkey = QuadKeyFuncs.TileXYToQuadKey(tilex, tilez, chosenZoomLevel);
+        //Get a quadkey for the new location
+        String currQuadKey = QuadKeyFuncs.TileXYToQuadKey(initx, initz, initChosenZoomLevel);
 
         //Check DB for current entry
         Cache cache = new Cache();
-        bool entryExists = cache.DBcheck(lcquadkey);
+        bool entryExists = cache.DBcheck(currQuadKey);
 
+        //Create an empty mesh and Material
         Mesh mesh = new Mesh();
         Material mat = new Material(Shader.Find("Standard"));
 
         if (entryExists){
-            Tuple<List<float>, Texture> TileTuple = cache.DBGet(lcquadkey);
+            Tuple<List<float>, Texture> TileTuple = cache.DBGet(currQuadKey);
 
             //Ready the mesh
             //Perform array size calculations
@@ -66,66 +67,6 @@ public static class TileBuilder
         }
 
         return new Tuple<Mesh, Material, bool>(mesh, mat, entryExists);
-    }
-
-    /// <summary>
-    /// This function is used to create a new tile and place it into the play
-    /// environment.
-    /// </summary>
-    /// <param name="x">The x coordinate for the tile</param>
-    /// <param name="z">The z coordinate for the tile</param>
-    /// <param name="name">The name of the tile in the Unity hierarchy</param>
-    public static Tuple<Mesh,List<float>> GetMesh(float x, float z)
-    {
-        Cache cache = new Cache();
-
-
-
-        //Get image at proper latitude and longitude
-        List<float> ElevList = cache.getMesh(new BingMapResources(), x, z);
-
-        //Perform array size calculations
-        int length = ElevList.Count;
-        int side = (int)Mathf.Sqrt(length);
-        int sqrPtCount = (int)(Mathf.Pow((side - 1), 2) * 6);
-
-        //Create empty vertices, uv, and triangles arrays and set their values
-        Vector3[] vertices = fillVert(length, side, ElevList);
-        Vector2[] uv = fillUv(length, side);
-        int[] triangles = fillTri(sqrPtCount, side);
-
-        //Create a new Mesh to render, assign its components, and recalculate
-        //its normals for smooth rendering
-        Mesh mesh = new Mesh();
-        mesh.vertices = vertices;
-        mesh.uv = uv;
-        mesh.triangles = triangles;
-        mesh.RecalculateNormals();
-
-        return new Tuple<Mesh,List<float>>(mesh,ElevList);
-    }
-
-
-    //TODO THIS FUNCTION IS NO LONGER NEEDED
-    /// <summary>
-    /// This creates and returns a material out of satellite imagery corresponding to the global latitude
-    /// and global longitude plus an x and z offset.
-    /// </summary>
-    /// <param name="x">The x coordinate for the tile</param>
-    /// <param name="z">The z coordinate for the tile</param>
-    public static Material GetMaterial(float x, float z)
-    {
-        Cache cache = new Cache();
-
-        // Get image at proper latitude and longitude
-        //WWW imgLoader = cache.getSatelliteImagery(new BingMapResources(), x, z);
-
-        // Create and set the material
-        Material mat = new Material(Shader.Find("Standard"));
-        //mat.mainTexture = imgLoader.texture;
-        mat.mainTextureScale = new Vector2((float)(1.0 / 32.0), (float)(1.0 / 32.0));
-
-        return mat;
     }
 
     /// <summary>
