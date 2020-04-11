@@ -33,24 +33,4 @@ public static class Globals
             longitude = value;
         }
     }
-
-    public static int Length
-    {
-        get {
-            return length;
-        }
-        set {
-            length = value;
-        }
-    }
-
-    public static int MeshLength
-    {
-        get {
-            return meshLength;
-        }
-        set {
-            meshLength = value;
-        }
-    }
 }

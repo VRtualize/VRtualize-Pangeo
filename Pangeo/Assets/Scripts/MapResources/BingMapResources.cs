@@ -22,7 +22,7 @@ public class BingMapResources : IMapResources
         string apikey = lines[0].Substring(17, lines[0].Length - 18);
         restapiurl = new imageURLRequest(apikey);
 
-        originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
+        originQuadKey = QuadKeyFuncs.getQuadKey(Globals.latitude, Globals.longitude, 14);
     }
     /// <summary>
     /// Override the getMesh function to get data from Bing's REST API

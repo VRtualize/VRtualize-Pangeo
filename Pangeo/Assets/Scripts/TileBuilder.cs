@@ -20,7 +20,7 @@ public static class TileBuilder
     public static Tuple<Mesh, Material, bool> BuildTile(float x, float z){
 
         //Calculate the quadkey for the original starting tile
-        String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.Latitude, Globals.Longitude, 14);
+        String originQuadKey = QuadKeyFuncs.getQuadKey(Globals.latitude, Globals.longitude, 14);
         int initx = 0;
         int initz = 0;
         int initChosenZoomLevel = 14;
