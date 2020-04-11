@@ -22,6 +22,12 @@ public class Cache
     private string username;
     private string password;
 
+    /// <summary>
+    /// This function take in a quadkey and returns whether it already has
+    /// an entry in the database or not.
+    /// </summary>
+    /// <param name="quadkey">A quadkey for the Bing Maps Tile System</param>
+    /// <returns></returns>
     public bool DBcheck(string quadkey){
 
         //Create a connection to the MySQL Database
@@ -37,8 +43,13 @@ public class Cache
         return (num_results > 0);
 
     }
-    
 
+    /// <summary>
+    /// This function gets a quadkey entry from the database and returns a list of elevations
+    /// and the satellite image for that tile as a texture.
+    /// </summary>
+    /// <param name="quadkey">A quadkey for the Bing Maps Tile System</param>
+    /// <returns></returns>
     public Tuple<List<float>, Texture> DBGet(String quadkey)
     {
 
@@ -51,9 +62,11 @@ public class Cache
         MySqlDataReader queryResult = cmd.ExecuteReader();
         queryResult.Read();
 
+        //Convert the image to a Texture
         Texture2D mat = new Texture2D(32,32, TextureFormat.RGBA32, false);
         mat.LoadImage((byte[])queryResult[2]);
 
+        //Take the binary elevations and make them into a list of floats
         List<float> ElevList = new List<float>();
         byte[] ElevData = (byte[])queryResult[3];
         for (int i = 0; i < ElevData.Length/4; i++){
@@ -61,13 +74,23 @@ public class Cache
         }
 
         conn.Close();
+
         return new Tuple< List<float>, Texture > (ElevList, mat);
     }
 
+    /// <summary>
+    /// This function takes a list of elevations and the satellite imagery for 
+    /// the tile using the quadkey and places it into the database.
+    /// </summary>
+    /// <param name="quadkey">A quadkey for the BingMaps tile system</param>
+    /// <param name="elevations">A list of elevations for the current chunk starting 
+    /// from the upper left corner</param>
+    /// <param name="mat">The satellite image for this tile</param>
     public void DBInsert(String quadkey, List<float> elevations, byte[] mat){
         //Create a connection to the MySQL Database
         MySqlConnection conn = DBConnect();
 
+        //Convert the elevation list to a bytearray
         byte[] elevationList = new byte[elevations.Count*4];
         for(int i = 0; i < elevations.Count; i++){
             byte[] temp_float = BitConverter.GetBytes(elevations[i]);
@@ -76,7 +99,7 @@ public class Cache
             }
         }
 
-        //Perform a count query to see if the chunk exists in the database
+        //Put the chunk in the database
         String query = "Insert into image_cache(quadkey, zoomlevel, image_data, elevations) values(@quadkey, @zoomLevel, @image_data, @elevations);";
         using ( var cmd = new MySqlCommand(query, conn))
         {
@@ -89,6 +112,10 @@ public class Cache
         conn.Close();
     }
 
+    /// <summary>
+    /// Creates a connection to the database using the configuration file credentials
+    /// </summary>
+    /// <returns></returns>
     public MySqlConnection DBConnect()
     {
         string[] lines = System.IO.File.ReadAllLines(@"Assets/config");
@@ -107,7 +134,6 @@ public class Cache
 
         try
         {
-            // Open connection.
             conn.Open();
             return conn;
         }
