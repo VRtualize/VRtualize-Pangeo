@@ -11,33 +11,7 @@ public class BingMapResources : IMapResources
 {
     private String originQuadKey;
     private imageURLRequest restapiurl;
-    /// <summary>
-    /// Bing Map's REST API schema as an object for UnityEngine.JSONSerializeModule
-    /// </summary>
-    // public class bingSchema
-    // {
-    //     public class Resource
-    //     {
-    //         public string __type { get; set; }
-    //         public List<int> elevations { get; set; }
-    //         public int zoomLevel { get; set; }
-    //     }
-    //     public class ResourceSet
-    //     {
-    //         public int estimatedTotal { get; set; }
-    //         public List<Resource> resources { get; set; }
-    //     }
-    //     public class RootObject
-    //     {
-    //         public string authenticationResultCode { get; set; }
-    //         public string brandLogoUri { get; set; }
-    //         public string copyright { get; set; }
-    //         public List<ResourceSet> resourceSets { get; set; }
-    //         public int statusCode { get; set; }
-    //         public string statusDescription { get; set; }
-    //         public string traceId { get; set; }
-    //     }
-    // }
+
     /// <summary>
     /// Constructor for BingMapResources.
     /// </summary>
@@ -56,19 +30,6 @@ public class BingMapResources : IMapResources
     /// <param name="z">Unity units in direction z from origin</param>
     /// <returns>A list of elevation points</returns>
     List<float> IMapResources.getMesh(float x, float z) {
-        // // For now, we're stubbing out a concrete example
-        // bingSchema.RootObject items;
-        // using (StreamReader fs = new StreamReader(@"bingExample.json")) 
-        // {
-        //     string json = fs.ReadToEnd();
-        //     items = JsonUtility.FromJson<bingSchema.RootObject>(json);
-        // }
-        // int meshLength = items.resourceSets[0].resources[0].elevations.Count;
-        // List<float> mesh = new List<float>();
-        // for(int i = 0; i < meshLength; i++)
-        //     mesh.Add(items.resourceSets[0].resources[0].elevations[i]);
-        // return mesh;
-
         //Use x and z to offset the quadkey
         int initx = 0;
         int initz = 0;
