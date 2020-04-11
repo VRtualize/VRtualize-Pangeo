@@ -18,7 +18,6 @@ public class Cache
 
     private List<float> mesh;
 	public List<float> getMesh(IMapResources res, float x, float z) { return res.getMesh(x, z); }
-	async public void setMesh(IMapResources resources, float x, float z) { mesh = resources.getMesh(x, z); }
 	async public Task<byte[]> getSatelliteImagery(IMapResources res, float x, float z) { return await res.getSatelliteImagery(x, z); }
     public bool DBcheck(string quadkey){
 

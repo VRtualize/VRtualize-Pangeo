@@ -26,7 +26,7 @@ namespace DataManagerUtils
             //var client = new HttpClient();
             // client.DefaultRequestHeaders.Add("User-Agent", "C# console program");
 
-            String requestString = "http://dev.virtualearth.net/REST/v1/Elevation/Bounds?bounds=" + (latlower) + "," + (longright) + "," + (latupper) + "," + (longleft) + "&rows=32&cols=32&key=" + "AvOVJReSdFZbRWwS3JZI91yN4JLK4RH5lW6mdFTcJOdE-U5PFmC2hGgUtWUM6wsr";
+            String requestString = "http://dev.virtualearth.net/REST/v1/Elevation/Bounds?bounds=" + (latlower) + "," + (longright) + "," + (latupper) + "," + (longleft) + "&rows=32&cols=32&key=" + Globals.BingAPIKey;
             //var content = await client.GetStringAsync(requestString);
             var content = BingApiRequestManager.getUrlData(requestString);
             int start = content.IndexOf("\"elevations\"") + 14;

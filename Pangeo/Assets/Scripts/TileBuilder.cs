@@ -22,8 +22,6 @@ public static class TileBuilder
         double ucLat;
         double ucLong;
         QuadKeyFuncs.QuadKeyToLatLong(newQuadKey, out ucLat, out ucLong);
-        double lcLat;
-        double lcLong;
         //Get the lower right corner
         int tilex = 0;
         int tilez = 0;

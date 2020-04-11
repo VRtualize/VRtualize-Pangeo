@@ -5,6 +5,7 @@ public static class Globals
     public static double latitude = 39.5, longitude = -106.5;
     public static int length, meshLength;
     public static Mutex mut = new Mutex();
+    public static string BingAPIKey;
 
 
     //Bing Maps meters per pixel at different zoom levels

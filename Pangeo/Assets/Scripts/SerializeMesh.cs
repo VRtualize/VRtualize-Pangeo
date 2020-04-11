@@ -54,6 +54,11 @@ namespace TheTide.utils
 
             return mesh;
         }
+
+        public void Update()
+        {
+            
+        }
     }
 
 #if UNITY_EDITOR

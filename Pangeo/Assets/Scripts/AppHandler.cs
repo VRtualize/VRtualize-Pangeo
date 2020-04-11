@@ -43,6 +43,10 @@ public class AppHandler : MonoBehaviour
         ////The starting environment will be size^2 tiles in a square shape
         //int size = 2;
 
+        string[] lines = System.IO.File.ReadAllLines(@"Assets/config");
+        string apikey = lines[0].Substring(17, lines[0].Length - 18);
+        Globals.BingAPIKey = apikey;
+
         pPrefab = Resources.Load("Prefabs/Tile");
 
         for (int i = 0; i < worldSize; i++)
@@ -116,8 +120,6 @@ public class AppHandler : MonoBehaviour
                             double ucLat;
                             double ucLong;
                             QuadKeyFuncs.QuadKeyToLatLong(newQuadKey, out ucLat, out ucLong);
-                            double lcLat;
-                            double lcLong;
                             //Get the lower right corner
                             int tilex = 0;
                             int tilez = 0;
