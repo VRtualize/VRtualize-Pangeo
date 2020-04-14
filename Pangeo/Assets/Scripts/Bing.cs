@@ -12,6 +12,12 @@ namespace DataManagerUtils
     /// </summary>
     public static class QuadKeyFuncs
     {
+        private const double EarthRadius = 6378137;
+        private const double MinLatitude = -85.05112878;
+        private const double MaxLatitude = 85.05112878;
+        private const double MinLongitude = -180;
+        private const double MaxLongitude = 180;
+
         /// <summary>
         /// This function allows you to put in a longitude, latitiude, and zoomLevel into it
         /// and returns a string with the quadkey containing that coordinate at that zoom 
@@ -129,6 +135,30 @@ namespace DataManagerUtils
         {
             pixelX = tileX * 256;
             pixelY = tileY * 256;
+        }
+
+        /// <summary>  
+        /// Converts a point from latitude/longitude WGS-84 coordinates (in degrees)  
+        /// into pixel XY coordinates at a specified level of detail.  
+        /// </summary>  
+        /// <param name="latitude">Latitude of the point, in degrees.</param>  
+        /// <param name="longitude">Longitude of the point, in degrees.</param>  
+        /// <param name="levelOfDetail">Level of detail, from 1 (lowest detail)  
+        /// to 23 (highest detail).</param>  
+        /// <param name="pixelX">Output parameter receiving the X coordinate in pixels.</param>  
+        /// <param name="pixelY">Output parameter receiving the Y coordinate in pixels.</param>  
+        public static void LatLongToPixelXY(double latitude, double longitude, int levelOfDetail, out int pixelX, out int pixelY)
+        {
+            latitude = Clip(latitude, MinLatitude, MaxLatitude);
+            longitude = Clip(longitude, MinLongitude, MaxLongitude);
+
+            double x = (longitude + 180) / 360;
+            double sinLatitude = Math.Sin(latitude * Math.PI / 180);
+            double y = 0.5 - Math.Log((1 + sinLatitude) / (1 - sinLatitude)) / (4 * Math.PI);
+
+            uint mapSize = MapSize(levelOfDetail);
+            pixelX = (int)Clip(x * mapSize + 0.5, 0, mapSize - 1);
+            pixelY = (int)Clip(y * mapSize + 0.5, 0, mapSize - 1);
         }
 
         /// <summary>  

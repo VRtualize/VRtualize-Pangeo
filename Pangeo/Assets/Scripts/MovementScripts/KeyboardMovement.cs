@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 /// <summary>
 /// Takes in the keyboard input and moves the camera respectively.
 /// WSAD: Forward, backward, left, right

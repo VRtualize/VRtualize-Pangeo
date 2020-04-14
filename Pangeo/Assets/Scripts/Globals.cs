@@ -6,6 +6,7 @@ using UnityEngine;
 public static class Globals
 {
     public static double latitude = 39.5, longitude = -106.5;
+    public static double curr_latitude, curr_longitude;
     public static int length, meshLength;
     public static Mutex mut = new Mutex();
     public static string BingAPIKey;

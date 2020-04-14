@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -117,6 +117,8 @@ public class UIManagerScript : MonoBehaviour
 
         Globals.latitude = latitude;
         Globals.longitude = longitude;
+        Globals.curr_latitude = latitude;
+        Globals.curr_longitude = longitude;
 
         Debug.Log("Current Latitude " + Globals.latitude);
         Debug.Log("Current Longitude " + Globals.longitude);
