@@ -123,7 +123,7 @@ public class UIManagerScript : MonoBehaviour
         Debug.Log("Current Latitude " + Globals.latitude);
         Debug.Log("Current Longitude " + Globals.longitude);
 
-        SceneManager.LoadScene("World");
+        SceneManager.LoadScene("WhenWorldsCollideWithMovement");
     }
 
     /// <summary>
