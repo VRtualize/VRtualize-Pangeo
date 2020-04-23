@@ -1,0 +1,140 @@
+\chapter{Issue Tracking Manager}
+
+ZenHub is an agile project management application within GitHub that allows organization of issues into task boards and reports.
+
+
+\subsection{Installation}
+\label{\detokenize{test_plan/issue_tracking_manager:installation}}
+Download the browser extension for Firefox or Chrome and accept permissions and sign in with GitHub. ZenHub will be added right into the GitHub interface.
+
+
+\subsection{Structure}
+\label{\detokenize{test_plan/issue_tracking_manager:structure}}
+The ZenHub Workspace is split up between 7 pipelines;
+\begin{itemize}
+\item {} \begin{description}
+\item[{New Issues}] \leavevmode
+Issues that have yet to be assigned or evaluated.
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Icebox}] \leavevmode
+Features that are desired but not required.
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Backlog}] \leavevmode
+Issues that were not completed from the past Sprint. The highest priority.
+
+\end{description}
+
+\item {} \begin{description}
+\item[{In Progress}] \leavevmode
+Issues that currently being worked on by the Development team.
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Review/QA}] \leavevmode
+Issues that are ready to be code reviewed and QA tested.
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Done}] \leavevmode
+Issues that have passed review and QA tests and can be queued for next release.
+
+\end{description}
+
+\item {} \begin{description}
+\item[{Closed}] \leavevmode
+Issues that will no longer be worked on (Done, won’t fix, done with development, already implemented, duplicate, etc.).
+
+\end{description}
+
+\end{itemize}
+
+
+\subsection{Issue Types}
+\label{\detokenize{test_plan/issue_tracking_manager:issue-types}}\begin{itemize}
+\item {} 
+User Story
+
+\item {} 
+Feature Request
+
+\item {} 
+UX Issue
+
+\item {} 
+Performance
+
+\item {} 
+Bug
+
+\end{itemize}
+
+
+\subsection{Issue Complexities}
+\label{\detokenize{test_plan/issue_tracking_manager:issue-complexities}}
+
+\begin{savenotes}\sphinxattablestart
+\centering
+\begin{tabulary}{\linewidth}[t]{|T|T|}
+\hline
+\sphinxstyletheadfamily 
+Complexity
+&\sphinxstyletheadfamily 
+Difficulty
+\\
+\hline
+1
+&
+Trivial (Typo, small fix)
+\\
+\hline
+2
+&
+Busy Work (Easy Function)
+\\
+\hline
+3
+&
+Rare (New Function)
+\\
+\hline
+5
+&
+Medium Rare (Set of interacting functions)
+\\
+\hline
+8
+&
+Medium Well (New feature)
+\\
+\hline
+13
+&
+Well Done (Major fix, multiple features)
+\\
+\hline
+21
+&
+Perplexing (Researching new techniques)
+\\
+\hline
+40
+&
+Beastly (Unsure if possible)
+\\
+\hline
+\end{tabulary}
+\par
+\sphinxattableend\end{savenotes}
+
+
+
+\renewcommand{\indexname}{Index}
+\printindex
